@@ -4,4 +4,10 @@
 *.aux
 *.toc
 *.out
+*.bbl
+*.blg
+*.bcf
+*.log
+*.run.xml
+*.xmpi
 build/
