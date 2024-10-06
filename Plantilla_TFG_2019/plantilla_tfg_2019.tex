@@ -29,6 +29,9 @@ hmargin=3cm
 \renewcommand{\baselinestretch}{1.15}
 \parskip=6pt
 
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 % DEFINICIÓN DE COLORES para portada y listados de código
 \usepackage[table]{xcolor}
 \definecolor{azulUC3M}{RGB}{0,0,102}
@@ -362,6 +365,16 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
 \chapter{Proceso de entrenamiento}
 	
 	\section{Parte 1}
+
+        Para el entrenamiento de distintos modelos trabajaremos con variaciones sobre 3 parámetros de la red neuronal (número de capas ocultas, \textit{loss function} y \textit{learning rate}). Además, aplicaremos previamente un filtrado de datos eliminando un atributo que es constante para cada embalse. Esto resulta en 16 modelos distintos. También incluiremos un modelo extra con los valores por defecto como modelo de control.
+
+        De esta forma, estamos empleando un \textit{grid-search} con los siguientes valores:
+        \begin{itemize}
+            \item Filtrado de datos: \{\textit{all}, \textit{agua total}\}.
+            \item Número de capas: $\{2, 8\}$.
+            \item \textit{loss function}: \{\textit{quadratic}, \textit{Huber}\}.
+            \item \textit{learning rate}: $\{0.05, \textit{automatic}\}$.
+        \end{itemize}
 
 	\section{Parte 2}
 
