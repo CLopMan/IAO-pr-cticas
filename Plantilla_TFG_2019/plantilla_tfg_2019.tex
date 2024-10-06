@@ -338,7 +338,27 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
 
 \chapter{Descripción de los datos}
 
+    Los datos usados se componen de el agua total y actual en cada semana de 10
+    embalses cercanos entre sí de la cuenca del Miño-Sil a lo largo de aproximadamente
+    35 años. También se tiene el nombre de cada embalse y si se usan para producción
+    eléctrica. A partir de estos datos también se han obtenido otros derivados:
+    cambio semanal del agua actual, tasa de cambio (porcentual), y promedio móvil
+    del agua actual en las últimas 4 semanas. Además, también se eliminaron los
+    atributos de producción eléctrica y nombre de la cuenca, ya que son constantes
+    y por lo tanto no deberían influir en el rendimiento del modelo obtenido.
+    Eliminar estos atributos también permitirá obtener modelos más simples y
+    rápidos de entrenar y utilizar. El atributo a predecir es el agua en la
+    siguiente semana, por lo que este valor también ha añadido para el entrenamiento.
 
+    En la parte 1, se tratarán los datos como una serie no temporal para regresión.
+    Cabe destacar que, como los datos realmente representan una serie temporal,
+    tratarlos como una serie no temporal para hacer regresión puede introducir
+    algunos problemas de \textit{data leak}.
+
+    En la parte 2, se tratarán los datos como una serie temporal. Debido a esto
+    se asumirá que el agua actual durante las últimas semanas es suficiente para
+    predecir el agua actual en semanas futuras, aunque también se probará añadir
+    otros atributos para determinar si mejoran el modelo obtenido.
 
 \chapter{Proceso de entrenamiento}
 	
