@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 39) (preloaded format=pdflatex 2024.10.4)  4 OCT 2024 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 39) (preloaded format=pdflatex 2024.10.4)  6 OCT 2024 10:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1193,14 +1193,14 @@ Cap\'{\i }tulo 1.
 
 
 ]
-Package csquotes Info: Disabling multilingual quotes on input line 377.
+Package csquotes Info: Disabling multilingual quotes on input line 376.
 
 
 Package csquotes Warning: Quote style 'british/english' not defined.
-(csquotes)                Ignoring command on input line 377.
+(csquotes)                Ignoring command on input line 376.
 
 
-LaTeX Warning: Empty bibliography on input line 378.
+LaTeX Warning: Empty bibliography on input line 377.
 
 
 Package caption Warning: Unused \captionsetup[table] on input line 127.
@@ -1222,11 +1222,11 @@ Package logreq Info: Writing requests to 'plantilla_tfg_2019.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27906 strings out of 477985
- 465072 string characters out of 5839370
+ 27910 strings out of 477985
+ 465102 string characters out of 5839370
  1856388 words of memory out of 6000000
- 47692 multiletter control sequences out of 15000+600000
- 549788 words of font info for 66 fonts, out of 8000000 for 9000
+ 47693 multiletter control sequences out of 15000+600000
+ 552877 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  92i,11n,105p,1039b,2379s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxsc.pfb></usr/sha
@@ -1234,10 +1234,10 @@ re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb>
-Output written on plantilla_tfg_2019.pdf (13 pages, 103606 bytes).
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on plantilla_tfg_2019.pdf (13 pages, 122997 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
+ 120 PDF objects out of 1000 (max. 8388607)
  18 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
