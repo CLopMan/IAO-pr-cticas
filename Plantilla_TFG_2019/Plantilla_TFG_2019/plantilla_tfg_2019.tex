@@ -11,7 +11,7 @@
 
 
 %----------
-%	CONFIGURACIÓN DEL DOCUMENTO
+%    CONFIGURACIÓN DEL DOCUMENTO
 %----------
 
 % Definimos las características del documento y añadimos una serie de paquetes (\usepackage{package}) que agregan funcionalidades a LaTeX.
@@ -42,17 +42,17 @@ hmargin=3cm
 % ENLACES
 \usepackage{hyperref}
 \hypersetup{colorlinks=true,
-	linkcolor=black, % enlaces a partes del documento (p.e. índice) en color negro
-	urlcolor=blue} % enlaces a recursos fuera del documento en azul
+    linkcolor=black, % enlaces a partes del documento (p.e. índice) en color negro
+    urlcolor=blue} % enlaces a recursos fuera del documento en azul
 
 % EXPRESIONES MATEMATICAS
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 
-\usepackage{txfonts} 
+\usepackage{txfonts}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\usepackage[spanish, es-tabla]{babel} 
+\usepackage[spanish, es-tabla]{babel}
 \usepackage[babel, spanish=spanish]{csquotes}
 \AtBeginEnvironment{quote}{\small}
 
@@ -75,11 +75,11 @@ hmargin=3cm
 {}
 \titlespacing{\chapter}{0pt}{0pt}{*3}
 \titlecontents{chapter}
-[0pt]                                               
+[0pt]
 {}
 {\contentsmargin{0pt}\thecontentslabel.\enspace\uppercase}
-{\contentsmargin{0pt}\uppercase}                        
-{\titlerule*[.7pc]{.}\contentspage}                 
+{\contentsmargin{0pt}\uppercase}
+{\titlerule*[.7pc]{.}\contentspage}
 
 \titleformat{\section}
 {\bfseries}
@@ -87,7 +87,7 @@ hmargin=3cm
 {5pt}
 {}
 \titlecontents{section}
-[5pt]                                               
+[5pt]
 {}
 {\contentsmargin{0pt}\thecontentslabel.\enspace}
 {\contentsmargin{0pt}}
@@ -99,40 +99,40 @@ hmargin=3cm
 {5pt}
 {}
 \titlecontents{subsection}
-[10pt]                                               
+[10pt]
 {}
-{\contentsmargin{0pt}                          
-	\thecontentslabel.\enspace}
-{\contentsmargin{0pt}}                        
-{\titlerule*[.7pc]{.}\contentspage}  
+{\contentsmargin{0pt}
+    \thecontentslabel.\enspace}
+{\contentsmargin{0pt}}
+{\titlerule*[.7pc]{.}\contentspage}
 
 
 % DISEÑO DE TABLAS. Puedes elegir entre el estilo para ingeniería o para ciencias sociales y humanidades. Por defecto, está activado el estilo de ingeniería. Si deseas utilizar el otro, comenta las líneas del diseño de ingeniería y descomenta las del diseño de ciencias sociales y humanidades
-\usepackage{multirow} % permite combinar celdas 
+\usepackage{multirow} % permite combinar celdas
 \usepackage{caption} % para personalizar el título de tablas y figuras
-\usepackage{floatrow} % utilizamos este paquete y sus macros \ttabbox y \ffigbox para alinear los nombres de tablas y figuras de acuerdo con el estilo definido. Para su uso ver archivo de ejemplo 
+\usepackage{floatrow} % utilizamos este paquete y sus macros \ttabbox y \ffigbox para alinear los nombres de tablas y figuras de acuerdo con el estilo definido. Para su uso ver archivo de ejemplo
 \usepackage{array} % con este paquete podemos definir en la siguiente línea un nuevo tipo de columna para tablas: ancho personalizado y contenido centrado
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \DeclareCaptionFormat{upper}{#1#2\uppercase{#3}\par}
 
 % Diseño de tabla para ingeniería
 \captionsetup[table]{
-	format=upper,
-	name=TABLA,
-	justification=centering,
-	labelsep=period,
-	width=.75\linewidth,
-	labelfont=small,
-	font=small,
+    format=upper,
+    name=TABLA,
+    justification=centering,
+    labelsep=period,
+    width=.75\linewidth,
+    labelfont=small,
+    font=small,
 }
 
 %Diseño de tabla para ciencias sociales y humanidades
 %\captionsetup[table]{
-%	justification=raggedright,
-%	labelsep=period,
-%	labelfont=small,
-%	singlelinecheck=false,
-%	font={small,bf}
+%    justification=raggedright,
+%    labelsep=period,
+%    labelfont=small,
+%    singlelinecheck=false,
+%    font={small,bf}
 %}
 
 
@@ -142,22 +142,22 @@ hmargin=3cm
 
 % Diseño de figuras para ingeniería
 \captionsetup[figure]{
-	format=hang,
-	name=Fig.,
-	singlelinecheck=off,
-	labelsep=period,
-	labelfont=small,
-	font=small		
+    format=hang,
+    name=Fig.,
+    singlelinecheck=off,
+    labelsep=period,
+    labelfont=small,
+    font=small
 }
 
 % Diseño de figuras para ciencias sociales y humanidades
 %\captionsetup[figure]{
-%	format=hang,
-%	name=Figura,
-%	singlelinecheck=off,
-%	labelsep=period,
-%	labelfont=small,
-%	font=small		
+%    format=hang,
+%    name=Figura,
+%    singlelinecheck=off,
+%    labelsep=period,
+%    labelfont=small,
+%    font=small
 %}
 
 
@@ -171,32 +171,32 @@ hmargin=3cm
 
 % definimos un estilo de listings
 \lstdefinestyle{estilo}{ frame=Ltb,
-	framerule=0pt,
-	aboveskip=0.5cm,
-	framextopmargin=3pt,
-	framexbottommargin=3pt,
-	framexleftmargin=0.4cm,
-	framesep=0pt,
-	rulesep=.4pt,
-	backgroundcolor=\color{gray97},
-	rulesepcolor=\color{black},
-	%
-	basicstyle=\ttfamily\footnotesize,
-	keywordstyle=\bfseries,
-	stringstyle=\ttfamily,
-	showstringspaces = false,
-	commentstyle=\color{gray45},     
-	%
-	numbers=left,
-	numbersep=15pt,
-	numberstyle=\tiny,
-	numberfirstline = false,
-	breaklines=true,
-	xleftmargin=\parindent
+    framerule=0pt,
+    aboveskip=0.5cm,
+    framextopmargin=3pt,
+    framexbottommargin=3pt,
+    framexleftmargin=0.4cm,
+    framesep=0pt,
+    rulesep=.4pt,
+    backgroundcolor=\color{gray97},
+    rulesepcolor=\color{black},
+    %
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\bfseries,
+    stringstyle=\ttfamily,
+    showstringspaces = false,
+    commentstyle=\color{gray45},
+    %
+    numbers=left,
+    numbersep=15pt,
+    numberstyle=\tiny,
+    numberfirstline = false,
+    breaklines=true,
+    xleftmargin=\parindent
 }
 
 \captionsetup[lstlisting]{font=small, labelsep=period}
-% fijamos el estilo a utilizar 
+% fijamos el estilo a utilizar
 \lstset{style=estilo}
 \renewcommand{\lstlistingname}{\uppercase{Código}}
 
@@ -215,113 +215,78 @@ hmargin=3cm
 
 % Añadimos las siguientes indicaciones para mejorar la adaptación de los estilos en español
 \DefineBibliographyStrings{spanish}{%
-	andothers = {et\addabbrvspace al\adddot}
+    andothers = {et\addabbrvspace al\adddot}
 }
 \DefineBibliographyStrings{spanish}{
-	url = {\adddot\space[En línea]\adddot\space Disponible en:}
+    url = {\adddot\space[En línea]\adddot\space Disponible en:}
 }
 \DefineBibliographyStrings{spanish}{
-	urlseen = {Acceso:}
+    urlseen = {Acceso:}
 }
 \DefineBibliographyStrings{spanish}{
-	pages = {pp\adddot},
-	page = {p.\adddot}
+    pages = {pp\adddot},
+    page = {p.\adddot}
 }
 
 \addbibresource{bibliografia/bibliografia.bib} % llama al archivo bibliografia.bib en el que debería estar la bibliografía utilizada
 
 
 %-------------
-%	DOCUMENTO
+%    DOCUMENTO
 %-------------
 
 \begin{document}
 \pagenumbering{roman} % Se utilizan cifras romanas en la numeración de las páginas previas al cuerpo del trabajo
-	
+
 %----------
-%	PORTADA
-%----------	
+%    PORTADA
+%----------
+\title{Práctica 1}
+\author{Álvaro Guerrero Espinosa (100472294)\\
+        César López Mantecón (100472092)\\
+        Paula Subías Serrano (100472119)\\
+        Irene Subías Serrano (100472108)\\}
+
+\makeatletter
 \begin{titlepage}
-	\begin{sffamily}
-	\color{azulUC3M}
-	\begin{center}
-		\begin{figure}[H] %incluimos el logotipo de la Universidad
-			\makebox[\textwidth][c]{\includegraphics[width=16cm]{Portada_Logo.png}}
-		\end{figure}
-		\vspace{2.5cm}
-		\begin{Large}
-			Grado Universitario...\\			
-			Indique el curso académico (ej. 2016-2017)\\
-			\vspace{2cm}		
-			\textsl{Trabajo Fin de Grado}
-			\bigskip
-			
-		\end{Large}
-		 	{\Huge ``Título del trabajo''}\\
-		 	\vspace*{0.5cm}
-	 		\rule{10.5cm}{0.1mm}\\
-			\vspace*{0.9cm}
-			{\LARGE Nombre Apellido1 Apellido2}\\ 
-			\vspace*{1cm}
-		\begin{Large}
-			Tutor/es\\
-			Nombre Apellido1 Apellido2\\
-			Nombre Apellido1 Apellido2\\
-			Lugar y fecha de presentación prevista\\
-		\end{Large}
-	\end{center}
-	\vfill
-	\color{black}
-	% si nuestro trabajo se va a publicar con una licencia Creative Commons, incluir estas líneas. Es la opción recomendada.
-	\includegraphics[width=4.2cm]{imagenes/creativecommons.png}\\ %incluimos el logotipo de creativecommons
-	\emph{[Incluir en el caso del interés en su publicación en el archivo abierto]}\\  % BORRAR ESTA LÍNEA
-	Esta obra se encuentra sujeta a la licencia Creative Commons \textbf{Reconocimiento - No Comercial - Sin Obra Derivada}
-	\end{sffamily}
+    \begin{sffamily}
+    \color{azulUC3M}
+    \begin{center}
+        \begin{figure}[H] %incluimos el logotipo de la Universidad
+            \makebox[\textwidth][c]{\includegraphics[width=16cm]{Portada_Logo.png}}
+        \end{figure}
+        \vspace{2.5cm}
+        \begin{Large}
+            Grado en Ingeniería Informática\\
+            \@date\\
+            \vspace{2cm}
+            \textsl{Inteligencia Artificial en las Organizaciones}\\
+            \bigskip
+        \end{Large}
+        {\Huge ``\@title''}\\
+        \vspace*{0.5cm}
+        \rule{10.5cm}{0.1mm}\\
+        \vspace*{0.9cm}
+        {\LARGE\@author}
+        \vspace*{1cm}
+    \end{center}
+    \vfill
+    \color{black}
+    % si nuestro trabajo se va a publicar con una licencia Creative Commons, incluir estas líneas. Es la opción recomendada.
+    \includegraphics[width=4.2cm]{imagenes/creativecommons.png}\\ %incluimos el logotipo de creativecommons
+    \emph{[Incluir en el caso del interés en su publicación en el archivo abierto]}\\  % BORRAR ESTA LÍNEA
+    Esta obra se encuentra sujeta a la licencia Creative Commons \textbf{Reconocimiento - No Comercial - Sin Obra Derivada}
+    \end{sffamily}
 \end{titlepage}
+\makeatother
 
 \newpage %página en blanco o de cortesía
 \thispagestyle{empty}
 \mbox{}
 
 %----------
-%	RESUMEN Y PALABRAS CLAVE
-%----------	
-\renewcommand\abstractname{\large\bfseries\filcenter\uppercase{Resumen}}
-\begin{abstract}
-\thispagestyle{plain}
-\setcounter{page}{3}
-	
-	% ESCRIBIR EL RESUMEN AQUÍ
-	
-	\textbf{Palabras clave:}
-	% Escribir las palabras clave aquí
-	
-	\vfill
-\end{abstract}
-	\newpage % página en blanco o de cortesía
-	\thispagestyle{empty}
-	\mbox{}
-
-
+%    ÍNDICES
 %----------
-%	DEDICATORIA
-%----------	
-\chapter*{Dedicatoria}
-
-\setcounter{page}{5}
-	
-	% ESCRIBIR LA DEDICATORIA AQUÍ	
-		
-	\vfill
-	
-	\newpage % página en blanco o de cortesía
-	\thispagestyle{empty}
-	\mbox{}
-	
-
-%----------
-%	ÍNDICES
-%----------	
 
 %--
 % Índice general
@@ -336,40 +301,57 @@ hmargin=3cm
 %--
 % Índice de figuras. Si no se incluyen, comenta las líneas siguientes
 %-
-\listoffigures
-\thispagestyle{fancy}
-
-\newpage % página en blanco o de cortesía
-\thispagestyle{empty}
-\mbox{}
+% \listoffigures
+% \thispagestyle{fancy}
+%
+% \newpage % página en blanco o de cortesía
+% \thispagestyle{empty}
+% \mbox{}
 
 %--
 % Índice de tablas. Si no se incluyen, comenta las líneas siguientes
 %-
-\listoftables
-\thispagestyle{fancy}
-
-\newpage % página en blanco o de cortesía
-\thispagestyle{empty}
-\mbox{}
+% \listoftables
+% \thispagestyle{fancy}
+%
+% \newpage % página en blanco o de cortesía
+% \thispagestyle{empty}
+% \mbox{}
 
 
 %----------
-%	TRABAJO
-%----------	
+%    TRABAJO
+%----------
 \clearpage
-\pagenumbering{arabic} % numeración con múmeros arábigos para el resto de la publicación	
+\pagenumbering{arabic} % numeración con múmeros arábigos para el resto de la publicación
 
 \chapter{Introducción}
 
-	% COMENZAR A ESCRIBIR EL TRABAJO
 En este documento se recoge el desarrollo de la primera práctica de \textit{Inteligencia Artificial en las Organizaciones}. En esta práctica obtendremos dos modelos para la prevención del nivel de agua en un embalse de la cuenca del Miño-Sil. Para ello, seguiremos dos aproximaciones: en la primera obtendremos un modelo entrenando mediante una validación cruzada aleatoria, en la segunda usaremos una validación cruzada basada en series temporales. Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}.
 
 La gestión de los embalses es un 
 
+\chapter{Descripción de los datos}
+
+
+
+\chapter{Proceso de entrenamiento}
+	
+	\section{Parte 1}
+
+	\section{Parte 2}
+
+\chapter{Resultados}
+
+	\section{Parte 1}
+
+	\section{Parte 2}
+
+\chapter{Comparación de resultados}
+
 %----------
-%	BIBLIOGRAFÍA
-%----------	
+%    BIBLIOGRAFÍA
+%----------
 
 %\nocite{*} % Si quieres que aparezcan en la bibliografía todos los documentos que la componen (también los que no estén citados en el texto) descomenta está lína
 
@@ -381,8 +363,8 @@ La gestión de los embalses es un
 
 
 %----------
-%	ANEXOS
-%----------	
+%    ANEXOS
+%----------
 
 % Si tu trabajo incluye anexos, puedes descomentar las siguientes líneas
 %\chapter* {Anexo x}
