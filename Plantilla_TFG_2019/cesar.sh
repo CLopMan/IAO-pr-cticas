@@ -1,8 +1,10 @@
 #!/bin/bash
 
+
 biber plantilla_tfg_2019
 pdflatex plantilla_tfg_2019.tex
 biber plantilla_tfg_2019
+pdflatex plantilla_tfg_2019.tex
 pdflatex plantilla_tfg_2019.tex
 pdflatex plantilla_tfg_2019.tex
 pdflatex plantilla_tfg_2019.tex
