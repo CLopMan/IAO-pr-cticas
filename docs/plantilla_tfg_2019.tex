@@ -18,7 +18,6 @@
 
 \documentclass[12pt]{report} %fuente a 12pt
 
-
 % MÁRGENES: 2,5 cm sup. e inf.; 3 cm izdo. y dcho.
 \usepackage[
 a4paper,
@@ -344,65 +343,141 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
 \chapter{Descripción de los datos}
 \label{chap:datos}
 
-    Los datos usados se componen de el agua total y actual en cada semana de 10
+    Los datos usados se componen del agua total y actual en cada semana de 10
     embalses cercanos entre sí de la cuenca del Miño-Sil a lo largo de aproximadamente
     35 años. También se tiene el nombre de cada embalse y si se usan para producción
-    eléctrica. A partir de estos datos también se han obtenido otros derivados:
+    eléctrica. A partir de estos datos se han obtenido otros derivados:
     cambio semanal del agua actual, tasa de cambio (porcentual), y promedio móvil
-    del agua actual en las últimas 4 semanas. Además, también se eliminaron los
+    del agua actual en las últimas 4 semanas. Además, se eliminaron los
     atributos de producción eléctrica y nombre de la cuenca, ya que son constantes
-    y por lo tanto no deberían influir en el rendimiento del modelo obtenido.
-    Eliminar estos atributos también permitirá obtener modelos más simples y
-    rápidos de entrenar y utilizar. El atributo a predecir es el agua en la
-    siguiente semana, por lo que este valor también ha añadido para el entrenamiento.
+    y por lo tanto no deberían influir en la precisión del modelo obtenido.
+    Eliminar estos atributos permite obtener modelos más simples y
+    rápidos. El valor objetivo a predecir es el \textbf{agua en la
+    siguiente semana}, atributo que se ha añadido al set de datos.
 
-    En la parte 1, se tratarán los datos como una serie no temporal para regresión.
+    En la parte 1 se tratarán los datos como una serie no temporal para regresión.
     Cabe destacar que, como los datos realmente representan una serie temporal,
     tratarlos como una serie no temporal para hacer regresión puede introducir
     algunos problemas de \textit{data leak}.
 
-    En la parte 2, se tratarán los datos como una serie temporal. Debido a esto
+    En la parte 2 se tratarán los datos como una serie temporal. Debido a esto
     se asumirá que el agua actual durante las últimas semanas es suficiente para
     predecir el agua actual en semanas futuras, aunque también se probará a añadir
     otros atributos para determinar si mejoran el modelo obtenido.
 
 \chapter{Proceso de entrenamiento}
 \label{chap:train}
-    Con el fin de hacer un experimento reproducible se ha utilziado la opción de usar un único hilo con semilla local en el entrenamiento de la red neuronal. La semilla empleada ha sido 1922.
+    Con el fin de hacer un experimento reproducible se ha utilziado la opción de usar un único hilo con semilla local en el entrenamiento de la red neuronal. La semilla empleada ha sido 1992.
 	\section{Parte 1}
 
-        Para el entrenamiento de distintos modelos trabajaremos con variaciones sobre 3 parámetros de la red neuronal (número de capas ocultas, \textit{loss function} y \textit{learning rate}). Además, aplicaremos previamente un filtrado de datos eliminando el atributo \textit{Agua\_total}, que es constante para cada embalse. Esto resulta en 16 modelos distintos. También incluiremos un modelo extra con los valores por defecto como modelo de control.
+        Para el entrenamiento de distintos modelos trabajaremos con variaciones sobre 3 parámetros de la red neuronal (número de capas ocultas, \textit{loss function} y \textit{learning rate}). Además, tendremos dos grupos de modelos: la mitad filtrará el dato \textit{Agua\_total}, generalmente constante para un embalse; y la otra mitad utilizará todos los atributos. Esto resulta en 16 modelos distintos. También incluiremos un modelo extra con los valores por defecto como modelo de control.
 
         De esta forma, estamos empleando un \textit{grid-search} con los siguientes valores:
         \begin{itemize}
-            \item Filtrado de datos: \{\textit{all}, \textit{agua total}\}.
+            \item Filtrado de datos: \{\textit{all}, \textit{exclude agua total}\}.
             \item Número de capas: $\{2, 8\}$.
             \item \textit{loss function}: \{\textit{absolute}, \textit{Huber}\}.
-            \item \textit{learning rate}: $\{0.05, \textit{automatic}\}$.
+            \item \textit{learning rate}: $\{0.01, \textit{adaptative}\}$.
         \end{itemize}
 
-    Al comparar los modelos mediante el test \textit{Anova} podemos comprobar que existen diferencias significativas entre ellos debido a que optenemos un $f-value > 1$. 
-[insertar los resultados del t-test y anova-test]
+ Al concluir el entrenamiento hemos obtenido los siguientes resultados:
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ |c|l|c| }
+    \hline
+    Modelo & Parámetros & RMSE\\
+    \hline
+    \hline
+    0 & (\textit{default})  & 3.933\\
+    1 & (\textit{all, adaptative, 2, absolute}))  & 4.220\\
+    2 & (\textit{all, adaptative, 2, Huber}))  & 3.928\\
+    3 & (\textit{all, adaptative, 8, absolute})  & 4.609\\
+    4 & (\textit{all, adaptative, 8, Huber})  & 4.115\\
+    5 & (\textit{all, 0.01, 2, absolute})  & 4.351\\
+    6 & (\textit{all, 0.01, 2, Huber})  & 3.931\\
+    7 & (\textit{all, 0.01, 8, absolute})  & 4.491\\
+    8 & (\textit{all, 0.01, 8, Huber})  & 4.011\\
+    9 & (\textit{exclude agua total, adaptative, 8, absolute})  & 4.657\\
+    10 &(\textit{exclude agua total, adaptative, 8, Huber})  & 4.236\\
+    11 &(\textit{exclude agua total, adaptative, 2, absolute})  & 4.145\\
+    12 &(\textit{exclude agua total, adaptative, 2, Huber})  & 3.981\\
+    13 &(\textit{exclude agua total, 0.01, 8, absolute})  & 4.542\\
+    14 &(\textit{exclude agua total, 0.01, 8, Huber})  & 4.108\\
+    15 &(\textit{exclude agua total, 0.01, 2, absolute})  & 4.574\\
+    16 &(\textit{exclude agua total, 0.01, 2, Huber})  & 3.970\\
+    \hline
+\end{tabular}
+\caption{Errores de los diferentes modelos}
+\end{center}
+\end{table}
 
-    Si observamos la comparación por pares proporcionada por el \textit{t-test}, destaca el modelo J por ser el que presenta diferencias más significativas con el resto de modelos. Este modelo, además, cuenta con un RMSE de [insertar error] y una correlación de [insertar correlación]. También podemos observar que, en general, existen 2 clases de modelos. [no sé interpretar muy bien el t-test, pero creo que hay modelos similares al J y los demás con mejor error]. 
+    Mediante el test \textit{Anova} podemos comprobar que existen diferencias significativas entre ellos debido a que obtenemos un $f\text{-value} > 1$. 
 
-    Con toda esta información, concluimos que el mejor modelo y con el que haremos la predicción será el modelo [insertar modelo] debido a que se trata del modelo más sencillo de la segunda clase al emplear menos atributos.... [etc.].
+$$\texttt{Anova Test:}~(f=1.455,~\text{prob}=0.124,~\alpha=0.050)$$
 
-	\section{Parte 2}
+    Además, si observamos la comparación por pares proporcionada por el \textit{t-test}, destaca el modelo 9 por ser el que presenta diferencias más significativas con el resto de modelos. A continuación se muestra la matriz resultante de la ejecución del test:
 
-\chapter{Resultados}
-\label{chap:results}
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{t-test.jpeg}
+\end{figure}
 
-	\section{Parte 1}
+    El modelo 9 cuenta con un RMSE anormalmente alto de $4,657\pm 0.686$. También podemos observar que existen 2 clases de modelos donde el principal componente diferenciador es la \textit{loss function}: la función \textit{Huber} presenta, en general, un error más bajo que los modelos con la función \textit{absolute} con los mismos parámetros. Esto se puede comprobar a través de los siguientes gráficos:
 
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{RMSE-models.png}\\
+    \includegraphics[width=\linewidth]{error-lossfunction.png}
+\end{figure}
+
+    Con toda esta información concluimos que el mejor modelo y con el que haremos la predicción es el modelo 2, debido a que se trata de un modelo considerablemente sencillo (menor número de capas y valores por defecto) y con el menor error.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    RMSE & $3.928\pm0.787$\\ 
+    \hline
+    Correlación & $0.998\pm 0.001$\\
+    \hline
+    Absolute Error & $1.863\pm0.126$\\
+    \hline
+    Relative Error & $8.85\%\pm 0.83\%$\\
+    \hline
+    Normalized Absolute error & $0.043\pm0.03$\\
+    \hline
+    Squared Error & $15.987\pm 6.767$\\ 
+    \hline
+    Root Relative squared error & $0.069 \pm 0.013$\\
+    \hline
+\end{tabular}
+\caption{Errores del modelo 2}
+\end{center}
+\end{table}
 	\section{Parte 2}
 
 \chapter{Comparación de resultados}
 \label{chap:result-comparing}
 
+Para la predicción de los datos se ha seleccionado el embalse Bao. Este embalse cuenta con variación significativa en el nivel de agua y apenas cuenta con datos faltantes. Es por esto que lo consideramos un buen candidato sobre el que realizar predicciones.
+
+\section{Parte 1}
+Para realizar la predicción ha sido necesario filtrar los datos eliminados para el entrenamiento del modelo (i.e. \textit{Ámbito\_Nombre} y \textit{Electrico\_flag}) y aislar los datos del embalse seleccionado para obtener los datos de la última semana.
+
+Para predecir los datos de una semana son necesarios los datos de la semana anterior. Es por esto que cada vez que se realize una predicción se reinsertarán los resultados obtenidos para poder obtener la siguiente.
+
+A continuación se muestran en forma de gráfico la predicción para 3 semanas del modelo:
+
+[insertar diagrama de líneas con datos sobre la línea]
+
+Se puede observar que los datos tienen un fuerte cambio de tendencia, pasando de descender a oscilar entorno a un valor constante.
+
+\section{Parte 2}
 
 \chapter{Conclusiones}
 \label{chap:conclusion}
+
+Esta práctica nos ha introducido al uso de herramientas especializadas en el trabajo con modelos de inteligencia artificial. Hemos encontrado el uso de estas herramientas útil debido al alto grado de absatracción que presenta, permitiendo que usuarios no experimentados en el mundo de la programación puedan aprovechar las ventajas de los algoritmos de \textit{Machine Learning}.
+
+Además, la aplicación de estas herramientas a un problema presente en la actualidad motiva la obtención de buenos resultados y nos acerca cada vez más a aplicaciones reales de los conocimientos adquiridos durante nuestra carrera académica.
 
 %----------
 %    BIBLIOGRAFÍA
