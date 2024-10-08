@@ -462,7 +462,7 @@ Para la predicción de los datos se ha seleccionado el embalse Bao. Este embalse
 \section{Parte 1}
 Para realizar la predicción ha sido necesario filtrar los datos eliminados para el entrenamiento del modelo (i.e. \textit{Ámbito\_Nombre} y \textit{Electrico\_flag}) y aislar los datos del embalse seleccionado para obtener los datos de la última semana.
 
-Para predecir los datos de una semana son necesarios los datos de la semana anterior. Es por esto que cada vez que se realize una predicción se reinsertarán los resultados obtenidos para poder obtener la siguiente.
+Para predecir los datos de una semana son necesarios los datos de la semana anterior. Es por esto que cada vez que se realize una predicción se reinsertarán los resultados obtenidos para poder obtener la siguiente. Además, también se necesitan algunos otros datos derivados de los de las anteriores semanas, como el promedio móvil de las últimas 4 semanas o la tasa de cambio, los cuales se han calculado manualmente a partir de los datos predichos para las semanas anteriores a la que se está prediciendo
 
 A continuación se muestran en forma de gráfico la predicción para 3 semanas del modelo:
 
