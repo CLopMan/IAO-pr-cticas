@@ -424,13 +424,15 @@ $$\texttt{Anova Test:}~(f=1.455,~\text{prob}=0.124,~\alpha=0.050)$$
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{t-test.jpeg}
+    \caption {\small Matriz de resultados \textit{t-test}}
 \end{figure}
 
     El modelo 9 cuenta con un RMSE anormalmente alto de $4,657\pm 0.686$. También podemos observar que existen 2 clases de modelos donde el principal componente diferenciador es la \textit{loss function}: la función \textit{Huber} presenta, en general, un error más bajo que los modelos con la función \textit{absolute} con los mismos parámetros. Esto se puede comprobar a través de los siguientes gráficos:
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{RMSE-models.png}\\
-    \includegraphics[width=\linewidth]{error-lossfunction.png}
+    \includegraphics[width=0.45\linewidth]{RMSE-models.png}
+    \includegraphics[width=0.45\linewidth]{error-lossfunction.png}
+    \caption{\small Error de cada modelo y error medio según \textit{loss function}}
 \end{figure}
 
     Con toda esta información concluimos que el mejor modelo y con el que haremos la predicción es el modelo 2, debido a que se trata de un modelo considerablemente sencillo (menor número de capas y valores por defecto) y con el menor error.
@@ -473,6 +475,7 @@ A continuación se muestran en forma de gráfico la predicción para 3 semanas j
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{predict-1-bao.png}\\
+    \caption{\small Valores anteriores y  predichos por el modelo}
 \end{figure}
 En el gráfico se muestran 4 semanas previas a la predicción, siendo la semana 0 la primera predicha por nuestro modelo.
 
