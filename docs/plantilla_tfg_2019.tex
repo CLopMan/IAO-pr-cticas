@@ -332,13 +332,18 @@ hmargin=3cm
 \chapter{Introducción}
 \label{chap:intro}
 
-En este documento se recoge el desarrollo de la primera práctica de \textit{Inteligencia Artificial en las Organizaciones}. En esta práctica obtendremos dos modelos de \textit{redes neuronales} para la prevención del nivel de agua en un embalse de la cuenca del Miño-Sil. Para ello, seguiremos dos aproximaciones: en la primera obtendremos un modelo entrenando mediante una validación cruzada aleatoria, en la segunda usaremos una validación cruzada basada en series temporales. Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}.
+En este documento se recoge el desarrollo de la primera práctica de \textit{Inteligencia Artificial en las Organizaciones}. En esta práctica obtendremos dos modelos de \textit{redes neuronales} para la predicción del nivel de agua en un embalse de la cuenca del Miño-Sil. Para ello, seguiremos dos aproximaciones: en la primera obtendremos un modelo entrenando mediante una validación cruzada aleatoria, en la segunda usaremos una validación cruzada basada en series temporales. Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}. El uso de redes neuronales para este problema presenta claras ventajas gracias a las características de esta clase de modelos:
+\begin{itemize}
+    \item \textbf{Buenos resultados en regresión:} los modelos basados en RNA han demostrado ser muy eficaces a la hora de obtener predicciones.
+    \item \textbf{No linealidad:} el nivel de agua en los embalses sigue un comportamiento no lineal. Los modelos basados en RNA son capaces de operar con este tipo de datos, obteniendo buenos resultados.
+    \item \textbf{Robustez:} el conjunto de datos presenta una gran variabilidad, dado que depende de multitud de factores. Las RNA son capaces de operar y realizar predicciones a partir de datos con ruido o incompletos.
+\end{itemize}
 
 La gestión de los embalses ha adquirido mucha importancia en los últimos años, en especial de la mano con la Agenda 2030. Los embalses cuentan con multitud de usos relacionados con las necesidades básicas de la población: abastecimiento de agua potable, riego agrícola, producción de energía renovable, preservación del medio ambiente, uso como cortafuegos y gestión de riesgo de inundaciones. Para llevar a cabo estas funciones es necesaria una administración cuidadosa y eficaz de los mismos~\cite{endesa-beneficiosembalses}.
 
-Además, la producción de energía limpia es uno de los principales problemas que atañe a la población en la actualidad. Los embalses, junto con otras fuentes de energía renovable, presentan un gran potencial para la producción eléctrica. En España, según un informe del Ministerio de Industria, Energía y Turismo de 2015~\cite{la-energia-en-espanna}, la energía hidráulica supone casi un 2\% de la energía total consumida en el país. Esto supone que es la tercera fuente energética renovable más utilizada en España. 
+Además, la producción de energía limpia es uno de los principales problemas que atañe a la población en la actualidad. Los embalses, junto con otras fuentes de energía renovable, presentan un gran potencial para la producción eléctrica. En España, según un informe del Ministerio de Industria, Energía y Turismo de 2015~\cite{la-energia-en-espanna}, la energía hidráulica supone casi un 2\% de la energía total consumida en el país. Esto implica que es la tercera fuente energética renovable más utilizada en España. 
 
-Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gestión de los embalses en España debido a la multitud de funciones básicas que cubren. Un sistema capaz de predecir los niveles de agua en los embalses podría ser de gran utilidad de cara a la anticipación frente a épocas de sequía u otras calamidades.
+Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gestión de los embalses en España debido a la multitud de funciones básicas que cubren. Un sistema capaz de predecir los niveles de agua en los embalses podría ser de gran utilidad de cara a la anticipación frente a épocas de sequía u otras calamidades. También, el uso de redes de neuronas artificiales presenta claras ventajas para tratar de atajar este problema.
 
 \chapter{Descripción de los datos}
 \label{chap:datos}
@@ -464,11 +469,14 @@ Para realizar la predicción ha sido necesario filtrar los datos eliminados para
 
 Para predecir los datos de una semana son necesarios los datos de la semana anterior. Es por esto que cada vez que se realize una predicción se reinsertarán los resultados obtenidos para poder obtener la siguiente. Además, también se necesitan algunos otros datos derivados de los de las anteriores semanas, como el promedio móvil de las últimas 4 semanas o la tasa de cambio, los cuales se han calculado manualmente a partir de los datos predichos para las semanas anteriores a la que se está prediciendo
 
-A continuación se muestran en forma de gráfico la predicción para 3 semanas del modelo:
+A continuación se muestran en forma de gráfico la predicción para 3 semanas junto con los datos inmediatamente anteriores:
 
-[insertar diagrama de líneas con datos sobre la línea]
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{predict-1-bao.png}\\
+\end{figure}
+En el gráfico se muestran 4 semanas previas a la predicción, siendo la semana 0 la primera predicha por nuestro modelo.
 
-Se puede observar que los datos tienen un fuerte cambio de tendencia, pasando de descender a oscilar entorno a un valor constante.
+Se puede observar que los datos tienen un fuerte cambio de tendencia, pasando de descender a oscilar entorno a un valor constante. Nuestro modelo mantiene esa segunda tendencia durante las 3 semanas predichas. Mas adelante, compararemos los resultados obtenidos con los valores reales.
 
 \section{Parte 2}
 
