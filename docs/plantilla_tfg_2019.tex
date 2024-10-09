@@ -403,28 +403,30 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
     7 & (\textit{all, 0.01, 8, absolute})  & 4.491\\
     8 & (\textit{all, 0.01, 8, Huber})  & 4.011\\
     9 & (\textit{exclude agua total, adaptative, 8, absolute})  & 4.657\\
-    10 &(\textit{exclude agua total, adaptative, 8, Huber})  & 4.236\\
-    11 &(\textit{exclude agua total, adaptative, 2, absolute})  & 4.145\\
-    12 &(\textit{exclude agua total, adaptative, 2, Huber})  & 3.981\\
-    13 &(\textit{exclude agua total, 0.01, 8, absolute})  & 4.542\\
-    14 &(\textit{exclude agua total, 0.01, 8, Huber})  & 4.108\\
-    15 &(\textit{exclude agua total, 0.01, 2, absolute})  & 4.574\\
-    16 &(\textit{exclude agua total, 0.01, 2, Huber})  & 3.970\\
+    10 & (\textit{exclude agua total, adaptative, 8, Huber})  & 4.236\\
+    11 & (\textit{exclude agua total, adaptative, 2, absolute})  & 4.145\\
+    12 & (\textit{exclude agua total, adaptative, 2, Huber})  & 3.981\\
+    13 & (\textit{exclude agua total, 0.01, 8, absolute})  & 4.542\\
+    14 & (\textit{exclude agua total, 0.01, 8, Huber})  & 4.108\\
+    15 & (\textit{exclude agua total, 0.01, 2, absolute})  & 4.574\\
+    16 & (\textit{exclude agua total, 0.01, 2, Huber})  & 3.970\\
     \hline
 \end{tabular}
-\caption{Errores de los diferentes modelos}
+\caption{Errores de los diferentes modelos - parte 1}
 \end{center}
 \end{table}
 
-    Mediante el test \textit{Anova} podemos comprobar que existen diferencias significativas entre ellos debido a que obtenemos un $f\text{-value} > 1$. 
+    Al realizar un test de significancia estadística (Anova) obtenemos el siguiente resultado:
 
 $$\texttt{Anova Test:}~(f=1.455,~\text{prob}=0.124,~\alpha=0.050)$$
+
+Con nuestros datos y haciendo uso de una tabla para la distribución de $f$~\cite{f-distro} podemos ver que el valor crítico de $f$ se encuentra en el rango $(1.5705, 1.6664)$. El valor de $f$ obtenido es inferior a este rango, y el $p-value$ obtenido es mayor que $\alpha$. Teniendo en cuenta todo lo anterior podemos concluir que \textbf{no existe evidencia suficiente para afirmar que los modelos obtenidos sean distintos}~\cite{anova-RM}.
 
     Además, si observamos la comparación por pares proporcionada por el \textit{t-test}, destaca el modelo 9 por ser el que presenta diferencias más significativas con el resto de modelos. A continuación se muestra la matriz resultante de la ejecución del test:
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{t-test.jpeg}
-    \caption {\small Matriz de resultados \textit{t-test}}
+    \caption {\small Matriz de resultados \textit{t-test} - parte 1}
 \end{figure}
 
     El modelo 9 cuenta con un RMSE anormalmente alto de $4,657\pm 0.686$. También podemos observar que existen 2 clases de modelos donde el principal componente diferenciador es la \textit{loss function}: la función \textit{Huber} presenta, en general, un error más bajo que los modelos con la función \textit{absolute} con los mismos parámetros. Esto se puede comprobar a través de los siguientes gráficos:
@@ -459,29 +461,145 @@ $$\texttt{Anova Test:}~(f=1.455,~\text{prob}=0.124,~\alpha=0.050)$$
 \caption{Errores del modelo 2}
 \end{center}
 \end{table}
-	\section{Parte 2}
+	
+    \section{Parte 2}
+    Al igual que en la parte anterior, trabajaremos con variaciones sobre 2 parámetros para generar distintos modelos. Además, trabajaremos con distintos tamaños de ventana para el \textit{Windowing} con el fin de comparar el impacto de distinto número de \textit{lags} sobre la eficacia del modelo.
+    
+    Los valores con los que trabajaremos en cada parámetro son los siguientes:
+    \begin{itemize}
+        \item \textit{Windowing:} \{4, 26, 52, 208\}
+        \item Número de capas: \{2, 8\}
+        \item \textit{loss function}: \{\textit{absolute, quadratic}\}
+    \end{itemize}
 
-\chapter{Comparación de resultados}
-\label{chap:result-comparing}
+    Las posibles combinaciones de estos valores resultan en 16 modelos. No se ha podido usar la función \textit{Huber}, pese a sus buenos resultados en la parte anterior, debido al excesivo tiempo de entrenamiento de los modelos. A continuación se muestran los resultados de la fase de entrenamiento:
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{ |c|l|c| }
+    \hline
+    Modelo & Parámetros & RMSE\\
+    \hline
+    \hline
+    0 & (\textit{default})              & 10.249\\
+    1 & (\textit{4, 2     quadratic})   & 9.581\\
+    2 & (\textit{26, 2,   quadratic})   & 10.305\\
+    3 & (\textit{52, 2,   quadratic})   & 9.199\\
+    4 & (\textit{208, 2,  quadratic})   & 9.097\\
+    5 & (\textit{4, 8,    quadratic})   & 9.170\\
+    6 & (\textit{26, 8,   quadratic})   & 9.223\\
+    7 & (\textit{52, 8,   quadratic})   & 8.789\\
+    8 & (\textit{208, 8,  quadratic})   & 9.248\\
+    9 & (\textit{4, 2,     absolute})   & 9.574\\
+    10 & (\textit{26, 2,   absolute})   & 10.462\\
+    11 & (\textit{52, 2,   absolute})   & 9.813\\
+    12 & (\textit{208, 2,  absolute})   & 9.330\\
+    13 & (\textit{4, 8,    absolute})   & 9.139\\
+    14 & (\textit{26, 8,   absolute})   & 11.127\\
+    15 & (\textit{52, 8,   absolute})   & 10.686\\
+    16 & (\textit{208, 8,  absolute})   & 10.884\\
+    \hline
+\end{tabular}
+\caption{Errores de los diferentes modelos - parte 2}
+\end{center}
+\end{table}
+
+Destaca, aunque no quede registrada en la tabla, que la tolerancia de la medida no nos permiten depositar mucha confiaza en estos datos ya que todas son del orden del 90\% del valor medido. No obstante, con el fin de continuar con el estudio, usaremos las medidas obtenidas.
+
+Siguiendo la misma metodología que en la parte anterior, si observamos los resultados del test \textit{Anova} podemos afirmar que existen diferencias significativas en los modelos. Además, teniendo en cuenta el valor  de $p-value$ podemos concluir que los \textbf{modelos obtenidos son distintos}.
+
+$$\texttt{Anova test:} (f = 11.523,~prob = 0.000,~\alpha=0.050)$$
+
+Esto lo podemos corroborar al observar la matriz resultante del \textit{t-test}. Se aprecian varios pares de modelos que resultan distintos, con unos valores $p$ muy cercanos a 0.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{t-testp2.jpeg}
+    \caption {\small Matriz de resultados \textit{t-test} - parte 2}
+\end{figure}
+
+Para poder analizar mejor los modelos, utilizaremos un diagrama de barras que muestre el RMSE de cada uno. Gracias a la representación de cada valor junto con su tolerancia, podemos apreciar la mala calidad de la medición que aporta Altair AI Studio antes mencionada:
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{RMSE-modelsp2.png}
+    \caption {\small Errores de los modelos - parte 2}
+\end{figure}
+
+Visualmente parece apreciarse un mejor comportamiento de los modelos que emplean 4 o 52 semanas en el \textit{Windowing}. Al extraer el error medio agrupado por los valores de este parámetro podemos comprobar que esta hipótesis es \textbf{falsa}. No existen diferencias significativas entre los modelos con 4, 52 o 208 \textit{lags}. Si que se aprecia un rendimiento peor en el caso de 26 \textit{lags}.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{RMSE-windowing.png}
+    \caption {\small Errores agrupados por windowing}
+\end{figure}
+
+Con toda esta información y al no apreciar un mejor criterio de decisión, concluimos que el modelo que se usará para la predición será el modelo 7 por tener el menor error. A continuación se muestra una tabla con toda la información relativa a este modelo:
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    RMSE                        & $8.489\pm 7.457$\\ 
+    \hline
+    Correlación                 & $-----\pm -----$\\
+    \hline
+    Absolute Error              & $-----\pm-----$\\
+    \hline
+    Relative Error              & $----\%\pm ----\%$\\
+    \hline
+    Normalized Absolute error   & $-----\pm----$\\
+    \hline
+    Squared Error               & $------\pm -----$\\ 
+    \hline
+    Root Relative squared error & $----- \pm -----$\\
+    \hline
+\end{tabular}
+\caption{Errores del modelo 7}
+\end{center}
+\end{table}
+
+[Comentar algo interesante sobre los errores como la correlacion del 0 o parecido]
+
+\chapter{Visualización de resultados}
+\label{chap:result-visualizing}
 
 Para la predicción de los datos se ha seleccionado el embalse Bao. Este embalse cuenta con variación significativa en el nivel de agua y apenas cuenta con datos faltantes. Es por esto que lo consideramos un buen candidato sobre el que realizar predicciones.
 
 \section{Parte 1}
 Para realizar la predicción ha sido necesario filtrar los datos eliminados para el entrenamiento del modelo (i.e. \textit{Ámbito\_Nombre} y \textit{Electrico\_flag}) y aislar los datos del embalse seleccionado para obtener los datos de la última semana.
 
-Para predecir los datos de una semana son necesarios los datos de la semana anterior. Es por esto que cada vez que se realize una predicción se reinsertarán los resultados obtenidos para poder obtener la siguiente. Además, también se necesitan algunos otros datos derivados de los de las anteriores semanas, como el promedio móvil de las últimas 4 semanas o la tasa de cambio, los cuales se han calculado manualmente a partir de los datos predichos para las semanas anteriores a la que se está prediciendo
+Para predecir los datos de una semana son necesarios los datos de la semana anterior. Es por esto que cada vez que se realize una predicción se reinsertarán los resultados obtenidos para poder obtener la siguiente. Además, ha sido necesario introducir algunos datos manualmente como el promedio móvil de las últimas 4 semanas o la tasa de cambio.
 
-A continuación se muestran en forma de gráfico la predicción para 3 semanas junto con los datos inmediatamente anteriores:
+A continuación se muestran en forma de gráfico las predicciones para 3 semanas junto con los datos inmediatamente anteriores:
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{predict-1-bao.png}\\
-    \caption{\small Valores anteriores y  predichos por el modelo}
+    \caption{\small Valores anteriores y  predichos por el modelo - parte 1}
 \end{figure}
 En el gráfico se muestran 4 semanas previas a la predicción, siendo la semana 0 la primera predicha por nuestro modelo.
 
 Se puede observar que los datos tienen un fuerte cambio de tendencia, pasando de descender a oscilar entorno a un valor constante. Nuestro modelo mantiene esa segunda tendencia durante las 3 semanas predichas. Mas adelante, compararemos los resultados obtenidos con los valores reales.
 
 \section{Parte 2}
+
+Siguiendo la misma metodología que para la parte 1, hemos realizado las transformaciones necesarias sobre los datos para el correcto funcionamiento del modelo. Esto incluye filtrado de datos y \textit{windowing}. Además, ha sido necesario reinsertar los nuevos datos predichos para poder predecir la semana próxima.
+
+Con esto, hemos predicho el valor del nivel de agua en los embalses para 3 semanas. A continuación se muestra un gráfico de las 4 semanas previas a la predicción y las 3 semanas predichas:
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{predict-2-bao.png}\\
+    \caption{\small Valores anteriores y  predichos por el modelo - parte 2}
+\end{figure}
+
+En este gráfico se aprecia un cambio de tendencia de los datos, de descendente a ascendente. Se tratan de predicciones muy distintas a las logradas en la primera parte. Más adelante se examirán y comprarán con los valores reales.
+
+\chapter{Comparación de resultados}
+\label{chap:result-comparing}
+En este capítulo compararemos los resultados obtenidos en cada una de las partes. También evaluaremos el resultado de la predicción comparándolo con el valor real del nivel de agua en el embalse.
+
+\section{Entrenamiento}
+
+Durante el entrenamiento destaca la inmensa diferencia entre los errores del primer y segundo modelo. Mientras que los modelos de la parte 1 tienen un error promedio de $4.22$, los modelos de la parte 2 cuentan con un error medio de $8.76$~\footnote{Cálculos realizados para el RMSE}. Dada la naturaleza temporal de los datos, esto puede deberse a la existencia de \textit{data leaks} durante el entrenamiento de la primera parte.
+
+\section{Predicción}
 
 \chapter{Conclusiones}
 \label{chap:conclusion}
