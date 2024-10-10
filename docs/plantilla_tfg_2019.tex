@@ -305,22 +305,22 @@ hmargin=3cm
 %--
 % Índice de figuras. Si no se incluyen, comenta las líneas siguientes
 %-
-% \listoffigures
-% \thispagestyle{fancy}
-%
-% \newpage % página en blanco o de cortesía
-% \thispagestyle{empty}
-% \mbox{}
+ \listoffigures
+ \thispagestyle{fancy}
+
+ \newpage % página en blanco o de cortesía
+ \thispagestyle{empty}
+ \mbox{}
 
 %--
 % Índice de tablas. Si no se incluyen, comenta las líneas siguientes
 %-
-% \listoftables
-% \thispagestyle{fancy}
-%
-% \newpage % página en blanco o de cortesía
-% \thispagestyle{empty}
-% \mbox{}
+ \listoftables
+ \thispagestyle{fancy}
+
+ \newpage % página en blanco o de cortesía
+ \thispagestyle{empty}
+ \mbox{}
 
 
 %----------
@@ -539,24 +539,18 @@ Con toda esta información y al no apreciar un mejor criterio de decisión, conc
     \hline
     RMSE                        & $8.489\pm 7.457$\\ 
     \hline
-    Correlación                 & $-----\pm -----$\\
+    Correlación                 & $0.000\pm 0.000$\\
     \hline
-    Absolute Error              & $-----\pm-----$\\
+    Absolute Error              & $8.789\pm7.455$\\
     \hline
-    Relative Error              & $----\%\pm ----\%$\\
-    \hline
-    Normalized Absolute error   & $-----\pm----$\\
-    \hline
-    Squared Error               & $------\pm -----$\\ 
-    \hline
-    Root Relative squared error & $----- \pm -----$\\
+    Squared Error               & $132.809\pm 228.819$\\ 
     \hline
 \end{tabular}
 \caption{Errores del modelo 7}
 \end{center}
 \end{table}
 
-[Comentar algo interesante sobre los errores como la correlacion del 0 o parecido]
+Nos se han podido extraer más medidas por errores con el software de Altair. Destaca la correlación de 0, no obstante, debido al buen resultado de las predicciones (incluso cambiando la semilla) consideramos este resultado a un error más del software.
 
 \chapter{Visualización de resultados}
 \label{chap:result-visualizing}
@@ -571,7 +565,7 @@ Para predecir los datos de una semana son necesarios los datos de la semana ante
 A continuación se muestran en forma de gráfico las predicciones para 3 semanas junto con los datos inmediatamente anteriores:
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{predict-1-bao.png}\\
+    \includegraphics[width=0.85\linewidth]{predict-1-bao.png}\\
     \caption{\small Valores anteriores y  predichos por el modelo - parte 1}
 \end{figure}
 En el gráfico se muestran 4 semanas previas a la predicción, siendo la semana 0 la primera predicha por nuestro modelo.
@@ -585,7 +579,7 @@ Siguiendo la misma metodología que para la parte 1, hemos realizado las transfo
 Con esto, hemos predicho el valor del nivel de agua en los embalses para 3 semanas. A continuación se muestra un gráfico de las 4 semanas previas a la predicción y las 3 semanas predichas:
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{predict-2-bao.png}\\
+    \includegraphics[width=0.85\linewidth]{predict-2-bao.png}\\
     \caption{\small Valores anteriores y  predichos por el modelo - parte 2}
 \end{figure}
 
@@ -595,18 +589,76 @@ En este gráfico se aprecia un cambio de tendencia de los datos, de descendente 
 \label{chap:result-comparing}
 En este capítulo compararemos los resultados obtenidos en cada una de las partes. También evaluaremos el resultado de la predicción comparándolo con el valor real del nivel de agua en el embalse.
 
+Para facilitar la comprensión se incluyen algunos detalles con respecto a los datos expuestos:
+\begin{itemize}
+    \item Hablaremos de semanas 0, 1 y 2 como la primera, siguiente y última semana sobre las que obtendremos una \textit{predicción}.
+    \item Hablaremos de las semanas -1, -2... como las semanas previas o la anterior a la previa respectivamente.
+    \item El nivel de agua, así como las medidas del error que compartan sus unidades siempre estará medido en \textit{hectómetros cúbicos} ($hm^3$).
+\end{itemize}
+
 \section{Entrenamiento}
 
-Durante el entrenamiento destaca la inmensa diferencia entre los errores del primer y segundo modelo. Mientras que los modelos de la parte 1 tienen un error promedio de $4.22$, los modelos de la parte 2 cuentan con un error medio de $8.76$~\footnote{Cálculos realizados para el RMSE}. Dada la naturaleza temporal de los datos, esto puede deberse a la existencia de \textit{data leaks} durante el entrenamiento de la primera parte.
+Durante el entrenamiento destaca la inmensa diferencia entre los errores del primer y segundo modelo. Mientras que los modelos de la parte 1 tienen un error promedio de $4.22$, los modelos de la parte 2 cuentan con un error medio de $8.76$~\footnote{Cálculos realizados para el RMSE}. Dada la naturaleza temporal de los datos, esto puede deberse a la existencia de \textit{data leaks} durante el entrenamiento de la primera parte. De nuevo, es importante recordar que las medidas del error durante la parte dos son poco fiables debido a la gran tolerancia que presentan.
 
 \section{Predicción}
 
-\chapter{Conclusiones}
+Los valores predichos por el primer y segundo modelo son muy diferentes. Mientras que el primero mantiene una tendencia más o menos constante el segundo predice un aumento en el nivel de agua del embalse seleccionado. Colocando los los resultados en una gráfica, junto con el nivel de agua real medido en esas fechas podemos comprobar que el segundo modelo obtiene un resultado mucho mejor que el primero:
+
+\begin{figure}[H]
+    \includegraphics[width=0.85\linewidth]{predict-12-real.png}\\
+    \caption{\small Valores predichos vs valores reales}
+\end{figure}
+
+Se aprecia que el modelo de la segunda parte es capaz de predecir el aumento en el nivel de agua del embalse. Mientras que el modelo de la primera parte erra por completo la predicción.
+
+Haciendo uso de los datos en las siguientes dos tablas podemos observar que el primer modelo se aleja un promedio del 16.48\% del valor real. Siendo las predicciones más cercanas en el tiempo a los datos mejores que las más alejadas. En cambio el segundo modelo realiza una predicción con un error del 6.09\%, manteniéndose esta medida más o menos constante para las 3 semanas.
+
+\begin{table}[H]
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Datos & Semana 0 ($hm^3$) & Semana 1 ($hm^3$)& Semana 2($hm^3$ )\\
+    \hline
+    \hline
+    Modelo parte 1 & 163.198 & 162.527 & 160.471\\
+    Modelo parte 2 & 165.374 & 186.258 & 197.378\\
+    Valores reales & 181     & 197     & 206    \\
+    \hline
+    \end{tabular}
+    \caption {Predicciones de los modelos y valores reales}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Error & Semana 0 & Semana 1 & Semana 2 & Promedio\\
+    \hline
+    \hline
+    Error parte 1  &  17.802 &  34.473 &  45.529 & 32.601\\
+    Error relativo parte 1   & 9.84\% & 17.5\% & 22.10\% & 16.48\%\\
+    Error parte 2  &  15.626 &  10.742 &   8.662 & 11.663\\
+    Error relativo parte 2   & 8.63\% & 5.45\% & 4.19\% & 6.09\%\\ 
+    \hline
+    \end{tabular}
+    \caption {Error de las predicciones}
+\end{table}
+
+\section{Conclusiones sobre los resultados}
+
+Tras haber analizado los datos de las predicciones de ambos modelos podemos afirmar con rotundidad que la aproximación basada en series temporales muestra un mejor rendimiento. El modelo obtenido en la parte 2 ha sido capaz de realizar una predicción acertada del nivel de agua para el embalse seleccionado con un error mucho menor que el modelo obtenido en la primera parte. Esto se puede observar mejor en el siguiente gráfico:
+
+\begin{figure}[H]
+    \includegraphics[width=0.85\linewidth]{err-abs-week.png}\\
+    \caption{\small Error absoluto por semana de cada modelo}
+\end{figure}
+
+Tal y como se especuló al principio del proyecto, el tatamiento de los datos como una serie temporal supone un mejor rendimiento debido a la asuencia de \textit{data leaks} y la naturaleza de los datos.
+
+\chapter{Conclusión}
 \label{chap:conclusion}
 
-Esta práctica nos ha introducido al uso de herramientas especializadas en el trabajo con modelos de inteligencia artificial. Hemos encontrado el uso de estas herramientas útil debido al alto grado de absatracción que presenta, permitiendo que usuarios no experimentados en el mundo de la programación puedan aprovechar las ventajas de los algoritmos de \textit{Machine Learning}.
+Esta práctica nos ha introducido al uso de herramientas especializadas en el trabajo con modelos de inteligencia artificial. Hemos encontrado el uso de estas herramientas útil debido al alto grado de absatracción que presenta, permitiendo que usuarios no experimentados en el mundo de la programación puedan aprovechar las ventajas de los algoritmos de \textit{Machine Learning}. No obstante, los errores observados durante el desarrollo nos hace pensar que su aplicación debería ser en proyectos de poca criticidad o con fines puramente didácticos.
 
-Además, la aplicación de estas herramientas a un problema presente en la actualidad motiva la obtención de buenos resultados y nos acerca cada vez más a aplicaciones reales de los conocimientos adquiridos durante nuestra carrera académica.
+Cabe destacar que la aplicación de estas herramientas a un problema presente en la actualidad motiva la obtención de buenos resultados y nos acerca cada vez más a aplicaciones reales de los conocimientos adquiridos durante nuestra carrera académica. El uso de la inteligencia artificial para la obtención de modelos a partir de grandes cantidades de datos presenta muchas aplicaciones en el mundo moderno, demostrando el potencial de esta herramienta en un gran abanico de ámbitos.
 
 %----------
 %    BIBLIOGRAFÍA
