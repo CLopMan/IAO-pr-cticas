@@ -550,7 +550,7 @@ Con toda esta información y al no apreciar un mejor criterio de decisión, conc
 \end{center}
 \end{table}
 
-Nos se han podido extraer más medidas por errores con el software de Altair. Destaca la correlación de 0, no obstante, debido al buen resultado de las predicciones (incluso cambiando la semilla) consideramos este resultado a un error más del software.
+No se han podido extraer más medidas por errores con el software de Altair. Destaca la correlación de 0, no obstante, debido al buen resultado de las predicciones (incluso cambiando la semilla), consideramos este resultado un error más del software.
 
 \chapter{Visualización de resultados}
 \label{chap:result-visualizing}
@@ -583,7 +583,7 @@ Con esto, hemos predicho el valor del nivel de agua en los embalses para 3 seman
     \caption{\small Valores anteriores y  predichos por el modelo - parte 2}
 \end{figure}
 
-En este gráfico se aprecia un cambio de tendencia de los datos, de descendente a ascendente. Se tratan de predicciones muy distintas a las logradas en la primera parte. Más adelante se examirán y comprarán con los valores reales.
+En este gráfico se aprecia un cambio de tendencia de los datos, de descendente a ascendente. Se tratan de predicciones muy distintas a las logradas en la primera parte. Más adelante se examirán y compararán con los valores reales.
 
 \chapter{Comparación de resultados}
 \label{chap:result-comparing}
@@ -593,7 +593,7 @@ Para facilitar la comprensión se incluyen algunos detalles con respecto a los d
 \begin{itemize}
     \item Hablaremos de semanas 0, 1 y 2 como la primera, siguiente y última semana sobre las que obtendremos una \textit{predicción}.
     \item Hablaremos de las semanas -1, -2... como las semanas previas o la anterior a la previa respectivamente.
-    \item El nivel de agua, así como las medidas del error que compartan sus unidades siempre estará medido en \textit{hectómetros cúbicos} ($hm^3$).
+    \item El nivel de agua, así como las medidas del error que compartan sus unidades, siempre estará medido en \textit{hectómetros cúbicos} ($hm^3$).
 \end{itemize}
 
 \section{Entrenamiento}
@@ -602,16 +602,16 @@ Durante el entrenamiento destaca la inmensa diferencia entre los errores del pri
 
 \section{Predicción}
 
-Los valores predichos por el primer y segundo modelo son muy diferentes. Mientras que el primero mantiene una tendencia más o menos constante el segundo predice un aumento en el nivel de agua del embalse seleccionado. Colocando los los resultados en una gráfica, junto con el nivel de agua real medido en esas fechas podemos comprobar que el segundo modelo obtiene un resultado mucho mejor que el primero:
+Los valores predichos por el primer y segundo modelo son muy diferentes. Mientras que el primero mantiene una tendencia más o menos constante el segundo predice un aumento en el nivel de agua del embalse seleccionado. Colocando los resultados en una gráfica, junto con el nivel de agua real medido en esas fechas podemos comprobar que el segundo modelo obtiene un resultado mucho mejor que el primero:
 
 \begin{figure}[H]
     \includegraphics[width=0.85\linewidth]{predict-12-real.png}\\
     \caption{\small Valores predichos vs valores reales}
 \end{figure}
 
-Se aprecia que el modelo de la segunda parte es capaz de predecir el aumento en el nivel de agua del embalse. Mientras que el modelo de la primera parte erra por completo la predicción.
+Se aprecia que el modelo de la segunda parte es capaz de predecir el aumento en el nivel de agua del embalse, mientras que el modelo de la primera parte erra por completo la predicción.
 
-Haciendo uso de los datos en las siguientes dos tablas podemos observar que el primer modelo se aleja un promedio del 16.48\% del valor real. Siendo las predicciones más cercanas en el tiempo a los datos mejores que las más alejadas. En cambio el segundo modelo realiza una predicción con un error del 6.09\%, manteniéndose esta medida más o menos constante para las 3 semanas.
+Haciendo uso de los datos en las siguientes dos tablas podemos observar que el primer modelo se aleja un promedio del 16.48\% del valor real, siendo las predicciones más cercanas en el tiempo a los datos mejores que las más alejadas. En cambio, el segundo modelo realiza una predicción con un error del 6.09\%, manteniéndose esta medida más o menos constante para las 3 semanas.
 
 \begin{table}[H]
     \begin{tabular}{|c|c|c|c|}
@@ -651,12 +651,12 @@ Tras haber analizado los datos de las predicciones de ambos modelos podemos afir
     \caption{\small Error absoluto por semana de cada modelo}
 \end{figure}
 
-Tal y como se especuló al principio del proyecto, el tatamiento de los datos como una serie temporal supone un mejor rendimiento debido a la asuencia de \textit{data leaks} y la naturaleza de los datos.
+Tal y como se especuló al principio del proyecto, el tratamiento de los datos como una serie temporal supone un mejor rendimiento debido a la asuencia de \textit{data leaks} y la naturaleza de los datos.
 
 \chapter{Conclusión}
 \label{chap:conclusion}
 
-Esta práctica nos ha introducido al uso de herramientas especializadas en el trabajo con modelos de inteligencia artificial. Hemos encontrado el uso de estas herramientas útil debido al alto grado de absatracción que presenta, permitiendo que usuarios no experimentados en el mundo de la programación puedan aprovechar las ventajas de los algoritmos de \textit{Machine Learning}. No obstante, los errores observados durante el desarrollo nos hace pensar que su aplicación debería ser en proyectos de poca criticidad o con fines puramente didácticos.
+Esta práctica nos ha introducido al uso de herramientas especializadas en el trabajo con modelos de inteligencia artificial. Hemos encontrado el uso de estas herramientas útil debido al alto grado de abstracción que presenta, permitiendo que usuarios no experimentados en el mundo de la programación puedan aprovechar las ventajas de los algoritmos de \textit{Machine Learning}. No obstante, los errores observados durante el desarrollo nos hacen pensar que su aplicación debería ser en proyectos de poca criticidad o con fines puramente didácticos.
 
 Cabe destacar que la aplicación de estas herramientas a un problema presente en la actualidad motiva la obtención de buenos resultados y nos acerca cada vez más a aplicaciones reales de los conocimientos adquiridos durante nuestra carrera académica. El uso de la inteligencia artificial para la obtención de modelos a partir de grandes cantidades de datos presenta muchas aplicaciones en el mundo moderno, demostrando el potencial de esta herramienta en un gran abanico de ámbitos.
 
