@@ -367,8 +367,7 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
 
     En la parte 2 se tratarán los datos como una serie temporal. Debido a esto
     se asumirá que el agua actual durante las últimas semanas es suficiente para
-    predecir el agua actual en semanas futuras, aunque también se probará a añadir
-    otros atributos para determinar si mejoran el modelo obtenido.
+    predecir el agua actual en semanas futuras. 
 
 \chapter{Proceso de entrenamiento}
 \label{chap:train}
@@ -422,9 +421,9 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
 
 $$\texttt{Anova Test:}~(f=1.455,~\text{prob}=0.124,~\alpha=0.050)$$
 
-Con nuestros datos y haciendo uso de una tabla para la distribución de $f$~\cite{f-distro} podemos ver que el valor crítico de $f$ se encuentra en el rango $(1.5705, 1.6664)$. El valor de $f$ obtenido es inferior a este rango, y el $p-value$ obtenido es mayor que $\alpha$. Teniendo en cuenta todo lo anterior podemos concluir que \textbf{no existe evidencia suficiente para afirmar que los modelos obtenidos sean distintos}~\cite{anova-RM}.
+Con nuestros datos y haciendo uso de una tabla para la distribución de $f$~\cite{f-distro} podemos ver que el valor crítico de $f$ se encuentra en el rango $(1.5705, 1.6664)$. El valor de $f$ obtenido es inferior a este rango, y el $p$-value obtenido es mayor que $\alpha$. Teniendo en cuenta todo lo anterior podemos concluir que \textbf{no existe evidencia suficiente para afirmar que los modelos obtenidos sean distintos}~\cite{anova-RM}.
 
-    Además, si observamos la comparación por pares proporcionada por el \textit{t-test}, destaca el modelo 9 por ser el que presenta diferencias más significativas con el resto de modelos. A continuación se muestra la matriz resultante de la ejecución del test:
+    Si observamos la comparación por pares proporcionada por el \textit{t-test}, destaca el modelo 9 por ser el que presenta diferencias más significativas con el resto de modelos. A continuación se muestra la matriz resultante de la ejecución del test:
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{t-test.jpeg}
@@ -508,7 +507,7 @@ Con nuestros datos y haciendo uso de una tabla para la distribución de $f$~\cit
 
 Destaca, aunque no quede registrada en la tabla, que la tolerancia de la medida no nos permiten depositar mucha confiaza en estos datos ya que todas son del orden del 90\% del valor medido. No obstante, con el fin de continuar con el estudio, usaremos las medidas obtenidas.
 
-Siguiendo la misma metodología que en la parte anterior, si observamos los resultados del test \textit{Anova} podemos afirmar que existen diferencias significativas en los modelos. Además, teniendo en cuenta el valor  de $p-value$ podemos concluir que los \textbf{modelos obtenidos son distintos}.
+Siguiendo la misma metodología que en la parte anterior, si observamos los resultados del test \textit{Anova} podemos afirmar que existen diferencias significativas en los modelos. Además, teniendo en cuenta el valor  de $p$-value podemos concluir que los \textbf{modelos obtenidos son distintos}.
 
 $$\texttt{Anova test:} (f = 11.523,~prob = 0.000,~\alpha=0.050)$$
 
@@ -552,7 +551,7 @@ Con toda esta información y al no apreciar un mejor criterio de decisión, conc
 \end{center}
 \end{table}
 
-No se han podido extraer más medidas por errores con el software de Altair. Destaca la baja correlación obtenida, en constraste con el buen resultado de las predicciones. Esto podría indicar que las predicciones podrían ser fruto de la casualidad. Para descartar esta hipótesis hemos decidido repetir el experimento con otra semilla distinta, obteniendo de nuevo una correlación de 0 y un buen comportamiento en las predicciones. Es por esto que concluimos que la baja correlación se debe a un error del software de Altair Ai Studio.
+No se han podido extraer más medidas por errores con el software de Altair. Destaca la baja correlación obtenida, en contraste con el buen resultado de las predicciones. Esto podría indicar que las predicciones podrían ser fruto de la casualidad. Para descartar esta hipótesis hemos decidido repetir el experimento con otra semilla distinta, obteniendo de nuevo una correlación de 0 y un buen comportamiento en las predicciones. Es por esto que concluimos que la baja correlación se debe a un error del software de Altair Ai Studio.
 
 \chapter{Visualización de resultados}
 \label{chap:result-visualizing}
@@ -604,7 +603,7 @@ Durante el entrenamiento destaca la inmensa diferencia entre los errores del pri
 
 \section{Predicción}
 
-Los valores predichos por el primer y segundo modelo son muy diferentes. Mientras que el primero mantiene una tendencia más o menos constante el segundo predice un aumento en el nivel de agua del embalse seleccionado. Colocando los resultados en una gráfica, junto con el nivel de agua real medido en esas fechas podemos comprobar que el segundo modelo obtiene un resultado mucho mejor que el primero:
+Los valores predichos por el primer y segundo modelo son muy diferentes. Mientras que el primero mantiene una tendencia más o menos constante el segundo predice un aumento en el nivel de agua del embalse seleccionado. Colocando los resultados en una gráfica, junto con el nivel de agua real medido en esas fechas, podemos comprobar que el segundo modelo obtiene un resultado mucho mejor que el primero:
 
 \begin{figure}[H]
     \includegraphics[width=0.85\linewidth]{predict-12-real.png}\\
@@ -618,7 +617,7 @@ Haciendo uso de los datos en las siguientes dos tablas podemos observar que el p
 \begin{table}[H]
     \begin{tabular}{|c|c|c|c|}
     \hline
-    Datos & Semana 0 ($hm^3$) & Semana 1 ($hm^3$)& Semana 2($hm^3$ )\\
+    Datos & Semana 0 ($hm^3$) & Semana 1 ($hm^3$)& Semana 2($hm^3$)\\
     \hline
     \hline
     Modelo parte 1 & 163.198 & 162.527 & 160.471\\
