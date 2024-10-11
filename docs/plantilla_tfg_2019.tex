@@ -315,7 +315,7 @@ hmargin=3cm
 %--
 % Índice de tablas. Si no se incluyen, comenta las líneas siguientes
 %-
- \listoftables
+\listoftables
  \thispagestyle{fancy}
 
  \newpage % página en blanco o de cortesía
@@ -372,7 +372,9 @@ Con esto, hemos hecho un breve repaso sobre la importancia de una correcta gesti
 
 \chapter{Proceso de entrenamiento}
 \label{chap:train}
-    Con el fin de hacer un experimento reproducible se ha utilziado la opción de usar un único hilo con semilla local en el entrenamiento de la red neuronal. La semilla empleada ha sido 1992.
+    Con el fin de hacer un experimento reproducible se ha utilizado la opción de usar un único hilo con semilla local en el entrenamiento de la red neuronal. La semilla empleada ha sido 1992.
+
+    Antes de continuar, destacamos que al tratar de replicar el experimento en un equipo distinto no hemos logrado obtener exactamente los mismos resultados. Si bien es cierto que el comportamiento general de los modelos ha sido el mismo, los valores obtenidos varían.
 	\section{Parte 1}
 
         Para el entrenamiento de distintos modelos trabajaremos con variaciones sobre 3 parámetros de la red neuronal (número de capas ocultas, \textit{loss function} y \textit{learning rate}). Además, tendremos dos grupos de modelos: la mitad filtrará el dato \textit{Agua\_total}, generalmente constante para un embalse; y la otra mitad utilizará todos los atributos. Esto resulta en 16 modelos distintos. También incluiremos un modelo extra con los valores por defecto como modelo de control.
@@ -550,7 +552,7 @@ Con toda esta información y al no apreciar un mejor criterio de decisión, conc
 \end{center}
 \end{table}
 
-No se han podido extraer más medidas por errores con el software de Altair. Destaca la correlación de 0, no obstante, debido al buen resultado de las predicciones (incluso cambiando la semilla), consideramos este resultado un error más del software.
+No se han podido extraer más medidas por errores con el software de Altair. Destaca la baja correlación obtenida, en constraste con el buen resultado de las predicciones. Esto podría indicar que las predicciones podrían ser fruto de la casualidad. Para descartar esta hipótesis hemos decidido repetir el experimento con otra semilla distinta, obteniendo de nuevo una correlación de 0 y un buen comportamiento en las predicciones. Es por esto que concluimos que la baja correlación se debe a un error del software de Altair Ai Studio.
 
 \chapter{Visualización de resultados}
 \label{chap:result-visualizing}
@@ -592,7 +594,7 @@ En este capítulo compararemos los resultados obtenidos en cada una de las parte
 Para facilitar la comprensión se incluyen algunos detalles con respecto a los datos expuestos:
 \begin{itemize}
     \item Hablaremos de semanas 0, 1 y 2 como la primera, siguiente y última semana sobre las que obtendremos una \textit{predicción}.
-    \item Hablaremos de las semanas -1, -2... como las semanas previas o la anterior a la previa respectivamente.
+    \item Hablaremos de las semanas -1, -2... como las semanas previas o la anterior a la previa, respectivamente.
     \item El nivel de agua, así como las medidas del error que compartan sus unidades, siempre estará medido en \textit{hectómetros cúbicos} ($hm^3$).
 \end{itemize}
 
