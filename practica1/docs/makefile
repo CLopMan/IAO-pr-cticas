@@ -1,2 +1,2 @@
-build/plantilla_tfg_2019.pdf: plantilla_tfg_2019.tex plantilla_tfg_2019.xmpdata bibliografia/bibliografia.bib
+build/practica1-IAO.pdf: practica1-IAO.tex practica1-IAO.xmpdata bibliografia/bibliografia.bib
 	latexmk --output-directory=build

@@ -61,6 +61,8 @@ hmargin=3cm
 \usepackage[babel, spanish=spanish]{csquotes}
 \AtBeginEnvironment{quote}{\small}
 
+\usepackage{booktabs}
+
 % diseño de PIE DE PÁGINA
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -334,6 +336,357 @@ hmargin=3cm
 
 \chapter{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
+% TODO: redactar introducción
+% TODO: captions
+% Para cada atributo: significado, rango, (si numero) min/max/media/moda, (si categorico) desbalanceo, missing values
+
+    \section{Airline Name}
+
+    Este atributo representa el nombre de la aerolínea asociada al vuelo reseñado.
+    Es un atributo nominal.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                Tigerair Australia & 0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Airline Name}
+        \end{center}
+    \end{table}
+
+    \section{Aircraft}
+
+    Este atributo representa el nombre del avión usado durante el vuelo. Es un
+    atributo nominal.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                ''A320`` & 70.57\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Aircraft}
+        \end{center}
+    \end{table}
+
+    \section{Cabin Staff Service}
+
+    Este atributo representa una puntuación del 0 al 50 del servicio del personal de cabina.
+    Cabe destacar que aunque el rango es de 0 a 50, solo hay valores en múltiplos de 10.
+    Es un atributo numérico.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 26.259 & 10 & 16.81\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Cabin Staff Service}
+        \end{center}
+    \end{table}
+
+    \section{Date Flown}
+
+    Este atributo representa la fecha en la que se realizó el vuelo.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}ccc@{} }
+                \toprule
+                Rango & Moda & Valores faltantes (\%) \\
+                \midrule
+                04/01/2012-07/01/2023 & 05/01/2023 & 11.83\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Date Flown}
+        \end{center}
+    \end{table}
+
+    \section{Food \& Beverages}
+
+    Este atributo representa una puntuación del 0 al 50 sobre el servicio de comida
+    en el vuelo. Cabe destacar que aunque el rango es de 0 a 50, solo hay valores en múltiplos de 10.
+    Es un atributo numérico.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 23.298 & 10 & 38.15\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Food \& Beverages}
+        \end{center}
+    \end{table}
+
+    \section{Ground Service}
+
+    Este atributo representa una puntuación del 0 al 50 sobre el servicio
+    en tierra. Cabe destacar que aunque el rango es de 0 a 50, solo hay valores en múltiplos de 10.
+    Es un atributo numérico.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}ccccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 20.646 & 10 & 17.32\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Ground Service}
+        \end{center}
+    \end{table}
+
+    \section{Inflight Entertainment}
+
+    Este atributo representa una puntuación del 0 al 50 sobre el servicio de entretenimiento
+    en vuelo. Cabe destacar que aunque el rango es de 0 a 50, solo hay valores en múltiplos de 10.
+    Es un atributo numérico.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}ccccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 19.792 & 10 & 53.10\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Inflight Entertainment}
+        \end{center}
+    \end{table}
+
+    \section{Overall Rating}
+
+    Este atributo representa la calificación de la reseña con una puntuación del 1
+    al 9, y es el atributo a predecir. Es una etiqueta numérica.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                1-9 & 3.368 & 1 & 0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Overall Rating}
+        \end{center}
+    \end{table}
+
+    \section{Recommended}
+     
+    Este atributo representa si la persona recomienda el vuelo. Es un atributo nominal
+    con 2 clases que representa un valor booleano.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}ccc@{} }
+                \toprule
+                Moda & Desbalanceo (\%) & Valores faltantes (\%) \\
+                \midrule
+                ''No`` & 69.95\% & 0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Recommended}
+        \end{center}
+    \end{table}
+
+    \section{Review}
+
+    Este atributo representa un comentario del usuario sobre la reseña. Es un atributo
+    textual.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}c@{} }
+                \toprule
+                Valores faltantes (\%) \\
+                \midrule
+                0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Review}
+        \end{center}
+    \end{table}
+
+    \section{Review Date}
+
+    Este atributo representa la fecha en la que se realizó la reseña. El formato
+    usado por este atributo no está implementado en la herramienta usada (Altair AI Studio),
+    por lo que no se puede tratar correctamente como una fecha.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                16/07/2023 & 0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Review Date}
+        \end{center}
+    \end{table}
+
+    \section{Review Title}
+
+    Este atributo representa el título de la reseña dado por el usuario. Es un atributo
+    textual.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                ''Meridiana customer review`` & 0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Review Title}
+        \end{center}
+    \end{table}
+
+    \section{Route}
+
+    Este atributo representa la ruta del vuelo. Es un atributo textual.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                ''Melbourne to Sydney`` & 12.22\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Route}
+        \end{center}
+    \end{table}
+
+    \section{Seat Comfort}
+
+    Este atributo representa una puntuación del 0 al 50 de la comodidad del asiento
+    Cabe destacar que aunque el rango es de 0 a 50, solo hay valores en múltiplos de 10.
+    Es un atributo numérico
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 23.831 & 10 & 16.28\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Seat Comfort}
+        \end{center}
+    \end{table}
+
+    \section{Seat Type}
+
+    Este atributo representa el tipo de asiento usado. Es un atributo nominal con 4
+    clases distintas: ''Economy Class``, ''Business Class``, ''Premium Economy``, y ''First Class``.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                ''Economy Class`` & 1.71\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Seat Type}
+        \end{center}
+    \end{table}
+
+    \section{Type Of Traveller}
+
+    Este atributo representa el tipo de viajero. Es un atributo nominal con 4
+    clases distintas: ''Solo Leisure``, ''Couple Leisure``, ''Family Leisure``, y ''Business``.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cc@{} }
+                \toprule
+                Moda & Valores faltantes (\%) \\
+                \midrule
+                ''Solo Leisure`` & 11.79\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Type Of Traveller}
+        \end{center}
+    \end{table}
+
+    \section{Value For Money}
+
+    Este atributo representa el valor que el usuario estima que ha obtenido en relación con
+    el precio que ha pagado, con una puntuación del 0 al 50. Cabe destacar que aunque el
+    rango es de 0 a 50, solo hay valores en múltiplos de 10. Es un atributo numérico.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 22.050 & 10 & 1.62\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Value For Money}
+        \end{center}
+    \end{table}
+
+    \section{Verified}
+
+    Este atributo representa si la persona está verificada. Es un atributo nominal
+    con 2 clases que representa un valor booleano.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Moda & Desbalanceo (\%) & Valores faltantes (\%) \\
+                \midrule
+                Verdadero & 55.77\% & 0\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Verified}
+        \end{center}
+    \end{table}
+
+    \section{Wifi \& Connectivity}
+
+    Este atributo representa una puntuación del 0 al 50 sobre el servicio de Wifi y conectividad.
+    Cabe destacar que aunque el rango es de 0 a 50, solo hay valores en múltiplos de 10.
+    Es un atributo numérico.
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}cccc@{} }
+                \toprule
+                Rango & Media & Moda & Valores faltantes (\%) \\
+                \midrule
+                0-50 & 15.338 & 10 & 72.69\% \\
+                \bottomrule
+            \end{tabular}
+            \caption{Estadísticas Wifi \& Connectivity}
+        \end{center}
+    \end{table}
 
 \chapter{Modelo básico sin usar datos textuales}
 \label{chap:basicModel}
