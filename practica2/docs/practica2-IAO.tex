@@ -330,17 +330,24 @@ hmargin=3cm
 %----------
 \clearpage
 \pagenumbering{arabic} % numeración con múmeros arábigos para el resto de la publicación
-% TODO: redactar introducción
-% TODO: captions
 % Para cada atributo: significado, rango, (si numero) min/max/media/moda, (si categorico) desbalanceo, missing values
 
 
 \chapter{Introducción}
 \label{chap:intro}
+En este documento se recoge el desarrollo de la segunda práctica de la asignatura \textit{Inteligencia Artificial en las Organizaciones}. Obtendremos 3 modelos siguiendo distintas aproximaciones para predecir la clase a la que pertenece una crítica de un cliente en una aerolínea. Las estrategias a seguir son las siguientes: 
+\begin{itemize}
+    \item Modelo básico: se construye un modelo eliminando todos los atributos textuales.
+    \item Modelo de \textit{text mining I}: se construye un modelo con procesamiento de texto, pero sin emplear análisis de sentimientos.
+    \item Modelo de \textit{text mining II}: se construye un modelo con procesamiento de texto y análisis de sentimientos. Además en este modelo se hará uso de bigramas y trigramas.
+\end{itemize}
+Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}
+
+Un modelo de predicción de este tipo tiene numerosas aplicaciones; desde la detección temprana de problemas, hasta el marketing dirigido y la generación de respuestas automáticas.
 
 \chapter{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
-El \textit{dataset} cuenta con 3411 instancias de reseñas a vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
+Este análisis se ha hecho sobre los datos de entrenamiento, para evitar problemas de \textit{data\_leak}. El \textit{dataset} cuenta con 13643 instancias de reseñas a vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
 
 \begin{itemize}
     \item \textbf{Airline Name:} representa el nombre de la aerolínea asociado al vuelo reseñado. Se trata de un atributo \textit{nominal}.
@@ -349,19 +356,19 @@ El \textit{dataset} cuenta con 3411 instancias de reseñas a vuelos. Para cada r
     \item \textbf{Date Flown:} fecha en la que se realizó el vuelo.
     \item \textbf{Food \& Beverages:} puntuación numérica del 0 al 50 sobre el servicio de comida en el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10. 
     \item \textbf{Ground Service:} puntuación numérica del 0 al 50 sobre el servicio en tierra. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
-    \item \textbf{Inflight Entertainment:} puntuación numérica del 0 al 50 sobre el servicio de entretenimiento durante el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplo sde 10.
-    \item \textbf{Overall Rating:} puntuación numérica del 1 al 9. Representa el grado de satisfacción del cliente. Se trata de un atrbito \textit{numérico}. Además, se trata de nuestra \textbf{variable objetivo}.
+    \item \textbf{Inflight Entertainment:} puntuación numérica del 0 al 50 sobre el servicio de entretenimiento durante el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
+    \item \textbf{Overall Rating:} puntuación numérica del 1 al 9. Representa el grado de satisfacción del cliente. Se trata de un atributo \textit{numérico}. Además, se trata de nuestra \textbf{variable objetivo}.
     \item \textbf{Recomended:} valor \textit{booleano}. Representa si el cliente recomendaría el servicio. Destaca un desbalanceo del 69.95\% hacia el valor negativo.
     \item \textbf{Review:} atributo \textit{textual}. Contiene el comentario del usuario sobre el vuelo.
     \item \textbf{Review Date:} fecha en la que se realizó la reseña.
     \item \textbf{Review Title:} campo \textit{texual}. Da título a la reseña. 
     \item \textbf{Route:} campo \textit{textual}. Representa la ruta del vuelo.
-    \item \textbf{Seat Comfort:} puntuación numérica del 0 al 50 sobre la comodidad de los asientos. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplo sde 10.
+    \item \textbf{Seat Comfort:} puntuación numérica del 0 al 50 sobre la comodidad de los asientos. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
     \item \textbf{Seat Type:} atributo \textit{nominal}. Describe el tipo de asiento. Puede tomar los valores ``Ecoclass'',  ``Business Class'', ``Premium Economy'' y ``First Class''.  
     \item \textbf{Type Of Traveller:} atributo \textit{nominal}. Representa el tipo de viajero. Puede tomar los valores ``Solo Leisure'', ``Couple Leisure'', ``Family Leisure'' y ``Business''.
-    \item \textbf{Value For Money:} puntuación numérica del 0 al 50 sobre el valor percibido con respecto al dinero gastado. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplo sde 10.
+    \item \textbf{Value For Money:} puntuación numérica del 0 al 50 sobre el valor percibido con respecto al dinero gastado. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
     \item \textbf{Verified:} atributo \textit{booleano}. Representa si la persona que realiza la reseña está verificada. Ambas clases están balanceadas, con un 55.77\% de inclinación hacia la clase mayoritaria.
-    \item \textbf{Wifi \& Connectivity:} puntuación numérica del 0 al 50 sobre la conexión a internet durante el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplo sde 10.
+    \item \textbf{Wifi \& Connectivity:} puntuación numérica del 0 al 50 sobre la conexión a internet durante el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
 \end{itemize}
 En la siguientes tablas se recogen los datos relevantes para cada atributo: 
 \begin{table}[H]
@@ -374,8 +381,8 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
             Min      & -                  & -        & 0                   & 04/01/2012 & 0                 \\ 
             Max      & -                  & -        & 50                  & 07/01/2023 & 50                \\ 
             Media    & -                  & -        & 26.259              & -          & 23.298            \\ 
-            Moda     & Tigerair Australia & A320     & 10                  & 05/01/2023 & 10                \\ 
-            missing (\%) & 0              & 70.57\%  & 16.82\%             & 11.83\%    & 38.15\%           \\ 
+            Moda     & Tiger Air Australia& A320     & 10                  & 05/01/2023 & 10                \\ 
+            missing (\%) & 0              & 70.57\%  & 16.81\%             & 11.82\%    & 38.15\%           \\ 
             \bottomrule
         \end{tabular} 
         \caption{Datos de los atributos - 1}
@@ -386,14 +393,14 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
     \begin{center}
         \begin{tabular}{@{}cccccc@{}}
             \toprule
-            Atributo & Ground service & Infight Entertainment & Overall Rating & Recommended & Review  \\ 
+            Atributo & Ground service & Inflight Entertainment & Overall Rating & Recommended & Review  \\ 
             \midrule
             Tipo     & Numérico       & Numérico              & Numérico       & Booleano    & Textual \\ 
             Min      & 10             & 0                     & 1              & -           & -       \\ 
             Max      & 50             & 50                    & 9              & -           & -       \\ 
             Media    & 20.646         & 19.792                & 3.368          & -           & -       \\ 
-            Moda     & 10             & 10                    & 1              & NO        & -       \\ 
-            missing (\%) & 17.32\%    & 53.10\%               & 0\%            & 0\%         & -       \\ 
+            Moda     & 10             & 10                    & 1              & NO          & -       \\ 
+            missing (\%) & 17.32\%    & 53.10\%               & 0\%            & 0\%         & 0\%     \\ 
             \bottomrule
         \end{tabular} 
         \caption{Datos de los atributos - 2}
@@ -403,14 +410,14 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
     \begin{center}
         \begin{tabular}{@{}cccccc@{}}
             \toprule
-            Atributo & Review Date & Review Title & Route   & Seat Confort & Seat Type    \\ 
+            Atributo & Review Date & Review Title & Route               & Seat Confort & Seat Type    \\ 
             \midrule
-            Tipo     & Fecha       & Textual      & Nominal & Numérico     & Nominal      \\ 
-            Min      & 03/06/2004  & -            & -       & 0            & -            \\ 
-            Max      & 27/07/2023  & -            & -       & 50           & -            \\ 
-            Media    &             & -            & -       & 23.831       & -            \\ 
-            Moda     & 16/07/2023  & -            & -       & 10           & Economy Class\\ 
-            missing (\%) & 0    \% & 0\%          & 12.22\% & 16.28\%      & 1.71\%       \\ 
+            Tipo     & Fecha       & Textual      & Nominal             & Numérico     & Nominal      \\ 
+            Min      & 22/11/2003  & -            & -                   & 0            & -            \\ 
+            Max      & 27/07/2023  & -            & -                   & 50           & -            \\ 
+            Media    &             & -            & -                   & 23.831       & -            \\ 
+            Moda     & 16/07/2023  & -            & Melbourne to Sydney & 10           & Economy Class\\ 
+            missing (\%) & 0    \% & 0\%          & 12.22\%             & 16.28\%      & 1.71\%       \\ 
             \bottomrule
         \end{tabular} 
         \caption{Datos de los atributos - 3}
@@ -425,9 +432,9 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
             Tipo     & Nominal           & Numérico        & Booleano  & Numérico             \\ 
             Min      & -                 & 0               & -         & 10                   \\ 
             Max      & -                 & 50              & -         & 50                   \\ 
-            Media    &                   & 22.050          & -         & 15.338               \\ 
+            Media    &                   & 22.050          & -         & 15.228               \\ 
             Moda     & Solo Leisure      & 10              & Verdadero & 10                   \\ 
-            missing (\%) & 11.79\%       & 0\%             & 0\%       & 72.69\%              \\ 
+            missing (\%) & 11.79\%       & 1.62\%          & 0\%       & 72.69\%              \\ 
             \bottomrule
         \end{tabular} 
         \caption{Datos de los atributos - 4}
@@ -436,14 +443,46 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
 
 \chapter{Preprocesado}
 \label{chap:preprocess}
-En este capítulo se describen las diferentes transformaciones aplicadas a los datos para su ponsterior uso en el entrenamiento de modelos.
+En este capítulo se describen las diferentes transformaciones aplicadas a los datos para su posterior uso en el entrenamiento de modelos.
+
+\section{Transformación de \textit{OVERALL\_RATING} a nominal}
+\label{sec:overalltransform}
+Para poder construir un clasificador hemos transformado este atributo de numérico a nominal con 3 clases.
+\begin{itemize}
+    \item 1: agrupa los valores comprendidos entre 1 y 3, ambos incluídos.
+    \item 2: agrupa los valores comprendidos entre 4 y 6, ambos incluídos.
+    \item 3: agrupo los valores comprendidos entre 7 y 9, ambos incluídos.
+\end{itemize}
+
+De esta forma tambión logramos corregir la poca representación de algunos valores en el conjunto de datos. Cabe destacar que aun agrupando sigue habiendo una representación muy pobre de la clase \textit{2}.
+
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{@{}ccccc@{}}
+            \toprule
+            Clase                & 1              & 2      & 3\\ 
+            \midrule
+            Número de instancias & 8921           & 1148   & 3574 \\ 
+            Porcentaje           & 65.39\%        & 8.41\% & 26.20\\ 
+            \bottomrule
+        \end{tabular} 
+        \caption{Porcentaje de representación de cada clase}
+    \end{center}
+\end{table}
+
+La sobrerrepresentación de la clase correspondiente a las evaluaciones más bajas se puede explicar a través de la tendencia de las personas a publicar una crítica en caso de descontento. A continuación se muestra un gráfico de tarta con la distribución de cada una de las clases:
+
+\begin{figure}[H]
+    \includegraphics[width=0.60\linewidth]{overall_clases.png}\\ 
+    \caption{Distribución de las clases}
+\end{figure}
 
 \section{Eliminación de atributos}
 \label{sec:delete_columns}
 Se han seguido 3 criterios para la eliminación de atributos:
 \begin{itemize}
     \item Relevancia: algunos datos no aportan información relevante de cara al entrenamiento del modelo. Por este criterio se han eliminado \textit{Date Flown} y \textit{Date Review}.
-    \item Afectar negativamente al modelo: algunos atributos nominales cuentan con un número de clases muy numeroso. En el caso de \textit{Route}, tratar con todas ellas añade una gran complejidad que no se traducía a un mejor rendimiento. En consecuencia, se ha eliminado este atributo. 
+    \item Afectar negativamente al modelo: algunos atributos nominales cuentan con un número de clases muy numeroso. En el caso de \textit{Route}, tratar con todas ellas añade una gran complejidad que no se traduce a un mejor rendimiento. En consecuencia, se ha eliminado este atributo. 
     \item Numerosos valores faltantes: se han eliminado todos los atributos con un número de \textit{missing values} superior al 35\% de los valores totales. Esto es porque se considera que no contamos con información suficiente para imputar estos datos.
 \end{itemize}
 A continuación se muestra un gráfico con el número de valores faltantes por atributo:
@@ -453,18 +492,24 @@ A continuación se muestra un gráfico con el número de valores faltantes por a
     \caption{Número de valores faltantes por atributo}
 \end{figure}
 
-La línea sobre el gráfico señala el 35\% de las instancias.
+La línea sobre el gráfico señala el 35\% de las instancias. Por lo tanto, toda barra que rebase la línea se corresponde con un atributo a eliminar. Los atributos afectados han sido: \textit{Aircraft, Food \& Beverages, Inglight Entertainment} y \textit{Wifi \& Connectivity}.
 
 \section{Formateo de los datos}
 \label{sec:formateo}
-Se han sustituído los valores de las columnas booleanas (i.e. \textit{Verified} y \textit{Recommended}) por valores binarios. Los valores nominales se han codificado a través mediante \textit{One-hot encoding}, a excepción de \textit{Airline} (esto es por limitaciones de la implementación). Los atributos codificados a través de \textit{OHE} han sido: \textit{Seat Type} y \textit{Type of Traveller}.
+Se han sustituído los valores de las columnas booleanas (i.e. \textit{Verified} y \textit{Recommended}) por valores binarios. Los valores nominales se han codificado mediante \textit{One-hot encoding}, a excepción de \textit{Airline} (esto es por limitaciones de la implementación). Los atributos codificados a través de \textit{OHE} han sido \textit{Seat Type} y \textit{Type of Traveller}.
 
 \section{Imputación de valores faltantes}
 \label{sec:imputacion}
+En cuanto a la imputación de valores faltantes, se han reemplazado mediante el operador \textit{Replace Missing Values} de \textit{Altair AI Studio} por la moda de cada atributo. Los atributos afectados han sido \textit{Type Of Traveller, Seat Type, Food \& Bervarges, Groud Service, Seat Confort} y \textit{Value For Money}.
 
 \chapter{Modelo básico sin usar datos textuales}
 \label{chap:basicModel}
 Se ha entrenado un modelo básico utilizando \textit{deep learning} para utilizarlo como referencia y cuantificar los beneficios proveídos por el \textit{text mining}. En la fase de preprocesado de los datos de este modelo solo se realiza la limpieza de datos relacionada con reemplazar datos faltantes y seleccionar atributos, eliminando todos los atributos de texto.
+
+Se ha entrenado un modelo básico de \textit{deep learning} para utilizarlo como referencia y cuantificar los beneficios proveídos % paula en su momento de máxima inspiración lírica fdo. César
+por el \textit{text mining}. Además del preprocesado de los datos especificado anteriormente, se han eliminando los atrbutos textuales \textit{Review} y \textit{Review Title}.
+
+Tanto en el proceso de entrenamiento como en la evaluación se observa una \textit{accuracy} aproximada del 91\%. Se puede observar en la matriz de confusión que los resultados tanto de \textit{precission} como de \textit{recall} son muy buenos para las clases 1 y 3, siendo los valores en ambos casos cercanos al 90\%. Sin embargo, en el caso de la clase 2, estos los valores no alcanzan el 50\% de \textit{precission}. Concluímos que esto se debe a la poca representación de los datos de esta clase (8\%).
 
 \chapter{Proceso de entrenamiento}
 \label{chap:train}
