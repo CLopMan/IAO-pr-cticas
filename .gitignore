@@ -10,4 +10,6 @@
 *.log
 *.run.xml
 *.xmpi
+*.fls
+*.fdb_latexmk
 build/
