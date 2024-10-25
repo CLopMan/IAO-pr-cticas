@@ -13,7 +13,7 @@
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
       <operator activated="true" class="read_csv" compatibility="10.5.000" expanded="true" height="68" name="Read CSV" width="90" x="45" y="187">
-        <parameter key="csv_file" value="C:\Users\zoeey\Downloads\Airline_review_train.csv"/>
+        <parameter key="csv_file" value="C:/Users/zoeey/Documents/Universidad/4Curso/Practica1/IAO-pr-cticas/practica2/Airline_review_train.csv"/>
         <parameter key="column_separators" value=";"/>
         <parameter key="trim_lines" value="false"/>
         <parameter key="multiline_text" value="false"/>
