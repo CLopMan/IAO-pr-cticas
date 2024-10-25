@@ -517,8 +517,128 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 \section{Parte 1 - Modelado sin análisis de sentimientos}
 \label{sec:parte1}
 
+    Para el entrenamiento de distintos modelos trabajaremos con variaciones
+    sobre los parámetros del preprocesado de los datos y los modelos usados.
+    Además, hemos empleado distintos tipos de modelo con sus
+    parámetros por defecto con el fin de tener una mayor variedad y encontrar
+    el más efectivo.
+
+    Cabe destacar que también se ha intentado usar ``Support Vector Machine'',
+    pero no se ha podido ya que no soporta los atributos de tipo polinómico.
+
+    De esta forma, estamos empleando un \textit{grid-search} con los siguientes valores:
+    \begin{itemize}
+        \item Preprocesado: \{\textit{TF-IDF}, \textit{Binary Term Occurrence}, \textit{prune below $10\%$}\}.
+        \item Modelos: \{\textit{Deep Learning}, \textit{Random Forest}, \textit{Naive Bayes}, \textit{Decision Trees}\}
+    \end{itemize}
+
+    Al concluir el entrenamiento hemos obtenido los siguientes resultados:
+
+    \footnotetext[1]{El formato de los parámetros es el siguiente: (\textit{Vector creation}, porcentaje de \textit{prune below}, modelo usado)}
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}clc@{} }
+                \toprule
+                Modelo & Parámetros\footnotemark[1] & Accuracy\\
+                \midrule
+                1  & (\textit{TF-IDF}, $3\%$                 \textit{Deep Learning})  & 0.891\\
+                2  & (\textit{TF-IDF}, $3\%$                 \textit{Random Forest})  & 0.848\\
+                3  & (\textit{TF-IDF}, $3\%$                 \textit{Naive Bayes})    & 0.790\\
+                4  & (\textit{TF-IDF}, $3\%$                 \textit{Decision Trees}) & 0.866\\
+                5  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Deep Learning})  & 0.898\\
+                6  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Random Forest})  & 0.882\\
+                7  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Naive Bayes})    & 0.772\\
+                8  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Decision Trees}) & 0.887\\
+                9  & (\textit{TF-IDF}, $10\%$,               \textit{Deep Learning})  & 0.899\\
+                10 & (\textit{TF-IDF}, $10\%$,               \textit{Random Forest})  & 0.890\\
+                11 & (\textit{TF-IDF}, $10\%$,               \textit{Naive Bayes})    & 0.794\\
+                12 & (\textit{TF-IDF}, $10\%$,               \textit{Decision Trees}) & 0.867\\
+                \bottomrule
+            \end{tabular}
+            \caption{Errores de los diferentes modelos - Parte 1}
+        \end{center}
+    \end{table}
+
+    Si observamos la comparación por pares proporcionada por el \textit{t-test},
+    destaca el modelo 9 por obtener los mejores resultados y ser significativamente
+    diferente de todos los demás modelos excepto uno. A continuación se muestra
+    la matriz resultante de la ejecución del test:
+
+    \begin{figure}[H]
+        \includegraphics[width=\linewidth]{t_test1.jpeg}\\ 
+        \caption{Resultados de los modelos en el conjunto de \textit{train} - Parte 1}
+    \end{figure}
+
+    Con toda esta información concluimos que el mejor modelo y con el que haremos
+    la predicción es el modelo 9, debido a que es el modelo con mejor
+    \textit{accuracy} y es de los modelos más simples al usar \textit{prune below $10\%$}.
+    En la siguiente figura se muestra el \textit{recall} y \textit{precision}
+    de las diferentes clases para este modelo.
+
+    \begin{figure}[H]
+        \includegraphics[width=\linewidth]{train1.jpeg}\\ 
+        \caption{Errores del modelo 9 en el conjunto de \textit{train} - Parte 1}
+    \end{figure}
+
 \section{Parte 2 - Modelado con análisis de sentimientos}
 \label{sec:parte2}
+
+    Al igual que en la parte anterior, trabajaremos con variaciones
+    sobre los parámetros del preprocesado de los datos y los modelos usados.
+
+    De esta forma estamos empleando un \textit{grid-search} con los siguientes valores:
+    \begin{itemize}
+        \item Preprocesado: \{\textit{bigramas}, \textit{trigramas}, \textit{prune below $10\%$}\}.
+        \item Modelos: \{\textit{Deep Learning}, \textit{Random Forest}, \textit{Naive Bayes}, \textit{Decision Trees}\}
+    \end{itemize}
+
+    Al concluir el entrenamiento hemos obtenido los siguientes resultados:
+
+    \footnotetext[1]{El formato de los parámetros es el siguiente: (Longitud $n$-gramas, porcentaje de \textit{prune below}, modelo usado)}
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{ @{}clc@{} }
+                \toprule
+                Modelo & Parámetros\footnotemark[2] & Accuracy\\
+                \midrule
+                1  & (\textit{Bigramas},  $3\%$, \textit{Deep Learning})  & 0.905\\
+                2  & (\textit{Bigramas},  $3\%$, \textit{Random Forest})  & 0.887\\
+                3  & (\textit{Bigramas},  $3\%$, \textit{Naive Bayes})    & 0.797\\
+                4  & (\textit{Bigramas},  $3\%$, \textit{Decision Trees}) & 0.909\\
+                5  & (\textit{Trigramas}, $3\%$, \textit{Deep Learning})  & 0.902\\
+                6  & (\textit{Trigramas}, $3\%$, \textit{Random Forest})  & 0.884\\
+                7  & (\textit{Trigramas}, $3\%$, \textit{Naive Bayes})    & 0.797\\
+                8  & (\textit{Trigramas}, $3\%$, \textit{Decision Trees}) & 0.909\\
+                9  & (\textit{Bigramas}, $10\%$, \textit{Deep Learning})  & 0.919\\
+                10 & (\textit{Bigramas}, $10\%$, \textit{Random Forest})  & 0.909\\
+                11 & (\textit{Bigramas}, $10\%$, \textit{Naive Bayes})    & 0.819\\
+                12 & (\textit{Bigramas}, $10\%$, \textit{Decision Trees}) & 0.909\\
+                \bottomrule
+            \end{tabular}
+            \caption{Errores de los diferentes modelos - Parte 2}
+        \end{center}
+    \end{table}
+
+    Al igual que en la parte anterior, si observamos la comparación por pares
+    proporcionada por el \textit{t-test}, destaca el modelo 9 (\textit{Deep Learning}
+    con \textit{prune below $10\%$}). A continuación se muestra la matriz resultante
+    de la ejecución del test:
+
+    \begin{figure}[H]
+        \includegraphics[width=\linewidth]{t_test2.jpg}\\ 
+        \caption{Resultados de los modelos en el conjunto de \textit{train} - Parte 2}
+    \end{figure}
+
+    Con toda esta información concluimos que el mejor modelo y con el que haremos
+    la predicción es el modelo 9, debido a que es el modelo con mejor
+    \textit{accuracy} y es de los modelos más simples al usar \textit{bigramas}
+    con \textit{prune below $10\%$}. En la siguiente figura se muestra el 
+    \textit{recall} y \textit{precision} de las diferentes clases para este modelo.
+
+    \begin{figure}[H]
+        \includegraphics[width=\linewidth]{train2.jpeg}\\ 
+        \caption{Errores del modelo 9 en el conjunto de \textit{train} - Parte 2}
+    \end{figure}
 
 \chapter{Comparación de resultados}
 \label{chap:resultados}
