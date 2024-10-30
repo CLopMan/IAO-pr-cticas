@@ -335,15 +335,23 @@ hmargin=3cm
 
 \chapter{Introducción}
 \label{chap:intro}
-En este documento se recoge el desarrollo de la segunda práctica de la asignatura \textit{Inteligencia Artificial en las Organizaciones}. Obtendremos 3 modelos siguiendo distintas aproximaciones para predecir la clase a la que pertenece una crítica de un cliente en una aerolínea. Las estrategias a seguir son las siguientes: 
+En este documento se recoge el desarrollo de la segunda práctica de la asignatura \textit{Inteligencia Artificial en las Organizaciones}. El objetivo será la predicción de la valoración que un sujeto dará a su experiencia volando con una aerolínea a partir de distintos campos incluídos en una valoración. Dos de estos campos se tratan de datos textuales. Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}.
+
+Se obtendrán 3 modelos siguiendo distintas aproximaciones para predecir la clase a la que pertenece una crítica de un cliente en una aerolínea. Las estrategias a seguir son las siguientes: 
+
 \begin{itemize}
     \item Modelo básico: se construye un modelo eliminando todos los atributos textuales.
     \item Modelo de \textit{text mining I}: se construye un modelo con procesamiento de texto, pero sin emplear análisis de sentimientos.
     \item Modelo de \textit{text mining II}: se construye un modelo con procesamiento de texto y análisis de sentimientos. Además en este modelo se hará uso de bigramas y trigramas.
 \end{itemize}
-Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}
 
-Un modelo de predicción de este tipo tiene numerosas aplicaciones; desde la detección temprana de problemas, hasta el marketing dirigido y la generación de respuestas automáticas.
+El uso de análisis textual puede resultar útil dado al tipo de problema que se pretende resolver, ya que entre los datos aparecen campos textuales no estructurados. Este tipo de datos no podrán ser utilizados por otros modelos de aprendizaje automático debido a que, por si mismos, no son capaces de reconocer patrones o información incluidos en los datos. Complementariamente, el uso de \textit{análisis de sentimientos} ayudará a la predicción ya que la variable objetivo depende fuertemente de la opinión del autor del autor de la valoración. Además, al construir varios modelos se podrá comparar el aporte del \textit{text mining} y \textit{análisis de sentimietos} frente al modelo básico sin campos textuales.
+
+El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido enormemente, haciendo imposible usar técnicas tradicionales para el añálisis de la gran cantidad de datos que se disponen. Si tomamos como referencia el año 2019, año previo a la pandemia del \textit{covid-19}, hubo $4.490$ millones de pasajeros~\cite{owd-passengers}. Aunque únicamente un pequeño porcentaje de ellos dejara una valoración de su experiencia, la cantidad de datos para procesar sobrepasaría la capacidad de cualquir mecanismo tradicional de análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para optener rendimiento de la información en este ámbito.
+
+
+
+%Un modelo de predicción de este tipo tiene numerosas aplicaciones; desde la detección temprana de problemas, hasta el marketing dirigido y la generación de respuestas automáticas.
 
 \chapter{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
