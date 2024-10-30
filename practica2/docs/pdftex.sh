@@ -19,7 +19,7 @@ fi
 name=$(basename $1 | cut -d. -f1)
 printf "Compiling: \033[0;33m$1\033[0m\nnumber of compilations = $n\n"
 
-pdflatex $1 
+lualatex $1 
 if ! [ -z "$3" ]; then 
     echo "generating bibliography for $name"
     biber $name
@@ -28,7 +28,7 @@ fi
 
 for i in $(seq 0 $n)
 do
-    pdflatex $1
+    lualatex $1
 done
 
 echo "" # blank line
