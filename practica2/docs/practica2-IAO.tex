@@ -355,7 +355,9 @@ El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido
 
 \chapter{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
-Este análisis se ha hecho sobre los datos de entrenamiento, para evitar problemas de \textit{data\_leak}. El \textit{dataset} cuenta con 13643 instancias de reseñas a vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
+Se ha realizado un estudio de todos los datos con el objetivo de su entendimiento para determinar el uso y necesidad de los mismos. Este análisis se ha realizado a través de las herramientas de Rapid Miner ~\cite{Statistics} y ~\cite{Correlation-Matrix}. Además, se han explorado únicamente los datos de entrenamiento para evitar problemas de \textit{data\_leak}. 
+
+El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
 
 \begin{itemize}
     \item \textbf{Airline Name:} representa el nombre de la aerolínea asociado al vuelo reseñado. Se trata de un atributo \textit{nominal}.
