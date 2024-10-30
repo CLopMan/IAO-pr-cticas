@@ -92,73 +92,85 @@ El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada
 \end{itemize}
 En la siguientes tablas se recogen los datos relevantes para cada atributo: 
 \begin{table}[H]
-    \begin{center}
-        \begin{tabular}{@{}cccccc@{}}
-            \toprule
-            Atributo & Airline Name       & Aircraft & Cabin Staff Service & Date Flown & Food \& Beverages \\ 
-            \midrule
-            Tipo     & Nominal            & Nominal  & Numérico            & Fecha      & Numérico          \\ 
-            Min      & -                  & -        & 0                   & 04/01/2012 & 0                 \\ 
-            Max      & -                  & -        & 50                  & 07/01/2023 & 50                \\ 
-            Media    & -                  & -        & 26.259              & -          & 23.298            \\ 
-            Moda     & Tiger Air Australia& A320     & 10                  & 05/01/2023 & 10                \\ 
-            missing (\%) & 0              & 70.57\%  & 16.81\%             & 11.82\%    & 38.15\%           \\ 
-            \bottomrule
-        \end{tabular} 
-        \caption{Datos de los atributos - 1}
-    \end{center}
+    \center
+    \begin{tabular}{@{}ccccc@{}}
+        \toprule
+        Atributo & Airline Name       & Aircraft & Cabin Staff Service & Date Flown \\ 
+        \midrule
+        Tipo     & Nominal            & Nominal  & Numérico            & Fecha      \\ 
+        Min      & -                  & -        & 0                   & 04/01/2012 \\ 
+        Max      & -                  & -        & 50                  & 07/01/2023 \\ 
+        Media    & -                  & -        & 26.259              & -          \\ 
+        Moda     & Tiger Air Australia& A320     & 10                  & 05/01/2023 \\ 
+        missing (\%) & 0              & 70.57\%  & 16.81\%             & 11.82\%    \\ 
+        \bottomrule
+    \end{tabular} 
+    \caption{Datos de los atributos - 1}
 \end{table}
 
 \begin{table}[H]
-    \begin{center}
-        \begin{tabular}{@{}cccccc@{}}
-            \toprule
-            Atributo & Ground service & Inflight Entertainment & Overall Rating & Recommended & Review  \\ 
-            \midrule
-            Tipo     & Numérico       & Numérico              & Numérico       & Booleano    & Textual \\ 
-            Min      & 10             & 0                     & 1              & -           & -       \\ 
-            Max      & 50             & 50                    & 9              & -           & -       \\ 
-            Media    & 20.646         & 19.792                & 3.368          & -           & -       \\ 
-            Moda     & 10             & 10                    & 1              & NO          & -       \\ 
-            missing (\%) & 17.32\%    & 53.10\%               & 0\%            & 0\%         & 0\%     \\ 
-            \bottomrule
-        \end{tabular} 
-        \caption{Datos de los atributos - 2}
-    \end{center}
+    \center
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        Atributo     & Food \& Beverages & Ground service & Inflight Entertainment \\ 
+        \midrule
+        Tipo         & Numérico          & Numérico       & Numérico               \\ 
+        Min          & 0                 & 10             & 0                      \\ 
+        Max          & 50                & 50             & 50                     \\ 
+        Media        & 23.298            & 20.646         & 19.792                 \\ 
+        Moda         & 10                & 10             & 10                     \\ 
+        missing (\%) & 38.15\%           & 17.32\%        & 53.10\%                \\ 
+        \bottomrule
+    \end{tabular} 
+    \caption{Datos de los atributos - 2}
 \end{table}
 \begin{table}[H]
-    \begin{center}
-        \begin{tabular}{@{}cccccc@{}}
-            \toprule
-            Atributo & Review Date & Review Title & Route               & Seat Confort & Seat Type    \\ 
-            \midrule
-            Tipo     & Fecha       & Textual      & Nominal             & Numérico     & Nominal      \\ 
-            Min      & 22/11/2003  & -            & -                   & 0            & -            \\ 
-            Max      & 27/07/2023  & -            & -                   & 50           & -            \\ 
-            Media    &             & -            & -                   & 23.831       & -            \\ 
-            Moda     & 16/07/2023  & -            & Melbourne to Sydney & 10           & Economy Class\\ 
-            missing (\%) & 0    \% & 0\%          & 12.22\%             & 16.28\%      & 1.71\%       \\ 
-            \bottomrule
-        \end{tabular} 
-        \caption{Datos de los atributos - 3}
-    \end{center}
+    \center
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        Atributo     & Overall Rating  & Recommended & Review  & Review Date & Review Title \\ 
+        \midrule                      
+        Tipo         & Numérico        & Booleano    & Textual & Fecha       & Textual      \\ 
+        Min          & 1               & -           & -       & 22/11/2003  & -            \\ 
+        Max          & 9               & -           & -       & 27/07/2023  & -            \\ 
+        Media        & 3.368           & -           & -       &             & -            \\ 
+        Moda         & 1               & NO          & -       & 16/07/2023  & -            \\ 
+        missing (\%) & 0\%             & 0\%         & 0\%     & 0\%         & 0\%          \\ 
+        \bottomrule
+    \end{tabular} 
+    \caption{Datos de los atributos - 3}
 \end{table}
 \begin{table}[H]
-    \begin{center}
-        \begin{tabular}{@{}ccccc@{}}
-            \toprule
-            Atributo & Type of Traveller & Value For Money & Verified  & Wifi \& Connectivity \\ 
-            \midrule
-            Tipo     & Nominal           & Numérico        & Booleano  & Numérico             \\ 
-            Min      & -                 & 0               & -         & 10                   \\ 
-            Max      & -                 & 50              & -         & 50                   \\ 
-            Media    &                   & 22.050          & -         & 15.228               \\ 
-            Moda     & Solo Leisure      & 10              & Verdadero & 10                   \\ 
-            missing (\%) & 11.79\%       & 1.62\%          & 0\%       & 72.69\%              \\ 
-            \bottomrule
-        \end{tabular} 
-        \caption{Datos de los atributos - 4}
-    \end{center}
+    \center
+    \begin{tabular}{@{}ccccc@{}}
+        \toprule
+        Atributo     & Route               & Seat Confort & Seat Type     & Type of Traveller \\ 
+        \midrule
+        Tipo         & Nominal             & Numérico     & Nominal       & Nominal           \\ 
+        Min          & -                   & 0            & -             & -                 \\ 
+        Max          & -                   & 50           & -             & -                 \\ 
+        Media        & -                   & 23.831       & -             &                   \\ 
+        Moda         & Melbourne to Sydney & 10           & Economy Class & Solo Leisure      \\ 
+        missing (\%) & 12.22\%             & 16.28\%      & 1.71\%        & 11.79\%           \\ 
+        \bottomrule
+    \end{tabular} 
+    \caption{Datos de los atributos - 4}
+\end{table}
+\begin{table}[H]
+    \center
+    \begin{tabular}{@{}ccccc@{}}
+        \toprule
+        Atributo     & Value For Money & Verified  & Wifi \& Connectivity \\ 
+        \midrule
+        Tipo         & Numérico        & Booleano  & Numérico             \\ 
+        Min          & 0               & -         & 10                   \\ 
+        Max          & 50              & -         & 50                   \\ 
+        Media        & 22.050          & -         & 15.228               \\ 
+        Moda         & 10              & Verdadero & 10                   \\ 
+        missing (\%) & 1.62\%          & 0\%       & 72.69\%              \\ 
+        \bottomrule
+    \end{tabular} 
+    \caption{Datos de los atributos - 5}
 \end{table}
 
 \section{Preprocesado}
