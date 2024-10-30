@@ -192,7 +192,7 @@
 		\Large
 		\hypersetup{hidelinks}
 		\bfseries
-		\color{azulUC3M}
+		% \color{azulUC3M}
 		\@chapapp~\thecontentslabel.\enspace  % label
 	}
 	{  % before without label
@@ -231,7 +231,7 @@
 		% \color{azulUC3M}
 		\contentsmargin{0pt}\thecontentslabel.\enspace
 	}
-	{\large\contentsmargin{0pt}}  % before without label
+	{\large\hypersetup{hidelinks}\bfseries\contentsmargin{0pt}}  % before without label
 	{\large\hfill\contentspage}  % filler and page
 
 % subsections
@@ -495,6 +495,20 @@
 %----------
 
 \RequirePackage[backend=biber, style=ieee, isbn=false, sortcites, maxbibnames=6, minbibnames=1]{biblatex} % IEEE citation style
+
+\DefineBibliographyStrings{spanish}{%
+    andothers = {et\addabbrvspace al\adddot}
+}
+\DefineBibliographyStrings{spanish}{
+    url = {\adddot\space[En línea]\adddot\space Disponible en:}
+}
+\DefineBibliographyStrings{spanish}{
+    urlseen = {Acceso:}
+}
+\DefineBibliographyStrings{spanish}{
+    pages = {pp\adddot},
+    page = {p.\adddot}
+}
 
 % force line break when necessary
 \setcounter{biburlnumpenalty}{9000}
