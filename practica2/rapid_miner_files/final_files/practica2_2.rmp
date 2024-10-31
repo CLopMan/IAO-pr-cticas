@@ -168,11 +168,18 @@
           <parameter key="Overall_Rating" value="label"/>
         </list>
       </operator>
-      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="124" name="Multiply (4)" width="90" x="1318" y="238"/>
+      <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="187" name="Multiply (4)" width="90" x="1318" y="238"/>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (3)" width="90" x="1720" y="340">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="one attribute"/>
+        <parameter key="select_attribute" value="Overall_Rating"/>
+        <parameter key="select_subset" value=""/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="true"/>
+      </operator>
       <operator activated="true" class="text:process_document_from_data" compatibility="10.0.000" expanded="true" height="82" name="Process Documents from Data" width="90" x="1720" y="238">
         <parameter key="create_word_vector" value="true"/>
         <parameter key="vector_creation" value="TF-IDF"/>
-        <parameter key="add_meta_information" value="true"/>
+        <parameter key="add_meta_information" value="false"/>
         <parameter key="keep_text" value="false"/>
         <parameter key="prune_method" value="percentual"/>
         <parameter key="prune_below_percent" value="3.0"/>
@@ -216,7 +223,10 @@
           <portSpacing port="sink_document 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="operator_toolbox:merge" compatibility="2.18.000" expanded="true" height="103" name="Merge Attributes" width="90" x="1854" y="238">
+      <operator activated="true" class="store" compatibility="10.5.000" expanded="true" height="68" name="Store (2)" width="90" x="1854" y="391">
+        <parameter key="repository_entry" value="parte_2_words"/>
+      </operator>
+      <operator activated="true" class="operator_toolbox:merge" compatibility="2.18.000" expanded="true" height="124" name="Merge Attributes" width="90" x="1854" y="238">
         <parameter key="handling_of_duplicate_attributes" value="rename"/>
         <parameter key="handling_of_special_attributes" value="keep_first_special_other_regular"/>
         <parameter key="handling_of_duplicate_annotations" value="rename"/>
@@ -227,7 +237,7 @@
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -296,7 +306,7 @@
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -357,7 +367,7 @@
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -376,7 +386,7 @@
             <parameter key="guess_subset_ratio" value="true"/>
             <parameter key="subset_ratio" value="0.2"/>
             <parameter key="voting_strategy" value="confidence vote"/>
-            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="use_local_random_seed" value="true"/>
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="enable_parallel_execution" value="true"/>
           </operator>
@@ -434,7 +444,7 @@
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -445,8 +455,8 @@
               <parameter key="hidden_layer_sizes" value="50"/>
             </enumeration>
             <enumeration key="hidden_dropout_ratios"/>
-            <parameter key="reproducible_(uses_1_thread)" value="false"/>
-            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="reproducible_(uses_1_thread)" value="true"/>
+            <parameter key="use_local_random_seed" value="true"/>
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="epochs" value="10.0"/>
             <parameter key="compute_variable_importances" value="false"/>
@@ -525,10 +535,13 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
+      <operator activated="true" class="store" compatibility="10.5.000" expanded="true" height="68" name="Store" width="90" x="2256" y="238">
+        <parameter key="repository_entry" value="parte_2_modelo"/>
+      </operator>
       <operator activated="true" class="text:process_document_from_data" compatibility="10.0.000" expanded="true" height="82" name="Process Documents from Data (2)" width="90" x="1720" y="850">
         <parameter key="create_word_vector" value="true"/>
         <parameter key="vector_creation" value="TF-IDF"/>
-        <parameter key="add_meta_information" value="true"/>
+        <parameter key="add_meta_information" value="false"/>
         <parameter key="keep_text" value="false"/>
         <parameter key="prune_method" value="percentual"/>
         <parameter key="prune_below_percent" value="3.0"/>
@@ -572,15 +585,10 @@
           <portSpacing port="sink_document 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="operator_toolbox:merge" compatibility="2.18.000" expanded="true" height="103" name="Merge Attributes (2)" width="90" x="1854" y="850">
-        <parameter key="handling_of_duplicate_attributes" value="rename"/>
-        <parameter key="handling_of_special_attributes" value="keep_first_special_other_regular"/>
-        <parameter key="handling_of_duplicate_annotations" value="rename"/>
-      </operator>
       <operator activated="true" class="text:process_document_from_data" compatibility="10.0.000" expanded="true" height="82" name="Process Documents from Data (3)" width="90" x="1720" y="1462">
         <parameter key="create_word_vector" value="true"/>
         <parameter key="vector_creation" value="TF-IDF"/>
-        <parameter key="add_meta_information" value="true"/>
+        <parameter key="add_meta_information" value="false"/>
         <parameter key="keep_text" value="false"/>
         <parameter key="prune_method" value="percentual"/>
         <parameter key="prune_below_percent" value="10.0"/>
@@ -624,21 +632,25 @@
           <portSpacing port="sink_document 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="10.5.000" expanded="true" height="68" name="Store (2)" width="90" x="1854" y="1615">
-        <parameter key="repository_entry" value="parte_2_words"/>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (4)" width="90" x="1720" y="952">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="one attribute"/>
+        <parameter key="select_attribute" value="Overall_Rating"/>
+        <parameter key="select_subset" value=""/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="true"/>
       </operator>
-      <operator activated="true" class="operator_toolbox:merge" compatibility="2.18.000" expanded="true" height="103" name="Merge Attributes (3)" width="90" x="1854" y="1462">
+      <operator activated="true" class="operator_toolbox:merge" compatibility="2.18.000" expanded="true" height="124" name="Merge Attributes (2)" width="90" x="1854" y="850">
         <parameter key="handling_of_duplicate_attributes" value="rename"/>
         <parameter key="handling_of_special_attributes" value="keep_first_special_other_regular"/>
         <parameter key="handling_of_duplicate_annotations" value="rename"/>
       </operator>
       <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="145" name="Multiply (3)" width="90" x="1988" y="850"/>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (5)" width="90" x="2122" y="1309">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (8)" width="90" x="2122" y="1309">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -702,12 +714,12 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (6)" width="90" x="2122" y="1156">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (7)" width="90" x="2122" y="1156">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -763,12 +775,12 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (7)" width="90" x="2122" y="1003">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (6)" width="90" x="2122" y="1003">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -787,7 +799,7 @@
             <parameter key="guess_subset_ratio" value="true"/>
             <parameter key="subset_ratio" value="0.2"/>
             <parameter key="voting_strategy" value="confidence vote"/>
-            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="use_local_random_seed" value="true"/>
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="enable_parallel_execution" value="true"/>
           </operator>
@@ -840,12 +852,12 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (8)" width="90" x="2122" y="850">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (5)" width="90" x="2122" y="850">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -856,8 +868,8 @@
               <parameter key="hidden_layer_sizes" value="50"/>
             </enumeration>
             <enumeration key="hidden_dropout_ratios"/>
-            <parameter key="reproducible_(uses_1_thread)" value="false"/>
-            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="reproducible_(uses_1_thread)" value="true"/>
+            <parameter key="use_local_random_seed" value="true"/>
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="epochs" value="10.0"/>
             <parameter key="compute_variable_importances" value="false"/>
@@ -936,13 +948,25 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="10.5.000" expanded="true" height="82" name="Select Attributes (5)" width="90" x="1720" y="1564">
+        <parameter key="type" value="include attributes"/>
+        <parameter key="attribute_filter_type" value="one attribute"/>
+        <parameter key="select_attribute" value="Overall_Rating"/>
+        <parameter key="select_subset" value=""/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="true"/>
+      </operator>
+      <operator activated="true" class="operator_toolbox:merge" compatibility="2.18.000" expanded="true" height="124" name="Merge Attributes (3)" width="90" x="1854" y="1462">
+        <parameter key="handling_of_duplicate_attributes" value="rename"/>
+        <parameter key="handling_of_special_attributes" value="keep_first_special_other_regular"/>
+        <parameter key="handling_of_duplicate_annotations" value="rename"/>
+      </operator>
       <operator activated="true" class="multiply" compatibility="10.5.000" expanded="true" height="145" name="Multiply (6)" width="90" x="1988" y="1462"/>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (9)" width="90" x="2122" y="1921">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (12)" width="90" x="2122" y="1921">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -1006,12 +1030,12 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (10)" width="90" x="2122" y="1768">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (11)" width="90" x="2122" y="1768">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -1067,12 +1091,12 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (11)" width="90" x="2122" y="1615">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (10)" width="90" x="2122" y="1615">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -1091,7 +1115,7 @@
             <parameter key="guess_subset_ratio" value="true"/>
             <parameter key="subset_ratio" value="0.2"/>
             <parameter key="voting_strategy" value="confidence vote"/>
-            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="use_local_random_seed" value="true"/>
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="enable_parallel_execution" value="true"/>
           </operator>
@@ -1144,12 +1168,12 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (12)" width="90" x="2122" y="1462">
+      <operator activated="true" class="concurrency:cross_validation" compatibility="10.5.000" expanded="true" height="145" name="Cross Validation (9)" width="90" x="2122" y="1462">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
         <parameter key="sampling_type" value="automatic"/>
-        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="use_local_random_seed" value="true"/>
         <parameter key="local_random_seed" value="1992"/>
         <parameter key="enable_parallel_execution" value="true"/>
         <process expanded="true">
@@ -1160,8 +1184,8 @@
               <parameter key="hidden_layer_sizes" value="50"/>
             </enumeration>
             <enumeration key="hidden_dropout_ratios"/>
-            <parameter key="reproducible_(uses_1_thread)" value="false"/>
-            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="reproducible_(uses_1_thread)" value="true"/>
+            <parameter key="use_local_random_seed" value="true"/>
             <parameter key="local_random_seed" value="1992"/>
             <parameter key="epochs" value="10.0"/>
             <parameter key="compute_variable_importances" value="false"/>
@@ -1240,9 +1264,6 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="store" compatibility="10.5.000" expanded="true" height="68" name="Store" width="90" x="2323" y="1462">
-        <parameter key="repository_entry" value="parte_2_modelo"/>
-      </operator>
       <operator activated="true" class="t_test" compatibility="10.5.000" expanded="true" height="334" name="T-Test" width="90" x="2323" y="340">
         <parameter key="alpha" value="0.05"/>
       </operator>
@@ -1264,7 +1285,12 @@
       <connect from_op="Multiply (4)" from_port="output 1" to_op="Process Documents from Data" to_port="example set"/>
       <connect from_op="Multiply (4)" from_port="output 2" to_op="Process Documents from Data (2)" to_port="example set"/>
       <connect from_op="Multiply (4)" from_port="output 3" to_op="Process Documents from Data (3)" to_port="example set"/>
+      <connect from_op="Multiply (4)" from_port="output 4" to_op="Select Attributes (3)" to_port="example set input"/>
+      <connect from_op="Multiply (4)" from_port="output 5" to_op="Select Attributes (4)" to_port="example set input"/>
+      <connect from_op="Multiply (4)" from_port="output 6" to_op="Select Attributes (5)" to_port="example set input"/>
+      <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Merge Attributes" to_port="example set 3"/>
       <connect from_op="Process Documents from Data" from_port="example set" to_op="Merge Attributes" to_port="example set 1"/>
+      <connect from_op="Process Documents from Data" from_port="word list" to_op="Store (2)" to_port="input"/>
       <connect from_op="Merge Attributes" from_port="merged set" to_op="Multiply (2)" to_port="input"/>
       <connect from_op="Multiply (2)" from_port="output 1" to_op="Cross Validation" to_port="example set"/>
       <connect from_op="Multiply (2)" from_port="output 2" to_op="Cross Validation (2)" to_port="example set"/>
@@ -1273,29 +1299,30 @@
       <connect from_op="Cross Validation (4)" from_port="performance 1" to_op="T-Test" to_port="performance 4"/>
       <connect from_op="Cross Validation (3)" from_port="performance 1" to_op="T-Test" to_port="performance 3"/>
       <connect from_op="Cross Validation (2)" from_port="performance 1" to_op="T-Test" to_port="performance 2"/>
+      <connect from_op="Cross Validation" from_port="model" to_op="Store" to_port="input"/>
       <connect from_op="Cross Validation" from_port="performance 1" to_op="T-Test" to_port="performance 1"/>
       <connect from_op="Process Documents from Data (2)" from_port="example set" to_op="Merge Attributes (2)" to_port="example set 1"/>
-      <connect from_op="Merge Attributes (2)" from_port="merged set" to_op="Multiply (3)" to_port="input"/>
       <connect from_op="Process Documents from Data (3)" from_port="example set" to_op="Merge Attributes (3)" to_port="example set 1"/>
-      <connect from_op="Process Documents from Data (3)" from_port="word list" to_op="Store (2)" to_port="input"/>
+      <connect from_op="Select Attributes (4)" from_port="example set output" to_op="Merge Attributes (2)" to_port="example set 3"/>
+      <connect from_op="Merge Attributes (2)" from_port="merged set" to_op="Multiply (3)" to_port="input"/>
+      <connect from_op="Multiply (3)" from_port="output 1" to_op="Cross Validation (5)" to_port="example set"/>
+      <connect from_op="Multiply (3)" from_port="output 2" to_op="Cross Validation (6)" to_port="example set"/>
+      <connect from_op="Multiply (3)" from_port="output 3" to_op="Cross Validation (7)" to_port="example set"/>
+      <connect from_op="Multiply (3)" from_port="output 4" to_op="Cross Validation (8)" to_port="example set"/>
+      <connect from_op="Cross Validation (8)" from_port="performance 1" to_op="T-Test" to_port="performance 8"/>
+      <connect from_op="Cross Validation (7)" from_port="performance 1" to_op="T-Test" to_port="performance 7"/>
+      <connect from_op="Cross Validation (6)" from_port="performance 1" to_op="T-Test" to_port="performance 6"/>
+      <connect from_op="Cross Validation (5)" from_port="performance 1" to_op="T-Test" to_port="performance 5"/>
+      <connect from_op="Select Attributes (5)" from_port="example set output" to_op="Merge Attributes (3)" to_port="example set 3"/>
       <connect from_op="Merge Attributes (3)" from_port="merged set" to_op="Multiply (6)" to_port="input"/>
-      <connect from_op="Multiply (3)" from_port="output 1" to_op="Cross Validation (8)" to_port="example set"/>
-      <connect from_op="Multiply (3)" from_port="output 2" to_op="Cross Validation (7)" to_port="example set"/>
-      <connect from_op="Multiply (3)" from_port="output 3" to_op="Cross Validation (6)" to_port="example set"/>
-      <connect from_op="Multiply (3)" from_port="output 4" to_op="Cross Validation (5)" to_port="example set"/>
-      <connect from_op="Cross Validation (5)" from_port="performance 1" to_op="T-Test" to_port="performance 8"/>
-      <connect from_op="Cross Validation (6)" from_port="performance 1" to_op="T-Test" to_port="performance 7"/>
-      <connect from_op="Cross Validation (7)" from_port="performance 1" to_op="T-Test" to_port="performance 6"/>
-      <connect from_op="Cross Validation (8)" from_port="performance 1" to_op="T-Test" to_port="performance 5"/>
-      <connect from_op="Multiply (6)" from_port="output 1" to_op="Cross Validation (12)" to_port="example set"/>
-      <connect from_op="Multiply (6)" from_port="output 2" to_op="Cross Validation (11)" to_port="example set"/>
-      <connect from_op="Multiply (6)" from_port="output 3" to_op="Cross Validation (10)" to_port="example set"/>
-      <connect from_op="Multiply (6)" from_port="output 4" to_op="Cross Validation (9)" to_port="example set"/>
-      <connect from_op="Cross Validation (9)" from_port="performance 1" to_op="T-Test" to_port="performance 12"/>
-      <connect from_op="Cross Validation (10)" from_port="performance 1" to_op="T-Test" to_port="performance 11"/>
-      <connect from_op="Cross Validation (11)" from_port="performance 1" to_op="T-Test" to_port="performance 10"/>
-      <connect from_op="Cross Validation (12)" from_port="model" to_op="Store" to_port="input"/>
-      <connect from_op="Cross Validation (12)" from_port="performance 1" to_op="T-Test" to_port="performance 9"/>
+      <connect from_op="Multiply (6)" from_port="output 1" to_op="Cross Validation (9)" to_port="example set"/>
+      <connect from_op="Multiply (6)" from_port="output 2" to_op="Cross Validation (10)" to_port="example set"/>
+      <connect from_op="Multiply (6)" from_port="output 3" to_op="Cross Validation (11)" to_port="example set"/>
+      <connect from_op="Multiply (6)" from_port="output 4" to_op="Cross Validation (12)" to_port="example set"/>
+      <connect from_op="Cross Validation (12)" from_port="performance 1" to_op="T-Test" to_port="performance 12"/>
+      <connect from_op="Cross Validation (11)" from_port="performance 1" to_op="T-Test" to_port="performance 11"/>
+      <connect from_op="Cross Validation (10)" from_port="performance 1" to_op="T-Test" to_port="performance 10"/>
+      <connect from_op="Cross Validation (9)" from_port="performance 1" to_op="T-Test" to_port="performance 9"/>
       <connect from_op="T-Test" from_port="significance" to_port="result 1"/>
       <connect from_op="T-Test" from_port="performance 1" to_port="result 2"/>
       <connect from_op="T-Test" from_port="performance 2" to_port="result 3"/>
