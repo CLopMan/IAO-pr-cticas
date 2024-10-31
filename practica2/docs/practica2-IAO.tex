@@ -286,18 +286,18 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
                 \toprule
                 Modelo & Parámetros\footnotemark[1] & Accuracy\\
                 \midrule
-                1  & (\textit{TF-IDF}, $3\%$                 \textit{Deep Learning})  & 0.842\\
-                2  & (\textit{TF-IDF}, $3\%$                 \textit{Random Forest})  & 0.660\\
-                3  & (\textit{TF-IDF}, $3\%$                 \textit{Naive Bayes})    & 0.778\\
-                4  & (\textit{TF-IDF}, $3\%$                 \textit{Decision Trees}) & 0.665\\
-                5  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Deep Learning})  & 0.843\\
-                6  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Random Forest})  & 0.805\\
-                7  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Naive Bayes})    & 0.748\\
-                8  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Decision Trees}) & 0.798\\
-                9  & (\textit{TF-IDF}, $10\%$,               \textit{Deep Learning})  & 0.819\\
-                10 & (\textit{TF-IDF}, $10\%$,               \textit{Random Forest})  & 0.743\\
-                11 & (\textit{TF-IDF}, $10\%$,               \textit{Naive Bayes})    & 0.748\\
-                12 & (\textit{TF-IDF}, $10\%$,               \textit{Decision Trees}) & 0.749\\
+                1  & (\textit{TF-IDF}, $3\%$                 \textit{Deep Learning})  & $0.842 \pm 0.009$ \\
+                2  & (\textit{TF-IDF}, $3\%$                 \textit{Random Forest})  & $0.660 \pm 0.006$ \\
+                3  & (\textit{TF-IDF}, $3\%$                 \textit{Naive Bayes})    & $0.778 \pm 0.007$ \\
+                4  & (\textit{TF-IDF}, $3\%$                 \textit{Decision Trees}) & $0.665 \pm 0.024$ \\
+                5  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Deep Learning})  & $0.843 \pm 0.005$ \\
+                6  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Random Forest})  & $0.805 \pm 0.010$ \\
+                7  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Naive Bayes})    & $0.748 \pm 0.009$ \\
+                8  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Decision Trees}) & $0.798 \pm 0.007$ \\
+                9  & (\textit{TF-IDF}, $10\%$,               \textit{Deep Learning})  & $0.819 \pm 0.008$ \\
+                10 & (\textit{TF-IDF}, $10\%$,               \textit{Random Forest})  & $0.743 \pm 0.009$ \\
+                11 & (\textit{TF-IDF}, $10\%$,               \textit{Naive Bayes})    & $0.748 \pm 0.008$ \\
+                12 & (\textit{TF-IDF}, $10\%$,               \textit{Decision Trees}) & $0.749 \pm 0.023$ \\
                 \bottomrule
             \end{tabular}
             \caption{Errores de los diferentes modelos - Parte 1}
@@ -305,9 +305,27 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     \end{table}
 
     Al observar la comparación por pares proporcionada por el \textit{t-test},
-    destaca el modelo 9 por obtener los mejores resultados y ser significativamente
-    diferente de todos los demás modelos excepto uno. A continuación se muestra
-    la matriz resultante de la ejecución del test:
+    destacan el modelo 1 y 5 por obtener los mejores resultados y ser significativamente
+    diferente de todos los demás. Ambos de estos modelos usan un \textit{prune below}
+    del $3\%$ y ``Deep Learning''. El modelo 9 cuenta con el siguiente mejor error,
+    aunque este es significativamente distinto del error de los modelos 1 y 5. Este
+    modelo cuenta con un \textit{prune below} del $10\%$, lo cual puede eliminar
+    demasiados términos, llegando a quitar términos potencialmente relevantes y
+    explicando el peor rendimiento.
+
+    Los modelos 1 y 5 se diferencian en la función de evaluación de término, pero
+    esto no crea diferencias significativas en el error. En los tres casos la mejor
+    familia de modelos es ``Deep Learning'', lo cual indica que, en general, esta
+    familia de modelos tiene una mejor capacidad para adaptarse a los datos y
+    generalizar los patrones encontrados.
+
+    Cabe destacar también que los modelos basados en ``Decision Trees'' obtienen
+    una tolerancia en el error significativamente mayor que los demás modelos.
+    Esto puede indicar que este tipo de modelos dependen mucho de los datos de
+    entrenamiento usados, lo cual puede dificultar la estimación de su rendimiento
+    para nuevos datos.
+
+    A continuación se muestra la matriz resultante de la ejecución del test:
 
     \begin{figure}[H]
         \center
@@ -316,10 +334,10 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     \end{figure}
 
     Con toda esta información se concluye que el mejor modelo y con el que se hará
-    la predicción es el modelo 9, debido a que es el modelo con mejor
-    \textit{accuracy}, manteniendo una gran simplicidad  al usar \textit{prune below $10\%$}.
-    En la siguiente figura se muestra el \textit{recall} y \textit{precision}
-    de las diferentes clases para este modelo.
+    la predicción es el modelo 4, debido a que es el modelo con mejor
+    \textit{accuracy}, manteniendo una gran simplicidad al usar \textit{Binary Term
+    Occurrence}. En la siguiente figura se muestra el \textit{recall} y
+    \textit{precision} de las diferentes clases para este modelo.
 
     \begin{figure}[H]
         \center
@@ -362,28 +380,44 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
                 \toprule
                 Modelo & Parámetros\footnotemark[2] & Accuracy\\
                 \midrule
-                1  & (\textit{Bigramas},  $3\%$, \textit{Deep Learning})  & 0.905\\
-                2  & (\textit{Bigramas},  $3\%$, \textit{Random Forest})  & 0.887\\
-                3  & (\textit{Bigramas},  $3\%$, \textit{Naive Bayes})    & 0.797\\
-                4  & (\textit{Bigramas},  $3\%$, \textit{Decision Trees}) & 0.909\\
-                5  & (\textit{Trigramas}, $3\%$, \textit{Deep Learning})  & 0.902\\
-                6  & (\textit{Trigramas}, $3\%$, \textit{Random Forest})  & 0.884\\
-                7  & (\textit{Trigramas}, $3\%$, \textit{Naive Bayes})    & 0.797\\
-                8  & (\textit{Trigramas}, $3\%$, \textit{Decision Trees}) & 0.909\\
-                9  & (\textit{Bigramas}, $10\%$, \textit{Deep Learning})  & 0.919\\
-                10 & (\textit{Bigramas}, $10\%$, \textit{Random Forest})  & 0.909\\
-                11 & (\textit{Bigramas}, $10\%$, \textit{Naive Bayes})    & 0.819\\
-                12 & (\textit{Bigramas}, $10\%$, \textit{Decision Trees}) & 0.909\\
+                1  & (\textit{Bigramas},  $3\%$, \textit{Deep Learning})  & $0.845 \pm 0.007$ \\
+                2  & (\textit{Bigramas},  $3\%$, \textit{Random Forest})  & $0.655 \pm 0.001$ \\
+                3  & (\textit{Bigramas},  $3\%$, \textit{Naive Bayes})    & $0.784 \pm 0.007$ \\
+                4  & (\textit{Bigramas},  $3\%$, \textit{Decision Trees}) & $0.669 \pm 0.024$ \\
+                5  & (\textit{Trigramas}, $3\%$, \textit{Deep Learning})  & $0.847 \pm 0.006$ \\
+                6  & (\textit{Trigramas}, $3\%$, \textit{Random Forest})  & $0.656 \pm 0.003$ \\
+                7  & (\textit{Trigramas}, $3\%$, \textit{Naive Bayes})    & $0.784 \pm 0.007$ \\
+                8  & (\textit{Trigramas}, $3\%$, \textit{Decision Trees}) & $0.670 \pm 0.025$ \\
+                9  & (\textit{Bigramas}, $10\%$, \textit{Deep Learning})  & $0.815 \pm 0.007$ \\
+                10 & (\textit{Bigramas}, $10\%$, \textit{Random Forest})  & $0.730 \pm 0.015$ \\
+                11 & (\textit{Bigramas}, $10\%$, \textit{Naive Bayes})    & $0.761 \pm 0.010$ \\
+                12 & (\textit{Bigramas}, $10\%$, \textit{Decision Trees}) & $0.752 \pm 0.038$ \\
                 \bottomrule
             \end{tabular}
             \caption{Errores de los diferentes modelos - Parte 2}
         \end{center}
     \end{table}
 
-    Al observar la comparación por pares
-    proporcionada por el \textit{t-test}, destaca de nuevo el modelo 9 (\textit{Deep Learning}
-    con \textit{prune below $10\%$}). A continuación se muestra la matriz resultante
-    de la ejecución del test:
+    Al observar la comparación por pares proporcionada por el \textit{t-test},
+    destacan de nuevo el modelo 1 y 5 (\textit{Deep Learning}
+    con \textit{prune below $3\%$}). De la misma forma que en la parte anterior,
+    el siguiente modelo con el mejor error es el 9 (\textit{prune below $10\%$}),
+    verificando la hipótesis realizada anteriormente de que este valor de
+    \textit{prune below} es demasiado alto y elimina términos relevantes. Además,
+    ambos de los modelos con el mejor error usan la familia de modelos de
+    ``Deep Learning'', confirmando también la hipótesis de que esta familia tiene
+    una mejor capacidad de aprendizaje y generalización. Por último, también se
+    puede ver que los modelos basados en ``Decision Trees'' siguen teniendo una
+    tolerancia en el error significativamente más alta que los demás modelos,
+    confirmando la hipótesis de que estos modelos dependen mucho de los datos
+    utilizados para el entrenamiento.
+
+    En este caso, la diferencia entre los modelos 1 y 5 es la longitud de los
+    n-gramas usados. Como no hay diferencias significativas en los errores de
+    estos modelos, se puede concluir que no hay n-gramas de longitud 3
+    relevantes en los datos.
+
+    A continuación se muestra la matriz resultante de la ejecución del test:
 
     \begin{figure}[H]
         \center
@@ -391,11 +425,11 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
         \caption{Resultados de los modelos en el conjunto de \textit{train} - Parte 2}
     \end{figure}
 
-    Con toda esta información se concluye que el mejor modelo y con el que se hará
-    la predicción es el modelo 9, debido a que es el modelo con mejor
-    \textit{accuracy} y es de los modelos más simples al usar \textit{bigramas}
-    con \textit{prune below $10\%$}. En la siguiente figura se muestra el 
-    \textit{recall} y \textit{precision} de las diferentes clases para este modelo.
+    Con toda esta información se concluye que el mejor modelo y con el que se
+    hará la predicción es el modelo 1, debido a que es el modelo con mejor
+    \textit{accuracy} y es de los modelos más simples al usar \textit{bigramas}.
+    En la siguiente figura se muestra el \textit{recall} y \textit{precision} de
+    las diferentes clases para este modelo.
 
     \begin{figure}[H]
         \center
