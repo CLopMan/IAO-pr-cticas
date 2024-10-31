@@ -1,5 +1,4 @@
 \documentclass[es]{uc3mreport}
-
 \usepackage{booktabs}
 
 \usepackage{import}
@@ -57,13 +56,13 @@ Se obtendrán 3 modelos siguiendo distintas aproximaciones para predecir la clas
 
 El uso de análisis textual puede resultar útil dado al tipo de problema que se pretende resolver, ya que entre los datos aparecen campos textuales no estructurados. Este tipo de datos no podrán ser utilizados por otros modelos de aprendizaje automático debido a que, por si mismos, no son capaces de reconocer patrones o información incluidos en los datos. Complementariamente, el uso de \textit{análisis de sentimientos} ayudará a la predicción ya que la variable objetivo depende fuertemente de la opinión del autor del autor de la valoración. Además, al construir varios modelos se podrá comparar el aporte del \textit{text mining} y \textit{análisis de sentimietos} frente al modelo básico sin campos textuales.
 
-El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido enormemente, haciendo imposible usar técnicas tradicionales para el añálisis de la gran cantidad de datos que se disponen. Si tomamos como referencia el año 2019, año previo a la pandemia del \textit{covid-19}, hubo $4.490$ millones de pasajeros~\cite{owd-passengers}. Aunque únicamente un pequeño porcentaje de ellos dejara una valoración de su experiencia, la cantidad de datos para procesar sobrepasaría la capacidad de cualquir mecanismo tradicional de análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para optener rendimiento de la información en este ámbito.
+El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido enormemente, haciendo imposible usar técnicas tradicionales para el añálisis de la gran cantidad de datos que se disponen. Si tomamos como referencia el año 2019, año previo a la pandemia del \textit{COVID-19}, hubo $4.490$ millones de pasajeros~\cite{owd-passengers}. Aunque únicamente un pequeño porcentaje de ellos dejara una valoración de su experiencia, la cantidad de datos para procesar sobrepasaría la capacidad de cualquir mecanismo tradicional de análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para optener rendimiento de la información en este ámbito.
 
-Además, esta clase de modelos cuentan con multitud de aplicaciones en diversos campos: la detección temprana de problemas en los servicios, la creación de marketing dirigido, el desarrollo de algoritmos de respuestas automáticas o el análisis competitivo de compañías para destacar sus fortalezas y puntos flacos en el mercado. 
+Además, esta clase de modelos cuentan con multitud de aplicaciones en diversos campos: la detección temprana de problemas en los servicios, la creación de marketing dirigido, el desarrollo de algoritmos de respuestas automáticas y sistemas de recomendación o el análisis competitivo de compañías para destacar sus fortalezas y puntos flacos en el mercado. Especialmente en el contexto actual de recuperación postpandemia, el uso de algoritmos de minería de datos permite a las aerolíneas tomar decisiones más informadas y responder de forma más eficiente a las necesidades emergentes del mercado~\cite{espanna}.
 
 \section{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
-Se ha realizado un estudio de todos los datos con el objetivo de su entendimiento para determinar el uso y necesidad de los mismos. Este análisis se ha realizado a través de las herramientas de Rapid Miner Statistics~\cite{Statistics-RM} y Correlation-Matrix~\cite{Correlation-Matrix-RM}. Además, se han explorado únicamente los datos de entrenamiento para evitar problemas de \textit{data\_leak}. 
+Se ha realizado un estudio de todos los datos con el objetivo de su entendimiento para determinar el uso y necesidad de los mismos. Este análisis se ha realizado a través de las herramientas de Rapid Miner Statistics~\cite{Statistics-RM} y Correlation-Matrix~\cite{Correlation-Matrix-RM}. Además, se han explorado únicamente los datos de entrenamiento para evitar problemas de \textit{data\_leak}.
 
 El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
 
@@ -383,9 +382,9 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 \section{Conclusión}
 \label{chap:conclusion}
 
-Esta práctica nos ha permitido explorar nuevas técnicas para la construcción de modelos. En concreto, hemos podido comprobar como el \textit{text mining} presenta grandes ventajas frente a modelos que no aprovechan toda la información contenida en campos de texto.
+Esta práctica nos ha permitido explorar nuevas técnicas para la construcción de modelos. En concreto, hemos podido comprobar como el \textit{text mining} y el \textit{análisis de sentimientos} son herramientas muy últiles capaces de inferir información a partir de pocos campos textuales. Nos resulta verdaderamente interesante comprobar como el campo de la inteligencia artificial ha evolucionado hasta extremos donde es capaz de reconocer la actitud de un agente hacia un dominio a través de una información tan compleja como es el lenguaje natural.
 
-[completar...]
+También nos gustaría destacar como esta clase de herramientas deben usarse con conocimiento ya que muchas presentan una gran complejidad que afecta fuertemente al tiempo de entrenamiento y el rendimiento de los modelos. Esto nos hace ver la importancia de un correcto entendimiento de las técnicas y modelos empleados; destacando nuestro valor como ingenieros en el campo de la Inteligencia Artificial.
 
   \end{report}
 
