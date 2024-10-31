@@ -256,9 +256,26 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 
     De esta forma, se ha realizado un \textit{grid-search} con los siguientes valores:
     \begin{itemize}
-        \item Preprocesado: \{\textit{TF-IDF}, \textit{Binary Term Occurrence}, \textit{prune below $10\%$}\}.
+        \item Preprocesado: \{\textit{TF-IDF}, \textit{Binary Term Occurrence}, \textit{prune below $3\%$}, \textit{prune below $10\%$}\}.
         \item Modelos: \{\textit{Deep Learning}, \textit{Random Forest}, \textit{Naive Bayes}, \textit{Decision Trees}\}
     \end{itemize}
+
+    La función de evaluación de término determina qué se necesita para considerar
+    que un término es relevante en un documento. Se han seleccionado ``TF-IDF'' y
+    ``Binary Term Occurrence'' por representar 2 enfoques muy distintos. En el
+    primer caso se necesita que el término sea muy frecuente en el documento pero
+    muy poco frecuente en otros documentos, lo que puede significar que sea especialmente
+    relevante en el documento. El segundo caso, sin embargo, es mucho más simple:
+    únicamente comprueba si el término aparece en el documento o no.
+
+    Con respecto al \textit{pruning}, hemos seleccionado una cota inferior del $3$ y $10$\%
+    para eliminar los términos muy poco frecuentes según la función de evaluación
+    de término. Se considera que estos términos no tendrán relevancia en los
+    resultados, por lo que eliminarlos permitirá contruir modelos más simples y
+    rápidos de entrenar sin cambiar los resultados. Inicialmente también se
+    seleccionó una cota inferior del $0\%$, pero esto causó que hubiese demasiados
+    términos en el resultado, incrementando demasiado el tiempo de ejecución del
+    entrenamiento. Debido a esto, decidimos descartar este valor.
 
     Al concluir el entrenamiento se han obtenido los siguientes resultados:
 
@@ -269,18 +286,18 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
                 \toprule
                 Modelo & Parámetros\footnotemark[1] & Accuracy\\
                 \midrule
-                1  & (\textit{TF-IDF}, $3\%$                 \textit{Deep Learning})  & 0.891\\
-                2  & (\textit{TF-IDF}, $3\%$                 \textit{Random Forest})  & 0.848\\
-                3  & (\textit{TF-IDF}, $3\%$                 \textit{Naive Bayes})    & 0.790\\
-                4  & (\textit{TF-IDF}, $3\%$                 \textit{Decision Trees}) & 0.866\\
-                5  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Deep Learning})  & 0.898\\
-                6  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Random Forest})  & 0.882\\
-                7  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Naive Bayes})    & 0.772\\
-                8  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Decision Trees}) & 0.887\\
-                9  & (\textit{TF-IDF}, $10\%$,               \textit{Deep Learning})  & 0.899\\
-                10 & (\textit{TF-IDF}, $10\%$,               \textit{Random Forest})  & 0.890\\
-                11 & (\textit{TF-IDF}, $10\%$,               \textit{Naive Bayes})    & 0.794\\
-                12 & (\textit{TF-IDF}, $10\%$,               \textit{Decision Trees}) & 0.867\\
+                1  & (\textit{TF-IDF}, $3\%$                 \textit{Deep Learning})  & 0.842\\
+                2  & (\textit{TF-IDF}, $3\%$                 \textit{Random Forest})  & 0.660\\
+                3  & (\textit{TF-IDF}, $3\%$                 \textit{Naive Bayes})    & 0.778\\
+                4  & (\textit{TF-IDF}, $3\%$                 \textit{Decision Trees}) & 0.665\\
+                5  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Deep Learning})  & 0.843\\
+                6  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Random Forest})  & 0.805\\
+                7  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Naive Bayes})    & 0.748\\
+                8  & (\textit{Binary Term Occurrence}, $3\%$ \textit{Decision Trees}) & 0.798\\
+                9  & (\textit{TF-IDF}, $10\%$,               \textit{Deep Learning})  & 0.819\\
+                10 & (\textit{TF-IDF}, $10\%$,               \textit{Random Forest})  & 0.743\\
+                11 & (\textit{TF-IDF}, $10\%$,               \textit{Naive Bayes})    & 0.748\\
+                12 & (\textit{TF-IDF}, $10\%$,               \textit{Decision Trees}) & 0.749\\
                 \bottomrule
             \end{tabular}
             \caption{Errores de los diferentes modelos - Parte 1}
@@ -318,9 +335,23 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 
     De esta forma se realiza un \textit{grid-search} con los siguientes valores:
     \begin{itemize}
-        \item Preprocesado: \{\textit{bigramas}, \textit{trigramas}, \textit{prune below $10\%$}\}.
+        \item Preprocesado: \{\textit{bigramas}, \textit{trigramas}, \textit{prune below $3\%$}, \textit{prune below $10\%$}\}.
         \item Modelos: \{\textit{Deep Learning}, \textit{Random Forest}, \textit{Naive Bayes}, \textit{Decision Trees}\}
     \end{itemize}
+
+    La longitud de los n-gramas permite reconocer términos compuestos por múltiples
+    palabras, pero si es demasiado grande puede generar muchos términos sin significado
+    semántico. Hemos seleccionado longitudes de $2$ y $3$ ya que permite reconocer
+    la mayoría de términos compuestos sin permitir generar términos compuestos
+    por demasiadas palabras.
+
+    Con respecto al \textit{pruning}, hemos seleccionado una cota inferior del $3$ y $10$\%
+    para eliminar los términos sin significado semántico que pueden generar los
+    n-gramas. Estos términos serán muy poco frecuentes en los datos, por lo que
+    estarán por debajo de esta cota inferior. Inicialmente también se seleccionó
+    una cota inferior del $0\%$, pero esto causó que hubiese demasiados términos
+    en el resultado, incrementando demasiado el tiempo de ejecución del entrenamiento.
+    Debido a esto, decidimos descartar este valor.
 
     Al concluir el entrenamiento se han obtenido los siguientes resultados:
 
