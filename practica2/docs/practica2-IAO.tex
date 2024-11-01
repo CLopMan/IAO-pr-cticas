@@ -245,7 +245,7 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 \section{Proceso de entrenamiento}
 \label{chap:train}
 
-\subsection{Parte 1 - Modelado sin análisis de sentimientos}
+\subsection{Parte 1: Modelado sin análisis de sentimientos}
 \label{sec:parte1}
 
     Para el entrenamiento de distintos modelos se ha trabajado con variaciones
@@ -321,14 +321,14 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 
     Los modelos 1 y 5 se diferencian en la función de evaluación de término, pero
     esto no crea diferencias significativas en el error. En los tres casos la mejor
-    familia de modelos es ``Deep Learning'', lo cual indica que, en general, esta
+    familia de modelos es ``Deep Learning'', lo que indica que, en general, esta
     familia de modelos tiene una mejor capacidad para adaptarse a los datos y
     generalizar los patrones encontrados.
 
     Cabe destacar también que los modelos basados en ``Decision Trees'' obtienen
     una tolerancia en el error significativamente mayor que los demás modelos.
     Esto puede indicar que este tipo de modelos dependen mucho de los datos de
-    entrenamiento usados, lo cual puede dificultar la estimación de su rendimiento
+    entrenamiento usados, lo que puede dificultar la estimación de su rendimiento
     para nuevos datos.
 
     A continuación se muestra la matriz resultante de la ejecución del test:
@@ -351,7 +351,7 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
         \caption{Precision y recall del modelo 9 en el conjunto de \textit{train} - Parte 1}
     \end{figure}
 
-\subsection{Parte 2 - Modelado con análisis de sentimientos}
+\subsection{Parte 2: Modelado con análisis de sentimientos}
 \label{sec:parte2}
 
     Al igual que en la parte anterior, se ha trabajado con variaciones
@@ -374,7 +374,7 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     n-gramas. Estos términos serán muy poco frecuentes en los datos, por lo que
     estarán por debajo de esta cota inferior. Inicialmente también se seleccionó
     una cota inferior del $0\%$, pero esto causó que hubiese demasiados términos
-    en el resultado, incrementando demasiado el tiempo de ejecución del entrenamiento.
+    en el resultado, incrementando en gran el tiempo de ejecución del entrenamiento, sin que esto se tradujera a un mejor rendimiento.
     Debido a esto, decidimos descartar este valor.
 
     Al concluir el entrenamiento se han obtenido los siguientes resultados:
@@ -453,10 +453,11 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 \section{Comparación de resultados}
 \label{chap:resultados}
 
-\section{Topic Analysis}
+
+\section{Parte opcional: Topic Analysis}
 \label{chap:topic}
 
-\section{Conclusión}
+\section{Conclusiones de la práctica}
 \label{chap:conclusion}
 
 Esta práctica nos ha permitido explorar nuevas técnicas para la construcción de modelos. En concreto, hemos podido comprobar como el \textit{text mining} y el \textit{análisis de sentimientos} son herramientas muy últiles capaces de inferir información a partir de pocos campos textuales. Nos resulta verdaderamente interesante comprobar como el campo de la inteligencia artificial ha evolucionado hasta extremos donde es capaz de reconocer la actitud de un agente hacia un dominio a través de una información tan compleja como es el lenguaje natural.
