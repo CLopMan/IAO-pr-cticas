@@ -196,7 +196,7 @@ la reseña. A continuación se muestra un gráfico de su distribución.
 \begin{figure}[H]
     \center
     \includegraphics[width=0.85\linewidth]{distribucion_overall.png}\\
-    \caption{Distribución de los valores de \textit{OVERALL\_RATING}}
+    \caption{Distribución de los valores de \textit{OVERALL\_RATING}.}
     \label{distribucion-overall}
 \end{figure}
 
@@ -204,7 +204,6 @@ Se aprecia como se trata de un atributo con una distribución desigual, con
 concentraciones en los valores extermos. Particularmente, la calificación 1 es
 la más común con 7159 registros. Esto parece indicar un alto grado de
 insatisfacción y un sesgo hacia las calificaciones negativas.
-
 También es destacable la ausencia de reseñas con calificaciones intermedias (3 y
 4).
 
@@ -399,15 +398,16 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
 %        \caption{Precision y recall del modelo 9 en el conjunto de
 %        \textit{train} - Parte 1.}
 %    \end{figure}
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc|c@{}}
     \toprule
              & True 3 & True 2 & True 1 & precision\\
-    \midrule
+    \hline
     pred. 3  & 2952   & 549    & 323    & 0.7720   \\
     pred. 2  & 284    & 156    & 208    & 0.2407   \\
     predl 1  & 338    & 443    & 8390   & 0.9148   \\
-    \midrule
+    \hline
     recall   & 0.8260 & 0.1359 & 0.9405 &          \\
     \bottomrule
 \end{tabular}
@@ -515,15 +515,16 @@ parte 1.}
 %        \caption{Precision y recall del modelo 9 en el conjunto de
 %        \textit{train} - Parte 2.}
 %    \end{figure}
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc|c@{}}
     \toprule
              & True 3 & True 2 & True 1 & precision\\
-    \midrule
+    \hline
     pred. 3  & 2946   & 534    & 278    & 0.7839   \\
     pred. 2  & 304    & 186    & 240    & 0.2548   \\
     predl 1  & 324    & 428    & 8403   & 0.9179   \\
-    \midrule
+    \hline
     recall   & 0.8243 & 0.1620 & 0.9419 &          \\
     \bottomrule
 \end{tabular}
@@ -547,7 +548,8 @@ es la clase 1, hecho que se explica por la sobrerrepresentación de esta clase e
 el conjunto de los datos. En contraste, la clase con la puntuación más baja es
 la clase 2. A continuación se muestra una tabla y un gráfico que recogen el
 \textit{Accuracy} por cada clase y modelo.
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc@{}}
     \toprule
     modelo      & acc. clase1&	acc. clase2	& acc. clase 3 \\
@@ -589,7 +591,8 @@ conjunto de los datos.
 Tras realizar predicciones sobre el conjunto de \textit{test} los resultados
 obtenidos con cada modelo han sido los siguientes:
 
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc@{}}
     \toprule
     modelo      & acc. clase1&	acc. clase2	& acc. clase 3 \\
@@ -624,15 +627,16 @@ predicciones en una matriz de confusión para cada modelo.
 La matriz correspondiente al modelo base, construído exclusivamente con
 atributos no textuales, es la siguiente:
 
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc|c@{}}
     \toprule
              & True 3 & True 2 & True 1 & precision\\
-    \midrule
+    \hline
     pred. 3  & 814   & 75      & 4      & 0.9115   \\
     pred. 2  & 88    & 118     & 32     & 0.4958   \\
     predl 1  & 13    & 89      & 2178   & 0.9553   \\
-    \midrule
+    \hline
     recall   & 0.8896 & 0.4184 & 0.9837 &          \\
     \bottomrule
 \end{tabular}
@@ -656,15 +660,16 @@ numérico a nominal (figura~\ref{distribucion-overall}).
 La matriz correspondiente al modelo de la parte 1, construído con atributos
 exclusivamente textuales y sin uso de análisis de sentimientos, es la siguiente:
 
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc|c@{}}
     \toprule
              & True 3 & True 2 & True 1 & precision\\
-    \midrule
+    \hline
     pred. 3  & 644 & 105       & 33     & 0.8235   \\
     pred. 2  & 3   & 0         & 0      & 0.0      \\
     predl 1  & 268 & 177       & 2181   & 0.8305   \\
-    \midrule
+    \hline
     recall   & 0.9851 & 0.0 & 0.7038 &          \\
     \bottomrule
 \end{tabular}
@@ -689,19 +694,20 @@ las 282 instancias de la esta clase.
 analysis} y \textit{n-gramas}}
 \label{eva-modeloparte2}
 
-La matriz correspondiente al modelo de la parte 1, construído con atributos
+La matriz correspondiente al modelo de la parte 2, construído con atributos
 exclusivamente textuales y empleando análisis de sentimientos y construcción de
 n-gramas, es la siguiente:
 
-\begin{table}
+\begin{table}[H]
+\center
 \begin{tabular}{@{}lccc|c@{}}
     \toprule
              & True 3 & True 2 & True 1 & precision\\
-    \midrule
+    \hline
     pred. 3  & 644 & 105       & 33     & 0.8235   \\
     pred. 2  & 3   & 0         & 0      & 0.0      \\
     predl 1  & 268 & 177       & 2181   & 0.8305   \\
-    \midrule
+    \hline
     recall   & 0.9851 & 0.0 & 0.7038 &          \\
     \bottomrule
 \end{tabular}
@@ -764,15 +770,264 @@ alternativas:
     automático.
 \end{itemize}
 
-\section{Parte opcional: Topic Analysis}
+\section{Parte opcional: Topic modelling}
 \label{chap:topic}
+
+Se ha realizado un último análisis de los datos como parte de la sección
+opcional de la investigación basado en el \textit{topic} modelling. El objetivo de este
+es identificar patrones en los datos que puedan agrupar las reseñas en
+distintos grupos. Para esto se va a utilizar el operador de RapidMiner “Extract
+Topics from Data”, que usa el algoritmo de Latent Dirichlet Allocation para
+identificar y agrupar temas de los documentos.
+
+El preprocesado de los datos para la aplicación de este algoritmo será similar
+al utilizado en las dos partes anteriores de este trabajo, con la excepción de
+la eliminación del atributo objetivo. Este preprocesado es realizado para poder
+comparar los resultados con los datos de manera efectiva, aunque en el operador
+solo se utilice la columna “Review”. Se buscará agrupar las reseñas de dos
+maneras modificando el parámetro \textit{number of topics}:
+
+\begin{itemize}
+    \item En dos grupos, con la hipótesis de que se dividirán en positivas y
+    negativas. En este caso se compararán los grupos obtenidos con la columna
+    de \textit{Recommended}, considerándose esta una buena medida de la positividad
+    de la reseña.
+    \item En tres grupos que se compararán con el valor de \textit{OVERALL\_RATING} ya
+    reducido a tres opciones en el preprocesado. El objetivo es comprobar si
+    estos textos cuentan con agrupaciones naturales que se relacionen con la
+    valoración final del usuario.
+\end{itemize}
+
+Además, en ambos casos se comprobarán las \textit{top words} proporcionadas por cada
+una de las agrupaciones con el objetivo de identificar los temas obtenidos.
+Cabe resaltar que se utilizará la opción de 10 \textit{top words} por ser este un número
+lo suficientemente grande como para recabar información aún siendo manualmente
+analizable. Este parámetro no afecta al agrupamiento final o al rendimiento del
+proceso.
+
+Se van a utilizar 1000 iteraciones para ambos procesos, siendo este un número
+que consigue una buena precisión en los resultados sin sacrificar el
+rendimiento. Se han explorado rangos más bajos y más altos de iteraciones, sin
+éxito. En el primer caso la reducción de precisión era demasiado
+significativa y en el segundo el aumento del tiempo no llevaba a una mejora
+sustancial.
+
+Con estos parámetros se han obtenido los resultados expuestos a continuación.
+
+\subsection{Generación de 2 grupos y comparación con \textit{Recommended}}
+\label{subsec:topicmodelling-recommended}
+
+Una vez ejecutado el modelo se consiguen dos salidas: las instancias
+clasificadas en dos grupos distintos y las 10 palabras más comunes en ambos
+grupos. Las instancias clasificadas han sido comparadas con su valor en el
+atributo “Recommended”, obteniendo el siguiente resultado:
+
+\begin{table}[H]
+\center
+\begin{tabular}{@{}cccc@{}}
+    \toprule
+    TopicID & Nº Instancias & Recommended = 0 & Recommended = 1 \\
+    \midrule
+    0       & 8216          & 7949            & 367 \\
+    1       & 5327          & 1603            & 3724\\
+    \bottomrule
+\end{tabular}
+\caption{Resultados de topic modelling basado en Recommended.}
+\end{table}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.85\linewidth]{graph_2topic_1000iter_other.jpeg}\\
+    \caption{Resultados de topic modelling basado en Recommended.}
+\end{figure}
+
+Se puede observar que ambos grupos cuentan con una mayoría de instancias de una
+de las categorías de “Recommended”, lo cual puede indicar que las agrupaciones
+corresponden en cierta medida con la opinión general de los usuarios. En el
+caso del grupo 0 la diferencia parece mucho menor, pero esto probablemente esté
+causado por el desbalance que existe en las clases de “Recommended”, siendo la
+clase 0 casi tres veces más común que la 1. Así, se puede concluir que la
+clasificación en grupos del LDA es correcta en relación con este atributo.
+
+Al analizar las palabras más comunes de ambas agrupaciones se pueden encontrar
+nombres y adjetivos que pueden apoyar la idea de que efectivamente se han
+creado dos grupos de experiencias positivas y negativas.
+
+\begin{table}[H]
+    \center
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        topicid & word & weight \\
+        \midrule
+        0 & flight  & 17165 \\
+        0 & airline & 6157  \\
+        0 & hours   & 4662  \\
+        0 & get     & 4303  \\
+        0 & time    & 4248  \\
+        0 & airport & 4090  \\
+        0 & service & 4083  \\
+        0 & would   & 4075  \\
+        0 & told    & 3723  \\
+        0 & one     & 3280  \\
+        \bottomrule
+    \end{tabular}
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        topicid & word & weight \\
+        \midrule
+        1 & flight  & 7211  \\
+        1 & good    & 3358  \\
+        1 & time    & 2970  \\
+        1 & crew    & 2955  \\
+        1 & seats   & 2907  \\
+        1 & service & 2842  \\
+        1 & seat    & 2773  \\
+        1 & food    & 2629  \\
+        1 & cabin   & 2237  \\
+        1 & staff   & 1862  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Top words en las agrupaciones por Recommended.}
+\end{table}
+
+En el grupo 0, que corresponde a las experiencias negativas, se encuentran
+palabras como ``hours'' que probablemente tengan relación con malas experiencias
+de tiempos de espera o cancelaciones. En el segundo grupo, sin embargo, se
+encuentran palabras como ``good'' o ``staff'' que representan opiniones positivas
+sobre el vuelo y los empleados. Cabe destacar que aunque existan palabras
+útiles para el análisis en ambos casos, la mayoría de palabras son comunes
+entre ambos grupos y no cuentan con una connotación negativa o positiva, siendo
+inútiles para conseguir conclusiones. Especialmente, ``flight'' o ``time'' dependen
+completamente del calificativo del que van acompañadas, por lo que sería
+necesario realizar un análisis que permita expresiones de varias palabras.
+
+\subsection{Generación de 3 grupos y comparación con \textit{Overall\_Rating}}
+
+En la segunda aproximación los resultados de la clasificación son:
+
+\begin{table}[H]
+\center
+\begin{tabular}{@{}ccccc@{}}
+    \toprule
+    TopicID & Nº Instancias & Overall Rating = 1 & Overall Rating = 2 & Overall Rating = 3 \\
+    \midrule
+    0       & 5281          & 4762               & 230                & 289 \\
+    1       & 3354          & 3196               & 73                 & 85  \\
+    2       & 5008          & 963                & 845                & 3200\\
+    \bottomrule
+\end{tabular}
+\caption{Resultados de topic modelling basado en Overall\_Rating.}
+\end{table}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.85\linewidth]{graph_3topic_1000iter.jpeg}\\
+    \caption{Resultados de topic modelling basado en Overall\_Rating.}
+\end{figure}
+
+Una vez más se observa que el desbalance de las clases del atributo provoca una
+diferencia en la precisión de los resultados entre los grupos. En este caso,
+aunque el \textit{topic} 2 representa de manera significativa las valoraciones positivas
+de los usuarios, los \textit{topics} 0 y 1 parecen ambos corresponder con las instancias
+negativas. La poca existencia de instancias que representen la clase 2 de
+Overall Rating probablemente se corresponde con la falta de existencia de una
+agrupación natural de los datos para esta. Así, se puede teorizar que solo
+existen dos agrupaciones de datos, siendo el grupo intermedio insignificante.
+Esta teoría viene además acompañada de los datos de las \textit{top words} de cada
+agrupación:
+
+\begin{table}[H]
+    \center
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        topicid & word & weight \\
+        \midrule
+        0 & flight  & 10718 \\
+        0 & hours   & 3755  \\
+        0 & airline & 3513  \\
+        0 & airport & 3449  \\
+        0 & time    & 3225  \\
+        0 & luggage & 3133  \\
+        0 & plane   & 3023  \\
+        0 & staff   & 2856  \\
+        0 & get     & 2824  \\
+        0 & one     & 2702  \\
+        \bottomrule
+    \end{tabular}
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        topicid & word & weight \\
+        \midrule
+        1 & flight  & 7478  \\
+        1 & airline & 2841  \\
+        1 & service & 2521  \\
+        1 & customer& 2429  \\
+        1 & refund  & 2287  \\
+        1 & ticket  & 2121  \\
+        1 & cancelled& 1871 \\
+        1 & would   & 1835  \\
+        1 & flights & 1789  \\
+        1 & get     & 1667  \\
+        \bottomrule
+    \end{tabular}
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        topicid & word & weight \\
+        \midrule
+        2 & flight  & 6180  \\
+        2 & good    & 3313  \\
+        2 & service & 2701  \\
+        2 & time    & 2680  \\
+        2 & crew    & 2644  \\
+        2 & seats   & 2489  \\
+        2 & food    & 2408  \\
+        2 & seat    & 2362  \\
+        2 & cabin   & 2074  \\
+        2 & flight  & 1591  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Top Words en las agrupaciones por Overall\_Rating.}
+\end{table}
+
+La agrupación 2 cuenta con palabras claramente positivas como ``good'', pero
+ambas agrupaciones 0 y 1 cuentan con palabras de connotación negativa como
+``hours'', ``worst'' o ``cancelled''.
+
+Tras estos resultados se ha decidido realizar una comparación de las dos
+agrupaciones de la primera sección con los datos de \textit{Overall\_Rating} con el
+objetivo de probar la teoría. Esto resulta en una distribución de dos grupos
+claros en los que la mayoría de instancias de valoraciones positivas se
+encuentran en uno de los grupos y la mayoría de las negativas en otro.
+
+\begin{figure}
+    \center
+    \includegraphics[width=0.85\linewidth]{graph_2topic_1000iter_rating.jpeg}\\
+    \caption{Resultados de topic modelling basado en Overall\_Rating.}
+\end{figure}
+
+Se concluye que el método de \textit{topic modelling} en este caso puede resultar una
+herramienta útil para la clasificación de instancias en dos grupos, existiendo
+patrones en los datos que contribuyen a dos agrupaciones naturales de estos en
+reseñas positivas y negativas.
 
 \section{Conclusiones de la práctica}
 \label{chap:conclusion}
 
-Esta práctica nos ha permitido explorar nuevas técnicas para la construcción de modelos. En concreto, hemos podido comprobar como el \textit{text mining} y el \textit{análisis de sentimientos} son herramientas muy últiles capaces de inferir información a partir de pocos campos textuales. Nos resulta verdaderamente interesante comprobar como el campo de la inteligencia artificial ha evolucionado hasta extremos donde es capaz de reconocer la actitud de un agente hacia un dominio a través de una información tan compleja como es el lenguaje natural.
+Esta práctica nos ha permitido explorar nuevas técnicas para la construcción de
+modelos. En concreto, hemos podido comprobar como el \textit{text mining} y el
+\textit{análisis de sentimientos} son herramientas muy últiles capaces de
+inferir información a partir de pocos campos textuales. Nos resulta
+verdaderamente interesante comprobar como el campo de la inteligencia
+artificial ha evolucionado hasta extremos donde es capaz de reconocer la
+actitud de un agente hacia un dominio a través de una información tan compleja
+como es el lenguaje natural.
 
-También nos gustaría destacar como esta clase de herramientas deben usarse con conocimiento ya que muchas presentan una gran complejidad que afecta fuertemente al tiempo de entrenamiento y el rendimiento de los modelos. Esto nos hace ver la importancia de un correcto entendimiento de las técnicas y modelos empleados; destacando nuestro valor como ingenieros en el campo de la Inteligencia Artificial.
+También nos gustaría destacar como esta clase de herramientas deben usarse con
+conocimiento ya que muchas presentan una gran complejidad que afecta
+fuertemente al tiempo de entrenamiento y el rendimiento de los modelos. Esto
+nos hace ver la importancia de un correcto entendimiento de las técnicas y
+modelos empleados; destacando nuestro valor como ingenieros en el campo de la
+Inteligencia Artificial.
 
   \end{report}
 
