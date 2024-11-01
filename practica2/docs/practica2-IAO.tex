@@ -54,15 +54,30 @@ Se obtendrán 3 modelos siguiendo distintas aproximaciones para predecir la clas
     \item Modelo de \textit{text mining II}: se construye un modelo con procesamiento de texto y análisis de sentimientos. Además en este modelo se hará uso de bigramas y trigramas.
 \end{itemize}
 
-El uso de análisis textual puede resultar útil dado al tipo de problema que se pretende resolver, ya que entre los datos aparecen campos textuales no estructurados. Este tipo de datos no podrán ser utilizados por otros modelos de aprendizaje automático debido a que, por si mismos, no son capaces de reconocer patrones o información incluidos en los datos. Complementariamente, el uso de \textit{análisis de sentimientos} ayudará a la predicción ya que la variable objetivo depende fuertemente de la opinión del autor del autor de la valoración. Además, al construir varios modelos se podrá comparar el aporte del \textit{text mining} y \textit{análisis de sentimietos} frente al modelo básico sin campos textuales.
+El uso de análisis textual puede resultar útil dado al tipo de problema que se
+pretende resolver, ya que entre los datos aparecen campos textuales no
+estructurados. Este tipo de datos no podrán ser utilizados por otro tipo de
+modelos de aprendizaje automático debido a que, por si mismos, no son capaces de
+reconocer patrones o información incluidos endatos textuales. Complementariamente,
+el uso de \textit{análisis de sentimientos} ayudará a la predicción ya que la variable
+objetivo depende fuertemente de la opinión del autor la valoración. Además, 
+al construir varios modelos se podrá comparar el aporte del \textit{text mining}
+y el \textit{análisis de sentimietos} frente al modelo básico sin campos textuales.
 
-El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido enormemente, haciendo imposible usar técnicas tradicionales para el añálisis de la gran cantidad de datos que se disponen. Si tomamos como referencia el año 2019, año previo a la pandemia del \textit{COVID-19}, hubo $4.490$ millones de pasajeros~\cite{owd-passengers}. Aunque únicamente un pequeño porcentaje de ellos dejara una valoración de su experiencia, la cantidad de datos para procesar sobrepasaría la capacidad de cualquir mecanismo tradicional de análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para optener rendimiento de la información en este ámbito.
+El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido
+enormemente, haciendo imposible usar técnicas tradicionales para el añálisis de
+la gran cantidad de datos que se disponen. Si se toma como referencia el año
+2019, año previo a la pandemia del \textit{COVID-19}, hubo 4490 millones de
+pasajeros~\cite{owd-passengers}. Aunque únicamente un pequeño porcentaje de
+ellos dejara una valoración de su experiencia, la cantidad de datos para
+procesar sobrepasaría la capacidad de cualquier mecanismo tradicional de
+análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para optener rendimiento de la información en este ámbito.
 
 Además, esta clase de modelos cuentan con multitud de aplicaciones en diversos campos: la detección temprana de problemas en los servicios, la creación de marketing dirigido, el desarrollo de algoritmos de respuestas automáticas y sistemas de recomendación o el análisis competitivo de compañías para destacar sus fortalezas y puntos flacos en el mercado. Especialmente en el contexto actual de recuperación postpandemia, el uso de algoritmos de minería de datos permite a las aerolíneas tomar decisiones más informadas y responder de forma más eficiente a las necesidades emergentes del mercado~\cite{espanna}.
 
 \section{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
-Se ha realizado un estudio de todos los datos con el objetivo de su entendimiento para determinar el uso y necesidad de los mismos. Este análisis se ha realizado a través de las herramientas de Rapid Miner Statistics~\cite{Statistics-RM} y Correlation-Matrix~\cite{Correlation-Matrix-RM}. Además, se han explorado únicamente los datos de entrenamiento para evitar problemas de \textit{data\_leak}.
+Se ha realizado un estudio de los datos con el objetivo de su entendimiento para determinar el uso y significado de los mismos. Este análisis se ha realizado a través de las herramientas de Rapid Miner Statistics~\cite{Statistics-RM} y Correlation-Matrix~\cite{Correlation-Matrix-RM}. Además, se han explorado únicamente los datos de entrenamiento para evitar problemas de \textit{data\_leak}.
 
 El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
 
@@ -74,7 +89,9 @@ El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada
     \item \textbf{Food \& Beverages:} puntuación numérica del 0 al 50 sobre el servicio de comida en el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
     \item \textbf{Ground Service:} puntuación numérica del 0 al 50 sobre el servicio en tierra. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
     \item \textbf{Inflight Entertainment:} puntuación numérica del 0 al 50 sobre el servicio de entretenimiento durante el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
-    \item \textbf{Overall Rating:} puntuación numérica del 1 al 9. Representa el grado de satisfacción del cliente. Se trata de un atributo \textit{numérico}. Además, se trata de nuestra \textbf{variable objetivo}.
+    \item \textbf{Overall Rating:} puntuación numérica del 1 al 9. Representa el
+    grado de satisfacción del cliente. Se trata de un atributo
+    \textit{numérico}. Además, se trata de la \textbf{variable objetivo}.
     \item \textbf{Recomended:} valor \textit{booleano}. Representa si el cliente recomendaría el servicio. Destaca un desbalanceo del 69.95\% hacia el valor negativo.
     \item \textbf{Review:} atributo \textit{textual}. Contiene el comentario del usuario sobre el vuelo.
     \item \textbf{Review Date:} fecha en la que se realizó la reseña.
@@ -102,7 +119,7 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
         missing (\%) & 0              & 70.57\%  & 16.81\%             & 11.82\%    \\
         \bottomrule
     \end{tabular}
-    \caption{Datos de los atributos - 1}
+    \caption{Datos de los atributos - 1.}
 \end{table}
 
 \begin{table}[H]
@@ -119,7 +136,7 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
         missing (\%) & 38.15\%           & 17.32\%        & 53.10\%                \\
         \bottomrule
     \end{tabular}
-    \caption{Datos de los atributos - 2}
+    \caption{Datos de los atributos - 2.}
 \end{table}
 \begin{table}[H]
     \center
@@ -135,7 +152,7 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
         missing (\%) & 0\%             & 0\%         & 0\%     & 0\%         & 0\%          \\
         \bottomrule
     \end{tabular}
-    \caption{Datos de los atributos - 3}
+    \caption{Datos de los atributos - 3.}
 \end{table}
 \begin{table}[H]
     \center
@@ -151,7 +168,7 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
         missing (\%) & 12.22\%             & 16.28\%      & 1.71\%        & 11.79\%           \\
         \bottomrule
     \end{tabular}
-    \caption{Datos de los atributos - 4}
+    \caption{Datos de los atributos - 4.}
 \end{table}
 \begin{table}[H]
     \center
@@ -167,8 +184,32 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
         missing (\%) & 1.62\%          & 0\%       & 72.69\%              \\
         \bottomrule
     \end{tabular}
-    \caption{Datos de los atributos - 5}
+    \caption{Datos de los atributos - 5.}
 \end{table}
+
+\subsection{Análisis de la variable objetivo}
+\label{subsec:variable-objetivo}
+Si se observa en más profundidad la variable objetivo, vemos que se trata de una
+puntuación de 1 al 9 que muestra el grado de satisfacción general del autor de
+la reseña. A continuación se muestra un gráfico de su distribución.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.85\linewidth]{distribucion_overall.png}\\
+    \caption{Distribución de los valores de \textit{OVERALL\_RATING}}
+    \label{distribucion-overall}
+\end{figure}
+
+Se aprecia como se trata de un atributo con una distribución desigual, con
+concentraciones en los valores extermos. Particularmente, la calificación 1 es
+la más común con 7159 registros. Esto parece indicar un alto grado de
+insatisfacción y un sesgo hacia las calificaciones negativas.
+
+También es destacable la ausencia de reseñas con calificaciones intermedias (3 y
+4).
+
+Estos datos podrían ser problemáticos para el entrenamiento de modelos debido al
+fuerte desbalanceo que existe entre clases.
 
 \section{Preprocesado}
 \label{chap:preprocess}
@@ -176,14 +217,14 @@ En este capítulo se describen las diferentes transformaciones aplicadas a los d
 
 \subsection{Transformación de \textit{OVERALL\_RATING} a nominal}
 \label{sec:overalltransform}
-Para poder construir un clasificador hemos transformado este atributo de numérico a nominal con 3 clases.
+Para poder construir un clasificador se ha transformado el atributo \textit{OVERALL\_RATING} de numérico a nominal; codificándolo en 3 clases:
 \begin{itemize}
     \item 1: agrupa los valores comprendidos entre 1 y 3, ambos incluídos.
     \item 2: agrupa los valores comprendidos entre 4 y 6, ambos incluídos.
     \item 3: agrupo los valores comprendidos entre 7 y 9, ambos incluídos.
 \end{itemize}
 
-De esta forma tambión logramos corregir la poca representación de algunos valores en el conjunto de datos. Cabe destacar que aun agrupando sigue habiendo una representación muy pobre de la clase \textit{2}.
+De esta forma también se trata de compensar la poca representación de algunos valores en el conjunto de datos. Cabe destacar que aun agrupando sigue habiendo una representación muy pobre de la clase \textit{2}.
 
 \begin{table}[H]
     \begin{center}
@@ -195,7 +236,7 @@ De esta forma tambión logramos corregir la poca representación de algunos valo
             Porcentaje           & 65.39\%        & 8.41\% & 26.20\\
             \bottomrule
         \end{tabular}
-        \caption{Porcentaje de representación de cada clase}
+        \caption{Porcentaje de representación de cada clase.}
     \end{center}
 \end{table}
 
@@ -204,7 +245,7 @@ La sobrerrepresentación de la clase correspondiente a las evaluaciones más baj
 \begin{figure}[H]
     \center
     \includegraphics[width=0.60\linewidth]{overall_clases.png}\\
-    \caption{Distribución de las clases}
+    \caption{Distribución de las clases.}
 \end{figure}
 
 \subsection{Eliminación de atributos}
@@ -220,10 +261,11 @@ A continuación se muestra un gráfico con el número de valores faltantes por a
 \begin{figure}[H]
     \center
     \includegraphics[width=0.85\linewidth]{missings.png}\\
-    \caption{Número de valores faltantes por atributo}
+    \caption{Número de valores faltantes por atributo.}
+    \label{fig:missings}
 \end{figure}
 
-La línea sobre el gráfico señala el 35\% de las instancias. Por lo tanto, toda barra que rebase la línea se corresponde con un atributo a eliminar. Los atributos afectados han sido: \textit{Aircraft, Food \& Beverages, Inglight Entertainment} y \textit{Wifi \& Connectivity}.
+La línea sobre el gráfico \ref{fig:missings} señala el 35\% de las instancias. Por lo tanto, toda barra que rebase la línea se corresponde con un atributo a eliminar. Los atributos afectados han sido: \textit{Aircraft, Food \& Beverages, Inglight Entertainment} y \textit{Wifi \& Connectivity}.
 
 \subsection{Formateo de los datos}
 \label{sec:formateo}
@@ -244,6 +286,10 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
 
 \section{Proceso de entrenamiento}
 \label{chap:train}
+
+En este capítulo se describen los procesos de entrenamiento para la construcción de los modelos de la parte 1 y parte 2. Para que el experimento sea reproducible se ha fijado una semilla a 1992 y se han marcado las opciones pertinentes en el software de \textit{Altair AI Studio} para la ejecución en un único hilo.
+
+Cabe destacar que para la construcción de estos modelos se han empleado exclusivamente los atributos textuales \textit{Review} y \textit{Review Title}.
 
 \subsection{Parte 1: Modelado sin análisis de sentimientos}
 \label{sec:parte1}
@@ -300,14 +346,15 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
                 12 & (\textit{TF-IDF}, $10\%$,               \textit{Decision Trees}) & $0.749 \pm 0.023$ \\
                 \bottomrule
             \end{tabular}
-            \caption{Parámetros y \textit{Accuracy} de los diferentes modelos - Parte 1}
+            \caption{Parámetros y \textit{Accuracy} de los diferentes modelos -
+            Parte 1.}
         \end{center}
     \end{table}
 
     \begin{figure}[H]
         \center
         \includegraphics[width=0.85\linewidth]{errors_train1.png}\\
-        \caption{\textit{Accuracy} de los diferentes modelos - Parte 1}
+        \caption{\textit{Accuracy} de los diferentes modelos - Parte 1.}
     \end{figure}
 
     Al observar la comparación por pares proporcionada por el \textit{t-test},
@@ -336,7 +383,8 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     \begin{figure}[H]
         \center
         \includegraphics[width=\linewidth]{t_test1.jpeg}\\
-        \caption{Resultado del \textit{t-test} de los modelos en el conjunto de \textit{train} - Parte 1}
+        \caption{Resultado del \textit{t-test} de los modelos en el conjunto de
+        \textit{train} - Parte 1.}
     \end{figure}
 
     Con toda esta información se concluye que el mejor modelo y con el que se hará
@@ -345,11 +393,27 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     Occurrence}. En la siguiente figura se muestra el \textit{recall} y
     \textit{precision} de las diferentes clases para este modelo.
 
-    \begin{figure}[H]
-        \center
-        \includegraphics[width=\linewidth]{train1.jpeg}\\
-        \caption{Precision y recall del modelo 9 en el conjunto de \textit{train} - Parte 1}
-    \end{figure}
+%    \begin{figure}[H]
+%        \center
+%        \includegraphics[width=\linewidth]{train1.jpeg}\\
+%        \caption{Precision y recall del modelo 9 en el conjunto de
+%        \textit{train} - Parte 1.}
+%    \end{figure}
+\begin{table}
+\begin{tabular}{@{}lccc|c@{}}
+    \toprule
+             & True 3 & True 2 & True 1 & precision\\
+    \midrule
+    pred. 3  & 2952   & 549    & 323    & 0.7720   \\
+    pred. 2  & 284    & 156    & 208    & 0.2407   \\
+    predl 1  & 338    & 443    & 8390   & 0.9148   \\
+    \midrule
+    recall   & 0.8260 & 0.1359 & 0.9405 &          \\
+    \bottomrule
+\end{tabular}
+\caption{Matriz de confusión del modelo 9 en el conjunto de \textit{train} -
+parte 1.}
+\end{table}
 
 \subsection{Parte 2: Modelado con análisis de sentimientos}
 \label{sec:parte2}
@@ -400,14 +464,15 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
                 12 & (\textit{Bigramas}, $10\%$, \textit{Decision Trees}) & $0.752 \pm 0.038$ \\
                 \bottomrule
             \end{tabular}
-            \caption{Parámetros y \textit{Accuracy} de los diferentes modelos - Parte 2}
+            \caption{Parámetros y \textit{Accuracy} de los diferentes modelos -
+            Parte 2.}
         \end{center}
     \end{table}
 
     \begin{figure}[H]
         \center
         \includegraphics[width=0.85\linewidth]{errors_train2.png}\\
-        \caption{\textit{Accuracy} de los diferentes modelos - Parte 2}
+        \caption{\textit{Accuracy} de los diferentes modelos - Parte 2.}
     \end{figure}
 
     Al observar la comparación por pares proporcionada por el \textit{t-test},
@@ -434,7 +499,8 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     \begin{figure}[H]
         \center
         \includegraphics[width=\linewidth]{t_test2.jpg}\\
-        \caption{Resultado del \textit{t-test} de los modelos en el conjunto de \textit{train} - Parte 2}
+        \caption{Resultado del \textit{t-test} de los modelos en el conjunto de
+        \textit{train} - Parte 2.}
     \end{figure}
 
     Con toda esta información se concluye que el mejor modelo y con el que se
@@ -443,16 +509,260 @@ Tanto en el proceso de entrenamiento como en la evaluación se observa una \text
     En la siguiente figura se muestra el \textit{recall} y \textit{precision} de
     las diferentes clases para este modelo.
 
-    \begin{figure}[H]
-        \center
-        \includegraphics[width=\linewidth]{train2.jpeg}\\
-        \caption{Precision y recall del modelo 9 en el conjunto de \textit{train} - Parte 2}
-    \end{figure}
+%    \begin{figure}[H]
+%        \center
+%        \includegraphics[width=\linewidth]{train2.jpeg}\\
+%        \caption{Precision y recall del modelo 9 en el conjunto de
+%        \textit{train} - Parte 2.}
+%    \end{figure}
+\begin{table}
+\begin{tabular}{@{}lccc|c@{}}
+    \toprule
+             & True 3 & True 2 & True 1 & precision\\
+    \midrule
+    pred. 3  & 2946   & 534    & 278    & 0.7839   \\
+    pred. 2  & 304    & 186    & 240    & 0.2548   \\
+    predl 1  & 324    & 428    & 8403   & 0.9179   \\
+    \midrule
+    recall   & 0.8243 & 0.1620 & 0.9419 &          \\
+    \bottomrule
+\end{tabular}
+\caption{Matriz de confusión del modelo 9 en el conjunto de \textit{train} -
+parte 2.}
+\end{table}
 
 
 \section{Comparación de resultados}
 \label{chap:resultados}
 
+En este capítulo se comparan los resultados obtenidos en los diferentes procesos para cada uno de los modelos.
+
+\subsection{Procesos de entrenamiento}
+\label{subsec:comparar_train}
+Durante el proceso de entrenamiento destaca positivamente el modelo base,
+contando con un \textit{Accuracy} superior al $91\%$. Los modelos basados en
+\textit{minería de texto} cuentan con un rendimiento muy similar, entorno al
+$84\%$. Es relevante mencionar que la clase mejor predicha en todos los modelos
+es la clase 1, hecho que se explica por la sobrerrepresentación de esta clase en
+el conjunto de los datos. En contraste, la clase con la puntuación más baja es
+la clase 2. A continuación se muestra una tabla y un gráfico que recogen el
+\textit{Accuracy} por cada clase y modelo.
+\begin{table}
+\begin{tabular}{@{}lccc@{}}
+    \toprule
+    modelo      & acc. clase1&	acc. clase2	& acc. clase 3 \\
+    \midrule     
+    modelo base & 0.9741 & 0.4199	& 0.9387 \\
+    modelo p1   & 0.9405 & 0.1359	& 0.826 \\
+    modelo p2   & 0.9419 & 0.162	& 0.824 \\
+    \bottomrule
+\end{tabular}
+    \caption{Accuracy por modelo y clase en el conjunto de entrenamiento.}
+\end{table}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.85\linewidth]{accModClassTrain.png}\\
+    \caption{Accuracy por modelo y clase en el conjunto de \textit{train}.}
+\end{figure}
+
+Tal y como se esperaba en un inicio, las clases mejor predichas son aquellas con
+un mayor número de instancias. Cabe destacar el rendimiento superior del modelo
+base, especialmente hablando de la clase 2. Estos resultados parecen indicar que
+los campos textuales no contienen suficiente información para distinguir las
+reseñas intermedias (clase 2) de las de otro tipo.
+
+Al observar a la matriz de confusión, de cada modelo
+se aprecia como los valores de \textit{precision} y \textit{recall} son
+similares para las clases 1 y 3 en todos los modelos. Esto parece indicar que se
+tratan de modelos robutos que son capaces de capturar y clasificar correctamente
+todas las instancias de estas clases. Para la clase 2, los valores de \textit{precision} y \textit{recall} son
+similares únicamente en el caso del modelo base. Para los demás modelos, estos
+valores son muy bajos y desbalanceados hacia la \textit{precision}. En cualquier
+caso, las medidas realizadas sobre la clase 2 para todos los modelos indican que
+ninguno ha sido capaz de capturar y clasificar correctamente las instancias de
+esta clase; muy probablmente debido a la poca representación de la misma en el
+conjunto de los datos.
+
+\subsection{Evaluación}
+\label{subsec:comparar_test}
+
+Tras realizar predicciones sobre el conjunto de \textit{test} los resultados
+obtenidos con cada modelo han sido los siguientes:
+
+\begin{table}
+\begin{tabular}{@{}lccc@{}}
+    \toprule
+    modelo      & acc. clase1&	acc. clase2	& acc. clase 3 \\
+    \midrule     
+    modelo base & 0.9837     & 0.4184	& 0.8896 \\
+    modelo p1   & 0.9851     & 0.0	    & 0.7038 \\
+    modelo p2   & 0.9435     & 0.2163	& 0.7934 \\
+    \bottomrule
+\end{tabular}
+    \caption{Accuracy por modelo y clase en el conjunto de test.}
+\end{table}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.85\linewidth]{accModClassTest.png}\\
+    \caption{Accyracy por modelo y clase en el conjunto de test.}
+\end{figure}
+
+Se aprecia un comportamiento similar de los modelos al compararlos con los
+resultaods obtenidos en el entrenamiento. Esto significa que ninguno de los
+modelos ha sufrido de \textit{overfitting}. Destaca que el modelo de la parte 1
+no ha sido capaz de predecir correctamente ninguna de las instancias de la clase
+2. También es notable cómo el modelo base cuenta con un rendimiento superior al
+resto de modelos. Los modelos de la parte 1 y parte 2 se comportan de forma
+similar, destacando el segundo por mostrar un mejor rendimiento en para las
+clases minoritarias.
+
+A continuación, con el fin de hacer un análisis más profundo, se desglosarán las
+predicciones en una matriz de confusión para cada modelo.
+
+\subsubsection{Modelo base}
+\label{eva-modelobase}
+La matriz correspondiente al modelo base, construído exclusivamente con
+atributos no textuales, es la siguiente:
+
+\begin{table}
+\begin{tabular}{@{}lccc|c@{}}
+    \toprule
+             & True 3 & True 2 & True 1 & precision\\
+    \midrule
+    pred. 3  & 814   & 75      & 4      & 0.9115   \\
+    pred. 2  & 88    & 118     & 32     & 0.4958   \\
+    predl 1  & 13    & 89      & 2178   & 0.9553   \\
+    \midrule
+    recall   & 0.8896 & 0.4184 & 0.9837 &          \\
+    \bottomrule
+\end{tabular}
+\caption{Matriz de confusión del modelo base con el conjunto \textit{test}.}
+\end{table}
+
+Se aprecia que las medidas para \textit{precision} y \textit{recall} son altas y
+similares para las clases mayoritarias. Lo que significa que se trata de un modelo robusto capaz de capturar
+y predecir correctamente las instancias pertenencientes a las clases 1 y 3. Para
+la clase 2, contamos con las medidas más altas entre los 3 modelos. No obstante,
+siguen siendo medidas muy bajas que muestran un rendimiento pobre para esta
+clase de instancias. Cabe destacar que el modelo clasifica una cantidad mayor de
+instancias de la clase 3 como clase 2. Esto indica que existe una separación más
+clara entre las instancias de la clase 1 y la clase 2 que entre la clase 3 y la
+clase 2. Esto se puede corroborar comprobando la distribución de los valores de la variable
+objetivo \textit{OVERALL\_RATING} previo a la transformación del atributo de
+numérico a nominal (figura~\ref{distribucion-overall}).
+
+\subsubsection{Parte 1: modelo con \textit{text mining}}
+\label{eva-modeloparte1}
+La matriz correspondiente al modelo de la parte 1, construído con atributos
+exclusivamente textuales y sin uso de análisis de sentimientos, es la siguiente:
+
+\begin{table}
+\begin{tabular}{@{}lccc|c@{}}
+    \toprule
+             & True 3 & True 2 & True 1 & precision\\
+    \midrule
+    pred. 3  & 644 & 105       & 33     & 0.8235   \\
+    pred. 2  & 3   & 0         & 0      & 0.0      \\
+    predl 1  & 268 & 177       & 2181   & 0.8305   \\
+    \midrule
+    recall   & 0.9851 & 0.0 & 0.7038 &          \\
+    \bottomrule
+\end{tabular}
+\caption{Matriz de confusión del modelo de la parte 1 con el conjunto \textit{test}.}
+\end{table}
+
+Este modelo emplea técnicas de \textit{text mining} para analizar los campos
+\textit{Review} y \textit{Review title} y una red neuronal (operador
+\textit{DeepLearning}~\cite{deeplearning} del software). 
+
+De forma similar al modelo anterior, las medidas de \textit{precision} y
+\textit{recall} son altas y similares para las clases mayoritarias. De nuevo, se
+trata de un modelo robusto capaz de reconocer y clasificar correctamente las
+instancias pertenencientes a las clases mayoritarias. El modelo muestra un
+rendimiento notablemente superior en la clasificación de instancias de la clase
+1, hecho esperable ya que se trata de la clase mayoritaria. Sin embargo, muestra un
+rendimiento paupérrimo para la clase 2, seguramente debido a la poca
+representación de esta clase. El modelo no ha sido capaz de capturar ninguna de
+las 282 instancias de la esta clase.
+
+\subsubsection{Parte 2: modelo con \textit{text mining}, \textit{sentiment
+analysis} y \textit{n-gramas}}
+\label{eva-modeloparte2}
+
+La matriz correspondiente al modelo de la parte 1, construído con atributos
+exclusivamente textuales y empleando análisis de sentimientos y construcción de
+n-gramas, es la siguiente:
+
+\begin{table}
+\begin{tabular}{@{}lccc|c@{}}
+    \toprule
+             & True 3 & True 2 & True 1 & precision\\
+    \midrule
+    pred. 3  & 644 & 105       & 33     & 0.8235   \\
+    pred. 2  & 3   & 0         & 0      & 0.0      \\
+    predl 1  & 268 & 177       & 2181   & 0.8305   \\
+    \midrule
+    recall   & 0.9851 & 0.0 & 0.7038 &          \\
+    \bottomrule
+\end{tabular}
+\caption{Matriz de confusión del modelo de la parte 1 con el conjunto \textit{test}.}
+\end{table}
+
+Este modelo emplea técnicas de \textit{text mining} para analizar los campos
+\textit{Review} y \textit{Review title}. Además, realiza un análisis de
+sentimientos y construye n-gramas de tamaño 2. Por último, emplea una red neuronal (operador
+\textit{DeepLearning}~\cite{deeplearning} del software) para realizar la
+predicción.
+
+Al igual que en los anteriores modelos, las medidas de \textit{precision} y
+\textit{recall} son altas y similares para las clases mayoritarias; demostrando
+ser un modelo robusto para las clases 1 y 3. El modelo muestra un
+rendimiento significativamente superior en la clasificación de instancias de la clase
+2 al compararlo con el modelo 1, lo que parece demostrar que el analisis de
+sentimientos y la construccion de bigramas permiten reconocer nuevos patrones
+capaces de separar las instancias de la clase 2. Sin embargo, el rendimiento
+para esta clase sigue siendo muy bajo, mostrando como el conjunto de datos no
+cuenta con representación suficiente de esta clase como para construir un modelo capaz de
+predecir correctamente este tipo de instancias.
+
+\subsection{Conclusiones de los resultados}
+\label{subsec:comparar_conclusiones}
+
+Los tres modelos predicen correctamente las instancias pertenecientes a las
+clases mayoritarias. Destacando el modelo base al mostrar mejor rendimiento para
+ambas clases. Sin embargo, cabe destacar que los modelos basados en
+\textit{text mining} han empleado únicamente 2 atributos del conjunto de datos.
+
+También se aprecia que, pese a que el modelo de la parte 1 tenga un mejor
+rendimiento para la clase 1, el análisis de sentimientos y la construcción de
+n-gramas hacen que el modelo de la parte 2 tenga un mejor rendimiento general.
+
+En cuanto a la clase 2, ninguno de los modelos ha logrado tener un rendimiento
+suficiente en el reconocimiento de este tipo de instancias. Siendo el que
+mejores resultados presenta el modelo base. Destaca que el modelo de la parte 2
+es capaz de capturar más instancias que el modelo de la parte 1, por lo que se
+concluye que el análisis de sentimientos permite segregar mejor el conjunto de
+los datos.
+
+Con todo lo anterior, se concluye que en el conjunto de datos existe suficiente
+información en los atributos no textuales para la construcción de modelos
+robustos de clasificación. Sin embargo, las técnicas de \textit{text mining} y
+análisis de sentimientos han demostrado ser muy potentes y capaces de reconocer
+patrones y extraer información a partir de menos atributos; logrando acercarse
+al rendimiento del modelo base. Es importante mencionar que para la construcción
+de un modelo capaz de trabajar con las instancias de la clase 2 se proponen 3
+alternativas:
+
+\begin{itemize}
+    \item Mayor recopilación de datos de estas instnacias: recoger más datos de
+    reseñas con puntuaciones entre 3 y 6.
+    \item Utilización de técnicas de \textit{Undersampling} de las clases
+    mayoritarias: especialmente de la clase 1.
+    \item Otras divisiones de los datos: se podría trabajar con 2 clases en
+    lugar de 3, agrupando la clase 2 y la clase 3 en una única clase. Sin
+    embargo, seguiría existiendo un desbalanceo hacia la clase 1.
+    automático.
+\end{itemize}
 
 \section{Parte opcional: Topic Analysis}
 \label{chap:topic}
