@@ -44,34 +44,34 @@
 
 \section{Introducción}
 \label{chap:intro}
-En este documento se recoge el desarrollo de la segunda práctica de la asignatura \textit{Inteligencia Artificial en las Organizaciones}. El objetivo será la predicción de la valoración que un sujeto dará a su experiencia volando con una aerolínea a partir de distintos campos incluídos en una valoración. Dos de estos campos se tratan de datos textuales. Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}.
+En este documento se recoge el desarrollo de la segunda práctica de la asignatura \textit{Inteligencia Artificial en las Organizaciones}. El objetivo será la predicción de la valoración que un sujeto dará a su experiencia volando con una aerolínea a partir de distintos campos incluidos en una reseña. Dos de estos campos se tratan de datos textuales. Todo el estudio se llevará a cabo en la herramienta \href{https://altair.com/altair-ai-studio}{Altair AI Studio}.
 
 Se obtendrán 3 modelos siguiendo distintas aproximaciones para predecir la clase a la que pertenece una crítica de un cliente en una aerolínea. Las estrategias a seguir son las siguientes:
 
 \begin{itemize}
     \item Modelo básico: se construye un modelo eliminando todos los atributos textuales.
     \item Modelo de \textit{text mining I}: se construye un modelo con procesamiento de texto, pero sin emplear análisis de sentimientos.
-    \item Modelo de \textit{text mining II}: se construye un modelo con procesamiento de texto y análisis de sentimientos. Además en este modelo se hará uso de bigramas y trigramas.
+    \item Modelo de \textit{text mining II}: se construye un modelo con procesamiento de texto y análisis de sentimientos. Además, en este modelo se hará uso de bigramas y trigramas.
 \end{itemize}
 
 El uso de análisis textual puede resultar útil dado al tipo de problema que se
 pretende resolver, ya que entre los datos aparecen campos textuales no
 estructurados. Este tipo de datos no podrán ser utilizados por otro tipo de
 modelos de aprendizaje automático debido a que, por si mismos, no son capaces de
-reconocer patrones o información incluidos endatos textuales. Complementariamente,
-el uso de \textit{análisis de sentimientos} ayudará a la predicción ya que la variable
-objetivo depende fuertemente de la opinión del autor la valoración. Además, 
+reconocer patrones o información incluidos en datos textuales. De manera complementaria,
+el uso de \textit{análisis de sentimientos} ayudará a la predicción al depender la variable
+objetivo fuertemente de la opinión del autor de la valoración. Además, 
 al construir varios modelos se podrá comparar el aporte del \textit{text mining}
-y el \textit{análisis de sentimietos} frente al modelo básico sin campos textuales.
+y el \textit{análisis de sentimientos} frente al modelo básico sin campos textuales.
 
 El número de pasajeros de avión a lo largo de los últimos 10 años ha crecido
-enormemente, haciendo imposible usar técnicas tradicionales para el añálisis de
+enormemente, haciendo imposible usar técnicas tradicionales para el análisis de
 la gran cantidad de datos que se disponen. Si se toma como referencia el año
 2019, año previo a la pandemia del \textit{COVID-19}, hubo 4490 millones de
 pasajeros~\cite{owd-passengers}. Aunque únicamente un pequeño porcentaje de
 ellos dejara una valoración de su experiencia, la cantidad de datos para
 procesar sobrepasaría la capacidad de cualquier mecanismo tradicional de
-análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para optener rendimiento de la información en este ámbito.
+análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para obtener rendimiento de la información en este ámbito.
 
 Además, esta clase de modelos cuentan con multitud de aplicaciones en diversos campos: la detección temprana de problemas en los servicios, la creación de marketing dirigido, el desarrollo de algoritmos de respuestas automáticas y sistemas de recomendación o el análisis competitivo de compañías para destacar sus fortalezas y puntos flacos en el mercado. Especialmente en el contexto actual de recuperación postpandemia, el uso de algoritmos de minería de datos permite a las aerolíneas tomar decisiones más informadas y responder de forma más eficiente a las necesidades emergentes del mercado~\cite{espanna}.
 
@@ -95,7 +95,7 @@ El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada
     \item \textbf{Recommended:} valor \textit{booleano}. Representa si el cliente recomendaría el servicio. Destaca un desbalanceo del 69.95\% hacia el valor negativo.
     \item \textbf{Review:} atributo \textit{textual}. Contiene el comentario del usuario sobre el vuelo.
     \item \textbf{Review Date:} fecha en la que se realizó la reseña.
-    \item \textbf{Review Title:} campo \textit{texual}. Da título a la reseña.
+    \item \textbf{Review Title:} campo \textit{textual}. Da título a la reseña.
     \item \textbf{Route:} campo \textit{textual}. Representa la ruta del vuelo.
     \item \textbf{Seat Comfort:} puntuación numérica del 0 al 50 sobre la comodidad de los asientos. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
     \item \textbf{Seat Type:} atributo \textit{nominal}. Describe el tipo de asiento. Puede tomar los valores ``Ecoclass'',  ``Business Class'', ``Premium Economy'' y ``First Class''.
@@ -104,7 +104,7 @@ El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada
     \item \textbf{Verified:} atributo \textit{booleano}. Representa si la persona que realiza la reseña está verificada. Ambas clases están balanceadas, con un 55.77\% de inclinación hacia la clase mayoritaria.
     \item \textbf{Wifi \& Connectivity:} puntuación numérica del 0 al 50 sobre la conexión a internet durante el vuelo. Se trata de un atributo \textit{numérico}. Cabe destacar que los valores que toma son siempre múltiplos de 10.
 \end{itemize}
-En la siguientes tablas se recogen los datos relevantes para cada atributo:
+En las siguientes tablas se recogen los datos relevantes para cada atributo:
 \begin{table}[H]
     \center
     \begin{tabular}{@{}ccccc@{}}
@@ -189,8 +189,8 @@ En la siguientes tablas se recogen los datos relevantes para cada atributo:
 
 \subsection{Análisis de la variable objetivo}
 \label{subsec:variable-objetivo}
-Si se observa en más profundidad la variable objetivo, vemos que se trata de una
-puntuación de 1 al 9 que muestra el grado de satisfacción general del autor de
+Si se observa en más profundidad la variable objetivo, se puede ver que se trata de una
+puntuación del 1 al 9 que muestra el grado de satisfacción general del autor de
 la reseña. A continuación se muestra un gráfico de su distribución.
 
 \begin{figure}[H]
@@ -201,7 +201,7 @@ la reseña. A continuación se muestra un gráfico de su distribución.
 \end{figure}
 
 Se aprecia como se trata de un atributo con una distribución desigual, con
-concentraciones en los valores extermos. Particularmente, la calificación 1 es
+concentraciones en los valores extremos. Particularmente, la calificación 1 es
 la más común con 7159 registros. Esto parece indicar un alto grado de
 insatisfacción y un sesgo hacia las calificaciones negativas.
 También es destacable la ausencia de reseñas con calificaciones intermedias (3 y
@@ -218,9 +218,9 @@ En este capítulo se describen las diferentes transformaciones aplicadas a los d
 \label{sec:overalltransform}
 Para poder construir un clasificador se ha transformado el atributo \textit{OVERALL\_RATING} de numérico a nominal; codificándolo en 3 clases:
 \begin{itemize}
-    \item 1: agrupa los valores comprendidos entre 1 y 3, ambos incluídos.
-    \item 2: agrupa los valores comprendidos entre 4 y 6, ambos incluídos.
-    \item 3: agrupo los valores comprendidos entre 7 y 9, ambos incluídos.
+    \item 1: agrupa los valores comprendidos entre 1 y 3, ambos incluidos.
+    \item 2: agrupa los valores comprendidos entre 4 y 6, ambos incluidos.
+    \item 3: agrupo los valores comprendidos entre 7 y 9, ambos incluidos.
 \end{itemize}
 
 De esta forma también se trata de compensar la poca representación de algunos valores en el conjunto de datos. Cabe destacar que aun agrupando sigue habiendo una representación muy pobre de la clase \textit{2}.
@@ -253,7 +253,7 @@ Se han seguido 3 criterios para la eliminación de atributos:
 \begin{itemize}
     \item Relevancia: algunos datos no aportan información relevante de cara al entrenamiento del modelo. Por este criterio se han eliminado \textit{Date Flown} y \textit{Date Review}.
     \item Afectar negativamente al modelo: algunos atributos nominales cuentan con un número de clases muy numeroso. En el caso de \textit{Route}, tratar con todas ellas añade una gran complejidad que no se traduce a un mejor rendimiento. En consecuencia, se ha eliminado este atributo.
-    \item Numerosos valores faltantes: se han eliminado todos los atributos con un número de \textit{missing values} superior al 35\% de los valores totales. Esto es porque se considera que no contamos con información suficiente para imputar estos datos.
+    \item Numerosos valores faltantes: se han eliminado todos los atributos con un número de \textit{missing values} superior al 35\% de los valores totales. Esto es porque se considera que no contamos con información suficiente para imputar estos datos y que hacerlo envenenaría los datos reales. 
 \end{itemize}
 A continuación se muestra un gráfico con el número de valores faltantes por atributo:
 
@@ -268,7 +268,7 @@ La línea sobre el gráfico \ref{fig:missings} señala el 35\% de las instancias
 
 \subsection{Formateo de los datos}
 \label{sec:formateo}
-Se han sustituído los valores de las columnas booleanas (i.e. \textit{Verified} y \textit{Recommended}) por valores binarios. Los valores nominales se han codificado mediante \textit{One-hot encoding}, a excepción de \textit{Airline} (esto es por limitaciones de la implementación). Los atributos codificados a través de \textit{OHE} han sido \textit{Seat Type} y \textit{Type of Traveller}.
+Se han sustituido los valores de las columnas booleanas (i.e. \textit{Verified} y \textit{Recommended}) por valores binarios. Los valores nominales se han codificado mediante \textit{One-hot encoding}, a excepción de \textit{Airline} (esto es por limitaciones de la implementación). Los atributos codificados a través de \textit{OHE} han sido \textit{Seat Type} y \textit{Type of Traveller}.
 
 \subsection{Imputación de valores faltantes}
 \label{sec:imputacion}
@@ -276,12 +276,10 @@ En cuanto a la imputación de valores faltantes, se han reemplazado mediante el 
 
 \section{Modelo básico sin usar datos textuales}
 \label{chap:basicModel}
-Se ha entrenado un modelo básico utilizando \textit{deep learning} para utilizarlo como referencia y cuantificar los beneficios proveídos por el \textit{text mining}. En la fase de preprocesado de los datos de este modelo solo se realiza la limpieza de datos relacionada con reemplazar datos faltantes y seleccionar atributos, eliminando todos los atributos de texto.
-
 Se ha entrenado un modelo básico de \textit{deep learning} para utilizarlo como referencia y cuantificar los beneficios proveídos % paula en su momento de máxima inspiración lírica fdo. César
-por el \textit{text mining}. Además del preprocesado de los datos especificado anteriormente, se han eliminando los atrbutos textuales \textit{Review} y \textit{Review Title}.
+por el \textit{text mining}. Además del preprocesado de los datos especificado anteriormente, se han eliminando los atributos textuales \textit{Review} y \textit{Review Title}.
 
-Tanto en el proceso de entrenamiento como en la evaluación se observa una \textit{accuracy} aproximada del 91\%. Se puede observar en la matriz de confusión que los resultados tanto de \textit{precission} como de \textit{recall} son muy buenos para las clases 1 y 3, siendo los valores en ambos casos cercanos al 90\%. Sin embargo, en el caso de la clase 2, estos los valores no alcanzan el 50\% de \textit{precission}. Concluímos que esto se debe a la poca representación de los datos de esta clase (8\%).
+Tanto en el proceso de entrenamiento como en la evaluación se observa una \textit{accuracy} aproximada del 91\%. Se puede observar en la matriz de confusión que los resultados tanto de \textit{precission} como de \textit{recall} son muy buenos para las clases 1 y 3, siendo los valores en ambos casos cercanos al 90\%. Sin embargo, en el caso de la clase 2, estos los valores no alcanzan el 50\% de \textit{precission}. Se concluye que esto se debe a la poca representación de los datos de esta clase (8\%).
 
 \section{Proceso de entrenamiento}
 \label{chap:train}
@@ -313,14 +311,14 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     relevante en el documento. El segundo caso, sin embargo, es mucho más simple:
     únicamente comprueba si el término aparece en el documento o no.
 
-    Con respecto al \textit{pruning}, hemos seleccionado una cota inferior del $3$ y $10$\%
+    Con respecto al \textit{pruning}, se ha seleccionado una cota inferior del $3$ y $10$\%
     para eliminar los términos muy poco frecuentes según la función de evaluación
     de término. Se considera que estos términos no tendrán relevancia en los
-    resultados, por lo que eliminarlos permitirá contruir modelos más simples y
+    resultados, por lo que eliminarlos permitirá construir modelos más simples y
     rápidos de entrenar sin cambiar los resultados. Inicialmente también se
     seleccionó una cota inferior del $0\%$, pero esto causó que hubiese demasiados
     términos en el resultado, incrementando demasiado el tiempo de ejecución del
-    entrenamiento. Debido a esto, decidimos descartar este valor.
+    entrenamiento. Debido a esto, se decidió descartar este valor.
 
     Al concluir el entrenamiento se han obtenido los siguientes resultados:
 
@@ -357,8 +355,8 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     \end{figure}
 
     Al observar la comparación por pares proporcionada por el \textit{t-test},
-    destacan el modelo 1 y 5 por obtener los mejores resultados y ser significativamente
-    diferente de todos los demás. Ambos de estos modelos usan un \textit{prune below}
+    destacan los modelos 1 y 5 por obtener los mejores resultados y ser significativamente
+    diferentes de todos los demás. Ambos de estos modelos usan un \textit{prune below}
     del $3\%$ y ``Deep Learning''. El modelo 9 cuenta con el siguiente mejor error,
     aunque este es significativamente distinto del error de los modelos 1 y 5. Este
     modelo cuenta con un \textit{prune below} del $10\%$, lo cual puede eliminar
@@ -387,7 +385,7 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     \end{figure}
 
     Con toda esta información se concluye que el mejor modelo y con el que se hará
-    la predicción es el modelo 4, debido a que es el modelo con mejor
+    la predicción es el modelo 5, debido a que es el modelo con mejor
     \textit{accuracy}, manteniendo una gran simplicidad al usar \textit{Binary Term
     Occurrence}. En la siguiente figura se muestra el \textit{recall} y
     \textit{precision} de las diferentes clases para este modelo.
@@ -411,7 +409,7 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     recall   & 0.8260 & 0.1359 & 0.9405 &          \\
     \bottomrule
 \end{tabular}
-\caption{Matriz de confusión del modelo 4 en el conjunto de \textit{train} -
+\caption{Matriz de confusión del modelo 5 en el conjunto de \textit{train} -
 parte 1.}
 \end{table}
 
@@ -429,17 +427,17 @@ parte 1.}
 
     La longitud de los n-gramas permite reconocer términos compuestos por múltiples
     palabras, pero si es demasiado grande puede generar muchos términos sin significado
-    semántico. Hemos seleccionado longitudes de $2$ y $3$ ya que permite reconocer
+    semántico. Se han seleccionado longitudes de $2$ y $3$ ya que permiten reconocer
     la mayoría de términos compuestos sin permitir generar términos compuestos
     por demasiadas palabras.
 
-    Con respecto al \textit{pruning}, hemos seleccionado una cota inferior del $3$ y $10$\%
+    Con respecto al \textit{pruning}, se ha seleccionado una cota inferior del $3$ y $10$\%
     para eliminar los términos sin significado semántico que pueden generar los
     n-gramas. Estos términos serán muy poco frecuentes en los datos, por lo que
     estarán por debajo de esta cota inferior. Inicialmente también se seleccionó
     una cota inferior del $0\%$, pero esto causó que hubiese demasiados términos
     en el resultado, incrementando en gran el tiempo de ejecución del entrenamiento, sin que esto se tradujera a un mejor rendimiento.
-    Debido a esto, decidimos descartar este valor.
+    Debido a esto se descartó este valor.
 
     Al concluir el entrenamiento se han obtenido los siguientes resultados:
 
@@ -573,8 +571,8 @@ base, especialmente hablando de la clase 2. Estos resultados parecen indicar que
 los campos textuales no contienen suficiente información para distinguir las
 reseñas intermedias (clase 2) de las de otro tipo.
 
-Al observar a la matriz de confusión, de cada modelo
-se aprecia como los valores de \textit{precision} y \textit{recall} son
+Al observar a la matriz de confusión de cada modelo
+se aprecia cómo los valores de \textit{precision} y \textit{recall} son
 similares para las clases 1 y 3 en todos los modelos. Esto parece indicar que se
 tratan de modelos robutos que son capaces de capturar y clasificar correctamente
 todas las instancias de estas clases. Para la clase 2, los valores de \textit{precision} y \textit{recall} son
@@ -644,9 +642,9 @@ atributos no textuales, es la siguiente:
 \end{table}
 
 Se aprecia que las medidas para \textit{precision} y \textit{recall} son altas y
-similares para las clases mayoritarias. Lo que significa que se trata de un modelo robusto capaz de capturar
+similares para las clases mayoritarias. Esto significa que se trata de un modelo robusto capaz de capturar
 y predecir correctamente las instancias pertenencientes a las clases 1 y 3. Para
-la clase 2, contamos con las medidas más altas entre los 3 modelos. No obstante,
+la clase 2 contamos con las medidas más altas entre los 3 modelos. No obstante,
 siguen siendo medidas muy bajas que muestran un rendimiento pobre para esta
 clase de instancias. Cabe destacar que el modelo clasifica una cantidad mayor de
 instancias de la clase 3 como clase 2. Esto indica que existe una separación más
@@ -735,7 +733,7 @@ predecir correctamente este tipo de instancias.
 \label{subsec:comparar_conclusiones}
 
 Los tres modelos predicen correctamente las instancias pertenecientes a las
-clases mayoritarias. Destacando el modelo base al mostrar mejor rendimiento para
+clases mayoritarias, destacando el modelo base al mostrar mejor rendimiento para
 ambas clases. Sin embargo, cabe destacar que los modelos basados en
 \textit{text mining} han empleado únicamente 2 atributos del conjunto de datos.
 
@@ -744,7 +742,7 @@ rendimiento para la clase 1, el análisis de sentimientos y la construcción de
 n-gramas hacen que el modelo de la parte 2 tenga un mejor rendimiento general.
 
 En cuanto a la clase 2, ninguno de los modelos ha logrado tener un rendimiento
-suficiente en el reconocimiento de este tipo de instancias. Siendo el que
+suficiente en el reconocimiento de este tipo de instancias, siendo el que
 mejores resultados presenta el modelo base. Destaca que el modelo de la parte 2
 es capaz de capturar más instancias que el modelo de la parte 1, por lo que se
 concluye que el análisis de sentimientos permite segregar mejor el conjunto de
@@ -768,7 +766,7 @@ proponen 3 alternativas:
     mayoritarias: especialmente de la clase 1.
     \item Otras divisiones de los datos: se podría trabajar con 2 clases en
     lugar de 3, agrupando la clase 2 y la clase 3 en una única clase. Sin
-    embargo, seguiría existiendo un desbalanceo hacia la clase 1.
+    embargo, seguiría existiendo un desbalanceo hacia la clase 1
     automático.
 \end{itemize}
 
@@ -776,7 +774,7 @@ proponen 3 alternativas:
 \label{chap:topic}
 
 Se ha realizado un último análisis de los datos como parte de la sección
-opcional de la investigación basado en el \textit{topic} modelling. El objetivo de este
+opcional de la investigación basado en el \textit{topic modelling}. El objetivo de este
 es identificar patrones en los datos que puedan agrupar las reseñas en
 distintos grupos. Para esto se va a utilizar el operador de RapidMiner “Extract
 Topics from Data”, que usa el algoritmo de Latent Dirichlet Allocation para
@@ -1018,19 +1016,19 @@ reseñas positivas y negativas.
 \section{Conclusiones de la práctica}
 \label{chap:conclusion}
 
-Esta práctica nos ha permitido explorar nuevas técnicas para la construcción de
-modelos. En concreto, hemos podido comprobar como el \textit{text mining} y el
+Esta práctica ha permitido la exploración de nuevas técnicas para la construcción de
+modelos. En concreto, se ha podido comprobar como el \textit{text mining} y el
 \textit{análisis de sentimientos} son herramientas muy últiles capaces de
-inferir información a partir de pocos campos textuales. Nos resulta
+inferir información a partir de pocos campos textuales. Resulta
 verdaderamente interesante comprobar como el campo de la inteligencia
 artificial ha evolucionado hasta extremos donde es capaz de reconocer la
 actitud de un agente hacia un dominio a través de una información tan compleja
 como es el lenguaje natural.
 
-También nos gustaría destacar como esta clase de herramientas deben usarse con
+También se considera importante destacar cómo esta clase de herramientas deben usarse con
 conocimiento ya que muchas presentan una gran complejidad que afecta
 fuertemente al tiempo de entrenamiento y el rendimiento de los modelos. Esto
-nos hace ver la importancia de un correcto entendimiento de las técnicas y
+deja ver la importancia de un correcto entendimiento de las técnicas y
 modelos empleados; destacando nuestro valor como ingenieros en el campo de la
 Inteligencia Artificial.
 
