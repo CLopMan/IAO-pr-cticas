@@ -169,7 +169,7 @@
 \RequirePackage{titletoc}
 \RequirePackage[titles]{tocloft}
 
-\setcounter{tocdepth}{2}  % index until subsection
+\setcounter{tocdepth}{3}  % index until subsection
 
 % use simple pagestyle
 \tocloftpagestyle{simple}  % this doesn't work porque patata
@@ -236,6 +236,13 @@
 
 % subsections
 \titlecontents{subsection}[10pt]
+	{}
+	{\hypersetup{hidelinks}\contentsmargin{0pt}\thecontentslabel.\enspace}
+	{\contentsmargin{0pt}}
+	{\titlerule*[.7pc]{.}\contentspage}
+
+% subsubsections
+\titlecontents{subsubsection}[20pt]
 	{}
 	{\hypersetup{hidelinks}\contentsmargin{0pt}\thecontentslabel.\enspace}
 	{\contentsmargin{0pt}}
