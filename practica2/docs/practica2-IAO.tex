@@ -54,7 +54,7 @@ Se obtendrán 3 modelos siguiendo distintas aproximaciones para predecir la clas
     \item Modelo de \textit{text mining II}: se construye un modelo con procesamiento de texto y análisis de sentimientos. Además, en este modelo se hará uso de bigramas y trigramas.
 \end{itemize}
 
-El uso de análisis textual puede resultar útil dado al tipo de problema que se
+El uso de análisis textual puede resultar útil dado el tipo de problema que se
 pretende resolver, ya que entre los datos aparecen campos textuales no
 estructurados. Este tipo de datos no podrán ser utilizados por otro tipo de
 modelos de aprendizaje automático debido a que, por si mismos, no son capaces de
@@ -73,13 +73,23 @@ ellos dejara una valoración de su experiencia, la cantidad de datos para
 procesar sobrepasaría la capacidad de cualquier mecanismo tradicional de
 análisis de datos. Es por esto que el uso de algoritmos de \textit{minería de datos} es crucial para obtener rendimiento de la información en este ámbito.
 
-Además, esta clase de modelos cuentan con multitud de aplicaciones en diversos campos: la detección temprana de problemas en los servicios, la creación de marketing dirigido, el desarrollo de algoritmos de respuestas automáticas y sistemas de recomendación o el análisis competitivo de compañías para destacar sus fortalezas y puntos flacos en el mercado. Especialmente en el contexto actual de recuperación postpandemia, el uso de algoritmos de minería de datos permite a las aerolíneas tomar decisiones más informadas y responder de forma más eficiente a las necesidades emergentes del mercado~\cite{espanna}.
+Además, esta clase de modelos cuentan con multitud de aplicaciones en diversos
+campos: la detección temprana de problemas en los servicios, la creación de
+marketing dirigido, el desarrollo de algoritmos de respuestas automáticas y
+sistemas de recomendación o el análisis competitivo de compañías para destacar
+sus fortalezas y puntos flacos en el mercado. Especialmente en el contexto
+actual de recuperación postpandemia, el uso de algoritmos de minería de datos
+permite a las aerolíneas tomar decisiones más informadas y responder de forma
+más eficiente a las necesidades emergentes del mercado~\cite{espanna}.
 
 \section{Análisis exploratorio de los datos (EDA)}
 \label{chap:eda}
 Se ha realizado un estudio de los datos con el objetivo de su entendimiento para determinar el uso y significado de los mismos. Este análisis se ha realizado a través de las herramientas de Rapid Miner Statistics~\cite{Statistics-RM} y Correlation-Matrix~\cite{Correlation-Matrix-RM}. Además, se han explorado únicamente los datos de entrenamiento para evitar problemas de \textit{data\_leak}.
 
-El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada reseña se incluyen 19 atributos de distinta naturaleza: campos textuales, fechas, datos categóricos y datos numéricos. A continuación haremos un breve repaso por cada uno de los atributos, explorando su tipo, su significado y el número de valores faltantes.
+El \textit{dataset} cuenta con 13643 instancias de reseñas de vuelos. Para cada
+reseña se incluyen 19 atributos de distinta naturaleza: campos textuales,
+fechas, datos categóricos y datos numéricos. A continuación haremos un breve
+repaso por cada uno de los atributos, explorando su tipo y su significado.
 
 \begin{itemize}
     \item \textbf{Airline Name:} representa el nombre de la aerolínea asociado al vuelo reseñado. Se trata de un atributo \textit{nominal}.
@@ -359,15 +369,14 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     diferentes de todos los demás. Ambos de estos modelos usan un \textit{prune below}
     del $3\%$ y ``Deep Learning''. El modelo 9 cuenta con el siguiente mejor error,
     aunque este es significativamente distinto del error de los modelos 1 y 5. Este
-    modelo cuenta con un \textit{prune below} del $10\%$, lo cual puede eliminar
+    modelo cuenta con un \textit{prune below} del $10\%$, lo que puede eliminar
     demasiados términos, llegando a quitar términos potencialmente relevantes y
-    explicando el peor rendimiento.
-
-    Los modelos 1 y 5 se diferencian en la función de evaluación de término, pero
-    esto no crea diferencias significativas en el error. En los tres casos la mejor
-    familia de modelos es ``Deep Learning'', lo que indica que, en general, esta
+    explicando el peor rendimiento. En los tres modelos se usa la
+    familia de modelos ``Deep Learning'', lo que indica que, en general, esta
     familia de modelos tiene una mejor capacidad para adaptarse a los datos y
     generalizar los patrones encontrados.
+    Los modelos 1 y 5 se diferencian en la función de evaluación de término, pero
+    esto no crea diferencias significativas en el error.
 
     Cabe destacar también que los modelos basados en ``Decision Trees'' obtienen
     una tolerancia en el error significativamente mayor que los demás modelos.
@@ -436,8 +445,8 @@ parte 1.}
     n-gramas. Estos términos serán muy poco frecuentes en los datos, por lo que
     estarán por debajo de esta cota inferior. Inicialmente también se seleccionó
     una cota inferior del $0\%$, pero esto causó que hubiese demasiados términos
-    en el resultado, incrementando en gran el tiempo de ejecución del entrenamiento, sin que esto se tradujera a un mejor rendimiento.
-    Debido a esto se descartó este valor.
+    en el resultado, incrementando en gran medida el tiempo de ejecución del entrenamiento, sin que esto se tradujera a un mejor rendimiento.
+    Debido a esto, decidimos descartar este valor.
 
     Al concluir el entrenamiento se han obtenido los siguientes resultados:
 
@@ -474,14 +483,15 @@ parte 1.}
     \end{figure}
 
     Al observar la comparación por pares proporcionada por el \textit{t-test},
-    destacan de nuevo el modelo 1 y 5 (\textit{Deep Learning}
+    destacan de nuevo los modelos 1 y 5 (\textit{Deep Learning}
     con \textit{prune below $3\%$}). De la misma forma que en la parte anterior,
     el siguiente modelo con el mejor error es el 9 (\textit{prune below $10\%$}),
     verificando la hipótesis realizada anteriormente de que este valor de
-    \textit{prune below} es demasiado alto y elimina términos relevantes. Además,
-    ambos de los modelos con el mejor error usan la familia de modelos de
-    ``Deep Learning'', confirmando también la hipótesis de que esta familia tiene
-    una mejor capacidad de aprendizaje y generalización. Por último, también se
+    \textit{prune below} es demasiado alto y elimina términos relevantes. Al
+    igual que en la parte anterior, los modelos con mejor rendimiento
+    usan la familia de modelos de
+    ``Deep Learning'', confirmando la hipótesis de que esta familia tiene
+    una mejor capacidad de aprendizaje y generalización. Por último, se
     puede ver que los modelos basados en ``Decision Trees'' siguen teniendo una
     tolerancia en el error significativamente más alta que los demás modelos,
     confirmando la hipótesis de que estos modelos dependen mucho de los datos
@@ -540,7 +550,7 @@ En este capítulo se comparan los resultados obtenidos en los diferentes proceso
 \label{subsec:comparar_train}
 Durante el proceso de entrenamiento destaca positivamente el modelo base,
 contando con un \textit{Accuracy} superior al $91\%$. Los modelos basados en
-\textit{minería de texto} cuentan con un rendimiento muy similar, entorno al
+\textit{minería de texto} cuentan con un rendimiento similar, entorno al
 $84\%$. Es relevante mencionar que la clase mejor predicha en todos los modelos
 es la clase 1, hecho que se explica por la sobrerrepresentación de esta clase en
 el conjunto de los datos. En contraste, la clase con la puntuación más baja es
@@ -649,7 +659,7 @@ siguen siendo medidas muy bajas que muestran un rendimiento pobre para esta
 clase de instancias. Cabe destacar que el modelo clasifica una cantidad mayor de
 instancias de la clase 3 como clase 2. Esto indica que existe una separación más
 clara entre las instancias de la clase 1 y la clase 2 que entre la clase 3 y la
-clase 2. Esto se puede corroborar comprobando la distribución de los valores de la variable
+clase 2. Esto se puede corroborar al observar la distribución de los valores de la variable
 objetivo \textit{OVERALL\_RATING} previo a la transformación del atributo de
 numérico a nominal (figura~\ref{distribucion-overall}).
 
@@ -810,7 +820,7 @@ que consigue una buena precisión en los resultados sin sacrificar el
 rendimiento. Se han explorado rangos más bajos y más altos de iteraciones, sin
 éxito. En el primer caso la reducción de precisión era demasiado
 significativa y en el segundo el aumento del tiempo no llevaba a una mejora
-sustancial.
+sustancial en la efectividad del modelo.
 
 Con estos parámetros se han obtenido los resultados expuestos a continuación.
 
@@ -842,10 +852,10 @@ atributo \textit{Recommended}, obteniendo el siguiente resultado:
 \end{figure}
 
 Se puede observar que ambos grupos cuentan con una mayoría de instancias de una
-de las categorías de “Recommended”, lo cual puede indicar que las agrupaciones
+de las categorías de \textit{Recommended}, lo cual puede indicar que las agrupaciones
 corresponden en cierta medida con la opinión general de los usuarios. En el
 caso del grupo 0 la diferencia parece mucho menor, pero esto probablemente esté
-causado por el desbalance que existe en las clases de “Recommended”, siendo la
+causado por el desbalance que existe en las clases de \textit{Recommended}, siendo la
 clase 0 casi tres veces más común que la 1. Así, se puede concluir que la
 clasificación en grupos del LDA es correcta en relación con este atributo.
 
