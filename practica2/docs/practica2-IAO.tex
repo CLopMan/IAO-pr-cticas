@@ -126,7 +126,7 @@ En las siguientes tablas se recogen los datos relevantes para cada atributo:
         Max      & -                  & -        & 50                  & 07/01/2023 \\
         Media    & -                  & -        & 26.259              & -          \\
         Moda     & Tiger Air Australia& A320     & 10                  & 05/01/2023 \\
-        missing (\%) & 0              & 70.57\%  & 16.81\%             & 11.82\%    \\
+        Missing (\%) & 0              & 70.57\%  & 16.81\%             & 11.82\%    \\
         \bottomrule
     \end{tabular}
     \caption{Datos de los atributos - 1.}
@@ -143,7 +143,7 @@ En las siguientes tablas se recogen los datos relevantes para cada atributo:
         Max          & 50                & 50             & 50                     \\
         Media        & 23.298            & 20.646         & 19.792                 \\
         Moda         & 10                & 10             & 10                     \\
-        missing (\%) & 38.15\%           & 17.32\%        & 53.10\%                \\
+        Missing (\%) & 38.15\%           & 17.32\%        & 53.10\%                \\
         \bottomrule
     \end{tabular}
     \caption{Datos de los atributos - 2.}
@@ -157,9 +157,9 @@ En las siguientes tablas se recogen los datos relevantes para cada atributo:
         Tipo         & Numérico        & Booleano    & Textual & Fecha       & Textual      \\
         Min          & 1               & -           & -       & 22/11/2003  & -            \\
         Max          & 9               & -           & -       & 27/07/2023  & -            \\
-        Media        & 3.368           & -           & -       &             & -            \\
+        Media        & 3.368           & -           & -       & -           & -            \\
         Moda         & 1               & NO          & -       & 16/07/2023  & -            \\
-        missing (\%) & 0\%             & 0\%         & 0\%     & 0\%         & 0\%          \\
+        Missing (\%) & 0\%             & 0\%         & 0\%     & 0\%         & 0\%          \\
         \bottomrule
     \end{tabular}
     \caption{Datos de los atributos - 3.}
@@ -173,9 +173,9 @@ En las siguientes tablas se recogen los datos relevantes para cada atributo:
         Tipo         & Nominal             & Numérico     & Nominal       & Nominal           \\
         Min          & -                   & 0            & -             & -                 \\
         Max          & -                   & 50           & -             & -                 \\
-        Media        & -                   & 23.831       & -             &                   \\
+        Media        & -                   & 23.831       & -             & -                 \\
         Moda         & Melbourne to Sydney & 10           & Economy Class & Solo Leisure      \\
-        missing (\%) & 12.22\%             & 16.28\%      & 1.71\%        & 11.79\%           \\
+        Missing (\%) & 12.22\%             & 16.28\%      & 1.71\%        & 11.79\%           \\
         \bottomrule
     \end{tabular}
     \caption{Datos de los atributos - 4.}
@@ -191,7 +191,7 @@ En las siguientes tablas se recogen los datos relevantes para cada atributo:
         Max          & 50              & -         & 50                   \\
         Media        & 22.050          & -         & 15.228               \\
         Moda         & 10              & Verdadero & 10                   \\
-        missing (\%) & 1.62\%          & 0\%       & 72.69\%              \\
+        Missing (\%) & 1.62\%          & 0\%       & 72.69\%              \\
         \bottomrule
     \end{tabular}
     \caption{Datos de los atributos - 5.}
@@ -224,13 +224,13 @@ fuerte desbalanceo que existe entre clases.
 \label{chap:preprocess}
 En este capítulo se describen las diferentes transformaciones aplicadas a los datos para su posterior uso en el entrenamiento de modelos.
 
-\subsection{Transformación de \textit{OVERALL\_RATING} a nominal}
+\subsection{Transformación de \textit{OVERALL\_RATING} a ordinal}
 \label{sec:overalltransform}
-Para poder construir un clasificador se ha transformado el atributo \textit{OVERALL\_RATING} de numérico a nominal; codificándolo en 3 clases:
+Para poder construir un clasificador se ha transformado el atributo \textit{OVERALL\_RATING} de numérico a ordinal; codificándolo en 3 clases:
 \begin{itemize}
     \item 1: agrupa los valores comprendidos entre 1 y 3, ambos incluidos.
     \item 2: agrupa los valores comprendidos entre 4 y 6, ambos incluidos.
-    \item 3: agrupo los valores comprendidos entre 7 y 9, ambos incluidos.
+    \item 3: agrupa los valores comprendidos entre 7 y 9, ambos incluidos.
 \end{itemize}
 
 De esta forma también se trata de compensar la poca representación de algunos valores en el conjunto de datos. Cabe destacar que aun agrupando sigue habiendo una representación muy pobre de la clase \textit{2}.
@@ -242,7 +242,7 @@ De esta forma también se trata de compensar la poca representación de algunos 
             Clase                & 1              & 2      & 3\\
             \midrule
             Número de instancias & 8921           & 1148   & 3574 \\
-            Porcentaje           & 65.39\%        & 8.41\% & 26.20\\
+            Porcentaje           & 65.39\%        & 8.41\% & 26.20\% \\
             \bottomrule
         \end{tabular}
         \caption{Porcentaje de representación de cada clase.}
@@ -278,18 +278,34 @@ La línea sobre el gráfico \ref{fig:missings} señala el 35\% de las instancias
 
 \subsection{Formateo de los datos}
 \label{sec:formateo}
-Se han sustituido los valores de las columnas booleanas (i.e. \textit{Verified} y \textit{Recommended}) por valores binarios. Los valores nominales se han codificado mediante \textit{One-hot encoding}, a excepción de \textit{Airline} (esto es por limitaciones de la implementación). Los atributos codificados a través de \textit{OHE} han sido \textit{Seat Type} y \textit{Type of Traveller}.
+        Se han sustituido los valores de las columnas booleanas (i.e. \textit{Verified} y \textit{Recommended}) por valores binarios. Los valores nominales se han codificado mediante \textit{One-hot encoding} (\textit{OHE}), a excepción de \textit{Airline} (esto es por limitaciones de la implementación). Los atributos codificados a través de \textit{OHE} han sido \textit{Seat Type} y \textit{Type of Traveller}.
 
 \subsection{Imputación de valores faltantes}
 \label{sec:imputacion}
-En cuanto a la imputación de valores faltantes, se han reemplazado mediante el operador \textit{Replace Missing Values} de \textit{Altair AI Studio} por la moda de cada atributo. Los atributos afectados han sido \textit{Type Of Traveller, Seat Type, Food \& Bervarges, Groud Service, Seat Confort} y \textit{Value For Money}.
+        En cuanto a la imputación de valores faltantes, se han reemplazado mediante el operador \textit{Replace Missing Values} de \textit{Altair AI Studio}~\cite{RMV-RM} por la moda de cada atributo. Los atributos afectados han sido \textit{Type Of Traveller, Seat Type, Food \& Bervarges, Groud Service, Seat Confort} y \textit{Value For Money}.
 
 \section{Modelo básico sin usar datos textuales}
 \label{chap:basicModel}
 Se ha entrenado un modelo básico de \textit{deep learning} para utilizarlo como referencia y cuantificar los beneficios proveídos % paula en su momento de máxima inspiración lírica fdo. César
 por el \textit{text mining}. Además del preprocesado de los datos especificado anteriormente, se han eliminando los atributos textuales \textit{Review} y \textit{Review Title}.
 
-Tanto en el proceso de entrenamiento como en la evaluación se observa una \textit{accuracy} aproximada del 91\%. Se puede observar en la matriz de confusión que los resultados tanto de \textit{precission} como de \textit{recall} son muy buenos para las clases 1 y 3, siendo los valores en ambos casos cercanos al 90\%. Sin embargo, en el caso de la clase 2, estos los valores no alcanzan el 50\% de \textit{precission}. Se concluye que esto se debe a la poca representación de los datos de esta clase (8\%).
+Tanto en el proceso de entrenamiento como en la evaluación se observa una \textit{accuracy} aproximada del 92\%. Se puede observar en la matriz de confusión que los resultados tanto de \textit{precission} como de \textit{recall} son muy buenos para las clases 1 y 3, siendo los valores en ambos casos cercanos al 90\%. Sin embargo, en el caso de la clase 2, estos los valores no alcanzan el 55\% de \textit{precission}. Se concluye que esto se debe a la poca representación de los datos de esta clase (8\%).
+
+\begin{table}[H]
+\center
+\begin{tabular}{@{}lccc|c@{}}
+    \toprule
+             & True 3 & True 2 & True 1 & precision\\
+    \hline
+    pred. 3  & 3355   & 387    & 25     & 0.8906   \\
+    pred. 2  & 192    & 482    & 206    & 0.5477   \\
+    predl 1  & 27     & 279    & 8690   & 0.9660   \\
+    \hline
+    recall   & 0.9387 & 0.4199 & 0.9741 &          \\
+    \bottomrule
+\end{tabular}
+\caption{Matriz de confusión en el conjunto de \textit{train} - Modelo base.}
+\end{table}
 
 \section{Proceso de entrenamiento}
 \label{chap:train}
@@ -317,7 +333,7 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     que un término es relevante en un documento. Se han seleccionado ``TF-IDF'' y
     ``Binary Term Occurrence'' por representar 2 enfoques muy distintos. En el
     primer caso se necesita que el término sea muy frecuente en el documento pero
-    muy poco frecuente en otros documentos, lo que puede significar que sea especialmente
+    muy poco frecuente en otros documentos, lo que puede significar que es especialmente
     relevante en el documento. El segundo caso, sin embargo, es mucho más simple:
     únicamente comprueba si el término aparece en el documento o no.
 
@@ -364,7 +380,7 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
         \caption{\textit{Accuracy} de los diferentes modelos - Parte 1.}
     \end{figure}
 
-    Al observar la comparación por pares proporcionada por el \textit{t-test},
+    Al observar la comparación por pares proporcionada por el \textit{t-test} (figura~\ref{t_test1}),
     destacan los modelos 1 y 5 por obtener los mejores resultados y ser significativamente
     diferentes de todos los demás. Ambos de estos modelos usan un \textit{prune below}
     del $3\%$ y ``Deep Learning''. El modelo 9 cuenta con el siguiente mejor error,
@@ -384,19 +400,18 @@ Cabe destacar que para la construcción de estos modelos se han empleado exclusi
     entrenamiento usados, lo que puede dificultar la estimación de su rendimiento
     para nuevos datos.
 
-    A continuación se muestra la matriz resultante de la ejecución del test:
-
     \begin{figure}[H]
         \center
         \includegraphics[width=\linewidth]{t_test1.jpeg}\\
         \caption{Resultado del \textit{t-test} de los modelos en el conjunto de
         \textit{train} - Parte 1.}
+        \label{t_test1}
     \end{figure}
 
     Con toda esta información se concluye que el mejor modelo y con el que se hará
     la predicción es el modelo 5, debido a que es el modelo con mejor
     \textit{accuracy}, manteniendo una gran simplicidad al usar \textit{Binary Term
-    Occurrence}. En la siguiente figura se muestra el \textit{recall} y
+    Occurrence} como función de evaluación de término. En la siguiente figura se muestra el \textit{recall} y
     \textit{precision} de las diferentes clases para este modelo.
 
 %    \begin{figure}[H]
@@ -482,7 +497,7 @@ parte 1.}
         \caption{\textit{Accuracy} de los diferentes modelos - Parte 2.}
     \end{figure}
 
-    Al observar la comparación por pares proporcionada por el \textit{t-test},
+    Al observar la comparación por pares proporcionada por el \textit{t-test} (figura~\ref{t_test2}),
     destacan de nuevo los modelos 1 y 5 (\textit{Deep Learning}
     con \textit{prune below $3\%$}). De la misma forma que en la parte anterior,
     el siguiente modelo con el mejor error es el 9 (\textit{prune below $10\%$}),
@@ -502,13 +517,12 @@ parte 1.}
     estos modelos, se puede concluir que no hay n-gramas de longitud 3
     relevantes en los datos.
 
-    A continuación se muestra la matriz resultante de la ejecución del test:
-
     \begin{figure}[H]
         \center
         \includegraphics[width=\linewidth]{t_test2.jpg}\\
         \caption{Resultado del \textit{t-test} de los modelos en el conjunto de
         \textit{train} - Parte 2.}
+        \label{t_test2}
     \end{figure}
 
     Con toda esta información se concluye que el mejor modelo y con el que se
@@ -560,11 +574,11 @@ la clase 2. A continuación se muestra una tabla y un gráfico que recogen el
 \center
 \begin{tabular}{@{}lccc@{}}
     \toprule
-    modelo      & acc. clase1&	acc. clase2	& acc. clase 3 \\
+    Modelo      & Acc. clase1&	Acc. clase2	& Acc. clase 3 \\
     \midrule     
-    modelo base & 0.9741 & 0.4199	& 0.9387 \\
-    modelo p1   & 0.9405 & 0.1359	& 0.826 \\
-    modelo p2   & 0.9419 & 0.162	& 0.824 \\
+    Modelo base & 0.9741 & 0.4199	& 0.9387 \\
+    Modelo p1   & 0.9405 & 0.1359	& 0.826 \\
+    Modelo p2   & 0.9419 & 0.162	& 0.824 \\
     \bottomrule
 \end{tabular}
     \caption{Accuracy por modelo y clase en el conjunto de entrenamiento.}
@@ -603,11 +617,11 @@ obtenidos con cada modelo han sido los siguientes:
 \center
 \begin{tabular}{@{}lccc@{}}
     \toprule
-    modelo      & acc. clase1&	acc. clase2	& acc. clase 3 \\
+    Modelo      & Acc. clase1&	Acc. clase2	& Acc. clase 3 \\
     \midrule     
-    modelo base & 0.9837     & 0.4184	& 0.8896 \\
-    modelo p1   & 0.9851     & 0.0	    & 0.7038 \\
-    modelo p2   & 0.9435     & 0.2163	& 0.7934 \\
+    Modelo base & 0.9837     & 0.4184	& 0.8896 \\
+    Modelo p1   & 0.9851     & 0.0	    & 0.7038 \\
+    Modelo p2   & 0.9435     & 0.2163	& 0.7934 \\
     \bottomrule
 \end{tabular}
     \caption{Accuracy por modelo y clase en el conjunto de test.}
@@ -615,16 +629,16 @@ obtenidos con cada modelo han sido los siguientes:
 \begin{figure}[H]
     \center
     \includegraphics[width=0.85\linewidth]{accModClassTest.png}\\
-    \caption{Accyracy por modelo y clase en el conjunto de test.}
+    \caption{Accuracy por modelo y clase en el conjunto de test.}
 \end{figure}
 
 Se aprecia un comportamiento similar de los modelos al compararlos con los
-resultaods obtenidos en el entrenamiento. Esto significa que ninguno de los
+resultados obtenidos en el entrenamiento. Esto significa que ninguno de los
 modelos ha sufrido de \textit{overfitting}. Destaca que el modelo de la parte 1
 no ha sido capaz de predecir correctamente ninguna de las instancias de la clase
 2. También es notable cómo el modelo base cuenta con un rendimiento superior al
 resto de modelos. Los modelos de la parte 1 y parte 2 se comportan de forma
-similar, destacando el segundo por mostrar un mejor rendimiento en para las
+similar, destacando el segundo por mostrar un mejor rendimiento en las
 clases minoritarias.
 
 A continuación, con el fin de hacer un análisis más profundo, se desglosarán las
@@ -661,7 +675,7 @@ instancias de la clase 3 como clase 2. Esto indica que existe una separación m�
 clara entre las instancias de la clase 1 y la clase 2 que entre la clase 3 y la
 clase 2. Esto se puede corroborar al observar la distribución de los valores de la variable
 objetivo \textit{OVERALL\_RATING} previo a la transformación del atributo de
-numérico a nominal (figura~\ref{distribucion-overall}).
+numérico a ordinal (figura~\ref{distribucion-overall}).
 
 \subsubsection{Parte 1: modelo con \textit{text mining}}
 \label{eva-modeloparte1}
@@ -676,7 +690,7 @@ exclusivamente textuales y sin uso de análisis de sentimientos, es la siguiente
     \hline
     pred. 3  & 644 & 105       & 33     & 0.8235   \\
     pred. 2  & 3   & 0         & 0      & 0.0      \\
-    predl 1  & 268 & 177       & 2181   & 0.8305   \\
+    pred. 1  & 268 & 177       & 2181   & 0.8305   \\
     \hline
     recall   & 0.9851 & 0.0 & 0.7038 &          \\
     \bottomrule
@@ -712,14 +726,14 @@ n-gramas, es la siguiente:
     \toprule
              & True 3 & True 2 & True 1 & precision\\
     \hline
-    pred. 3  & 644 & 105       & 33     & 0.8235   \\
-    pred. 2  & 3   & 0         & 0      & 0.0      \\
-    predl 1  & 268 & 177       & 2181   & 0.8305   \\
+    pred. 3  & 726 & 122       & 67     & 0.7934   \\
+    pred. 2  & 112 & 61        & 58     & 0.2641   \\
+    pred. 1  & 77  & 99        & 2089   & 0.9223   \\
     \hline
-    recall   & 0.9851 & 0.0 & 0.7038 &          \\
+    recall   & 0.7934 & 0.2163 & 0.9435 &          \\
     \bottomrule
 \end{tabular}
-\caption{Matriz de confusión del modelo de la parte 1 con el conjunto \textit{test}.}
+\caption{Matriz de confusión del modelo de la parte 2 con el conjunto \textit{test}.}
 \end{table}
 
 Este modelo emplea técnicas de \textit{text mining} para analizar los campos
@@ -786,8 +800,8 @@ proponen 3 alternativas:
 Se ha realizado un último análisis de los datos como parte de la sección
 opcional de la investigación basado en el \textit{topic modelling}. El objetivo de este
 es identificar patrones en los datos que puedan agrupar las reseñas en
-distintos grupos. Para esto se va a utilizar el operador de RapidMiner “Extract
-Topics from Data”, que usa el algoritmo de Latent Dirichlet Allocation para
+distintos grupos. Para esto se va a utilizar el operador de RapidMiner ``Extract
+Topics from Data''~\cite{LDA-RM}, que usa el algoritmo de Latent Dirichlet Allocation para
 identificar y agrupar temas de los documentos.
 
 El preprocesado de los datos para la aplicación de este algoritmo será similar
@@ -1012,7 +1026,7 @@ objetivo de probar la teoría. Esto resulta en una distribución de dos grupos
 claros en los que la mayoría de instancias de valoraciones positivas se
 encuentran en uno de los grupos y la mayoría de las negativas en otro.
 
-\begin{figure}
+\begin{figure}[H]
     \center
     \includegraphics[width=0.85\linewidth]{graph_2topic_1000iter_rating.jpeg}\\
     \caption{Resultados de topic modelling basado en Overall\_Rating.}
