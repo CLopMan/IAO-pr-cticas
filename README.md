@@ -8,6 +8,15 @@ Developed a total of 32 RNA models using Altair AI Studio, following two approac
 
 The best models from each approach were used to predict the water level for the next 3 weeks of a reservoir.
 
+## Practica 2
+
+Developed a total of 25 models using Altair AI Studio, following three different
+approaches for classifying flight reviews:
+- Process non-textual data.
+- Process exclusively textual data
+- Process exclusively textual data using sentiment analysis and n-grams.
+
+In addition, the data was also analyzed using *topic modelling*.
 
 # Authors
 - [CLopMan](https://github.com/CLopMan)
