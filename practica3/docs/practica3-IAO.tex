@@ -332,9 +332,9 @@ hmargin=3cm
     \chapter{Introducción y objetivo}
     \label{chap:intro}
         En este documento se recoge el desarrollo de la prácctica 3 de la
-        asignatura \textit{Inteligencia Artificial en las Organizaciones}. Para
-        este proyecto se pretende crear un sistema de recomendación de pisos
-        para estudiantes basado en lógica borrosa.
+        asignatura \textit{Inteligencia Artificial en las Organizaciones}. El
+        objetivo este proyecto se pretende crear un sistema de recomendación de
+        pisos para estudiantes basado en lógica borrosa.
 
         La creación de las reglas del sistema se centrarán en el perfil de un
         estudiante que busque un piso para vivir en solitario durante sus
@@ -346,22 +346,24 @@ hmargin=3cm
         a colectivos vulnerables, entre ellos, los
         estudiantes~\cite{viviendas-precio-inaccesible}. Esto, en combinación
         con la escasa educación financiera de los estudiantes
-        españoles~\cite{PISA-2022}, hace de un sistema de recomendación centrado
-        en este perfil un elemento útil para faciltar a los estudiantes la
-        evaluación de un activo inmobiliario para su alquiler durante sus años
-        de estudios.
+        españoles~\cite{PISA-2022}, hace de un sistema de recomendación
+        centrado en este perfil un elemento útil para faciltar a los
+        estudiantes la evaluación de un activo inmobiliario para su alquiler
+        durante sus años de estudios.
 
         Adicionalmente, el uso de lógica borrosa presenta claras ventajas dada
         la naturaleza del problema:
         \begin{itemize}
-            \item Variables fuertemente ligadas a preferencias de usuario: esto hace de la interpretación de los datos algo subjetivo y, por tanto, con cierto grado de incertidumbre.        
+            \item \textbf{Gestión de incertidumbre y ambigüedad}: a través de las funciones de pertenencia para cada etiqueta los sistemas basados en reglas borrosas son capaces de manejar datos ambigüos o incompletos. Esta es una característica fundamental para los sistemas de recomendación.
+
+            \item \textbf{Tolerancia a rangos y datos imprecisos}: dado que las variables están fuertemente ligadas a la opinión subjetiva de los usuarios, el uso de lógica borrosa permite que el sistema trabaje con valores como ``caro'' o ``lejos'' y rangos de valores que permiten representar la imprecisión inherente a valores subjetivas. 
+            \item \textbf{Flexibilidad}: las reglas de un sistema basado en reglas borrosas permiten ofrecer recomendaciones más realistas y ajustadas al usuario que un sistema que solo aplica umbrales rígidos.
+
+            \item \textbf{Combinación de múltiples criterios}: un sistema basado en lógica borrosa puede utilizar varios criterios (precio, tamaño, número de habitaciones...) a través del concepto de \textit{afinidad} de forma que las recomendaciones sean más realistas e informadas.
+
         \end{itemize}
 
-       
-        % Primero, las variables de este sistema están 
-        %fuertemente ligadas a las preferencias del usuario; lo que las hace
-        %subjetivas y sujetas a un rango variable.
-
+        Con todo lo anterior es evidente que un sistema con las características descritas presenta una gran utilidad para el colectivo de estudiantes. Además, el uso de logica borrosa presenta claras ventajas para su desarrollo.
 
     \chapter{Desarrollo del sistema}
     \label{chap:desarrollo}
