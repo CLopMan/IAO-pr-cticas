@@ -52,6 +52,7 @@ hmargin=3cm
 
 % EXPRESIONES MATEMATICAS
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{booktabs}
 
 \usepackage{txfonts}
 \usepackage[T1]{fontenc}
@@ -233,7 +234,7 @@ hmargin=3cm
     page = {p.\adddot}
 }
 
-\addbibresource{bibliografia/bibliografia.bib} % llama al archivo bibliografia.bib en el que debería estar la bibliografía utilizada
+\addbibresource{references.bib} % llama al archivo bibliografia.bib en el que debería estar la bibliografía utilizada
 
 
 %-------------
@@ -394,6 +395,61 @@ hmargin=3cm
 
     \chapter{Listado de propiedades}
     \label{chap:propiedades}
+
+    \begin{table}[H]
+        \center
+        \begin{tabular}{|c|cccc|}
+            \hline
+            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106565852/}{Propiedad 1} & \href{https://www.idealista.com/inmueble/97146418/}{Propiedad 2} & \href{https://www.idealista.com/inmueble/104278344/}{Propiedad 3} & \href{https://www.idealista.com/inmueble/106562120/}{Propiedad 4} \\
+            \hline
+            \hline
+            \textbf{Precio (€$/m^2$)}                  & 13.51 & 13.04 & 12.17 & 19.05 \\
+            \textbf{Tamaño ($m^2$)}                    & 111   & 92    & 76    & 63    \\
+            \textbf{Nº habitaciones}                   & 3     & 2     & 1     & 2     \\
+            \textbf{Altura}                            & 2º    & 1º    & 4º    & 1º    \\
+            \textbf{Amueblada}                         & 1     & 1     & 1     & 1     \\
+            \textbf{Con ascensor}                      & 1     & 1     & 1     & 0     \\
+            \textbf{Tiempo a transporte público (min)} & 5     & 10    & 3     & 8     \\
+            \hline
+        \end{tabular}
+        \caption{Listado de propiedades evaluadas - 1}
+    \end{table}
+    \begin{table}[H]
+        \center
+        \begin{tabular}{|c|ccc|}
+            \hline
+            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106559777/}{Propiedad 5} & \href{https://www.idealista.com/inmueble/106224752/}{Propiedad 6} & \href{https://www.idealista.com/inmueble/106137531/}{Propiedad 7} \\
+            \hline
+            \hline
+            \textbf{Precio (€$/m^2$)}                  & 21.57 & 16.84 & 15  \\
+            \textbf{Tamaño ($m^2$)}                    & 102   & 95    & 160 \\
+            \textbf{Nº habitaciones}                   & 2     & 4     & 4   \\
+            \textbf{Altura}                            & 1º    & 2º    & 0º  \\
+            \textbf{Amueblada}                         & 1     & 1     & 1   \\
+            \textbf{Con ascensor}                      & 1     & 1     & 1   \\
+            \textbf{Tiempo a transporte público (min)} & 4     & 1     & 4   \\
+            \hline
+        \end{tabular}
+        \caption{Listado de propiedades evaluadas - 2}
+    \end{table}
+    \begin{table}[H]
+        \center
+        \begin{tabular}{|c|ccc|}
+            \hline
+            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106330042/}{Propiedad 8} & \href{https://www.idealista.com/inmueble/106355273/}{Propiedad 9} & \href{https://www.idealista.com/inmueble/106107441/}{Propiedad 10} \\
+            \hline
+            \hline
+            \textbf{Precio (€$/m^2$)}                  & 18.65 & 14.47 & 10.54 \\
+            \textbf{Tamaño ($m^2$)}                    & 48    & 76    & 140   \\
+            \textbf{Nº habitaciones}                   & 1     & 2     & 4     \\
+            \textbf{Altura}                            & 4º    & 1º    & 1º    \\
+            \textbf{Amueblada}                         & 1     & 0     & 1     \\
+            \textbf{Con ascensor}                      & 1     & 1     & 1     \\
+            \textbf{Tiempo a transporte público (min)} & 5     & 13    & 8     \\
+            \hline
+        \end{tabular}
+        \caption{Listado de propiedades evaluadas - 3}
+    \end{table}
 
     \chapter{Análisis de resultados}
     \label{chap:resultados}
