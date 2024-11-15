@@ -1,0 +1,71 @@
+\documentclass[es]{uc3mreport}
+
+
+\usepackage{import}
+
+\usepackage{mymacros}  % report-specific macros
+
+
+% general config
+
+\graphicspath{{img/}}  % Images folder
+% \addbibresource{references.bib}  % bibliography file
+
+\degree{Grado en Ingeniería Informática}
+\subject{Ingeligencia Artificail en las Organizaciones}
+\year{2024-2025}  % academic year
+\group{81}
+\author{
+    Álvaro Guerrero Espinosa -- 100472294\\
+    César López Mantecón -- 100472092\\
+    Paula Subías Serrano -- 100472119\\
+    Irene Subías Serrano -- 100472119
+}
+% \team{Equipo 69}
+\shortauthor{\abbreviateauthor{Álvaro}{Guerrero Espinosa}
+              \abbreviateauthor{César}{López Mantecón}
+              \abbreviateauthor{Paula}{Subías Serrano}
+              \abbreviateauthor{Irene}{Subías Serrano}}
+\lab{Práctica 3}
+\title{Sistemas Borrosos}
+% \shorttitle{La mejor memoria de la historia}
+\professor{Agapito Ledezma Espino}
+
+
+\begin{document}
+  \makecover[new]
+
+  \tableofcontents
+\listoffigures
+\listoftables
+
+% contenidos
+\begin{report}
+    \section{Introducción}
+    \label{chap:intro}
+
+    \section{Desarrollo del sistema}
+    \label{chap:intro}
+
+    \subsection{Variables de entrada y salida}
+    \subsection{Definición de reglas difusas}
+
+    \section{Análisis de resultados}
+    \label{chap:resultados}
+
+    \section{Conclusiones}
+    \label{chap:conclusion}
+
+\end{report}
+
+% bibliography
+\phantomsection
+\addcontentsline{toc}{section}{Bibliografía}
+\label{bibliography}
+% \section{Bibliografía}
+\printbibliography[title={Bibliografía}]  % alternative
+
+
+
+
+\end{document}

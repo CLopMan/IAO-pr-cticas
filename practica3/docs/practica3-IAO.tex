@@ -329,8 +329,39 @@ hmargin=3cm
 \clearpage
 \pagenumbering{arabic} % numeración con múmeros arábigos para el resto de la publicación
 
-    \chapter{Introducción}
+    \chapter{Introducción y objetivo}
     \label{chap:intro}
+        En este documento se recoge el desarrollo de la prácctica 3 de la
+        asignatura \textit{Inteligencia Artificial en las Organizaciones}. Para
+        este proyecto se pretende crear un sistema de recomendación de pisos
+        para estudiantes basado en lógica borrosa.
+
+        La creación de las reglas del sistema se centrarán en el perfil de un
+        estudiante que busque un piso para vivir en solitario durante sus
+        estudios. Se ha elegido este perfil por ser del que se tiene más
+        información acerca de sus preferencias y tendencias de compra ya que
+        forma parte del colectivo de los investigadores.
+
+        La vivienda en las grandes ciudades españolas presenta un gran problema
+        a colectivos vulnerables, entre ellos, los
+        estudiantes~\cite{viviendas-precio-inaccesible}. Esto, en combinación
+        con la escasa educación financiera de los estudiantes
+        españoles~\cite{PISA-2022}, hace de un sistema de recomendación centrado
+        en este perfil un elemento útil para faciltar a los estudiantes la
+        evaluación de un activo inmobiliario para su alquiler durante sus años
+        de estudios.
+
+        Adicionalmente, el uso de lógica borrosa presenta claras ventajas dada
+        la naturaleza del problema:
+        \begin{itemize}
+            \item Variables fuertemente ligadas a preferencias de usuario: esto hace de la interpretación de los datos algo subjetivo y, por tanto, con cierto grado de incertidumbre.        
+        \end{itemize}
+
+       
+        % Primero, las variables de este sistema están 
+        %fuertemente ligadas a las preferencias del usuario; lo que las hace
+        %subjetivas y sujetas a un rango variable.
+
 
     \chapter{Desarrollo del sistema}
     \label{chap:desarrollo}
@@ -347,10 +378,13 @@ hmargin=3cm
     alto y sin ascensor => poco recomendable, pero no se ha puesto lo contrario (alto con ascensor) porque no aporta valor
     media altura con ascensor => medianamente recomendable
 
+    \chapter{Listado de propiedades}
+    \label{chap:propiedades}
+
     \chapter{Análisis de resultados}
     \label{chap:resultados}
 
-    \chapter{Conclusiones}
+    \chapter{Conclusiones y mejoras}
     \label{chap:conclusion}
 
     %----------
