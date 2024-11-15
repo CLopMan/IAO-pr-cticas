@@ -334,8 +334,8 @@ hmargin=3cm
     \label{chap:intro}
         En este documento se recoge el desarrollo de la prácctica 3 de la
         asignatura \textit{Inteligencia Artificial en las Organizaciones}. El
-        objetivo este proyecto se pretende crear un sistema de recomendación de
-        pisos para estudiantes basado en lógica borrosa.
+        objetivo de este proyecto es crear un sistema de puntuación de inmuebles 
+        basado en el perfil de un estudiante. Para ello se empleará un sistema de lógica borrosa.
 
         La creación de las reglas del sistema se centrarán en el perfil de un
         estudiante que busque un piso para vivir en solitario durante sus
@@ -355,7 +355,7 @@ hmargin=3cm
         Adicionalmente, el uso de lógica borrosa presenta claras ventajas dada
         la naturaleza del problema:
         \begin{itemize}
-            \item \textbf{Gestión de incertidumbre y ambigüedad}: a través de las funciones de pertenencia para cada etiqueta los sistemas basados en reglas borrosas son capaces de manejar datos ambigüos o incompletos. Esta es una característica fundamental para los sistemas de recomendación.
+            \item \textbf{Gestión de incertidumbre y ambigüedad}: a través de las funciones de pertenencia para cada etiqueta los sistemas basados en reglas borrosas son capaces de manejar datos ambigüos o incompletos. Esta es una característica fundamental para el sistema que se pretende construir.
 
             \item \textbf{Tolerancia a rangos y datos imprecisos}: dado que las variables están fuertemente ligadas a la opinión subjetiva de los usuarios, el uso de lógica borrosa permite que el sistema trabaje con valores como ``caro'' o ``lejos'' y rangos de valores que permiten representar la imprecisión inherente a valores subjetivas. 
             \item \textbf{Flexibilidad}: las reglas de un sistema basado en reglas borrosas permiten ofrecer recomendaciones más realistas y ajustadas al usuario que un sistema que solo aplica umbrales rígidos.
@@ -383,7 +383,10 @@ hmargin=3cm
         Transporte:
 
     \section{Definición de reglas difusas}
-    Hemos usado un estudiante sin mucho dinero
+    En este apartado se describen las reglas establecidas para el sistema. La definición de estas ha venido guiada por el perfil elegido del estudiante, que se 
+    considera que tiene un bajo poder adquisitivo y busca un piso relativamente pequeño, cerca de paradas de transporte público y preferiblemente amueblado. 
+    Aún con este perfil como el principal se considera un caso secundario en el que el usuario busca un piso de varias habitaciones que pueda compartir, 
+    lo cual resulta en algunas reglas adicionales. 
 
     muchas habitaciones => se puede compartir piso.
     caro => poco recomendable porque el estudiante es pobre
