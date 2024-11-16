@@ -399,10 +399,10 @@ hmargin=3cm
         solitario hasta la finalización de sus estudios. Con estas
         características se han elegido un total de 7 atributos de entrada así
         como 16 reglas, que pueden representar de manera precisa las
-        preferencias de este estudiante.  Aunque se tratará como caso principal
+        preferencias de este estudiante. Aunque se tratará como caso principal
         un estudiante que busque un piso en solitario, también se contempla un
         segundo caso en el que prefiera compartir piso. Esto se traduce en
-        algunas reglas adicionales dentro del sistema.  Para el desarrollo se
+        algunas reglas adicionales dentro del sistema. Para el desarrollo se
         va a utilizar el operador \textit{Fuzzy Logic Toolbox} de MATLAB para
         crear un sistema de Mamdani Type1 FIS. Esta herramienta permite la
         selección de variables de entrada y salida así como la definición de
@@ -441,13 +441,13 @@ hmargin=3cm
     estas han sido modificadas y reducidas a 16 tras varias ejecuciones para poder conseguir un modelo preciso. Estos cambios sobretodo incluyen modificaciones de las etiquetas de salida,
     al existir reglas que modificaban el resultado final suavizandolo en ejemplos extremos de viviendas. 
 
-    muchas habitaciones => se puede compartir piso.
-    caro => poco recomendable porque el estudiante es pobre
-    pequeño y muchas habitaciones => poco recomendable porque se considera que tendrá habitaciones muy pequeñas para un estudiante
-    grande y muchas habitaciones => medianamente recomendable porque se puede compartir piso
-    medio y medio habitaciones => recomendable porque se puede compartir piso
-    alto y sin ascensor => poco recomendable, pero no se ha puesto lo contrario (alto con ascensor) porque no aporta valor
-    media altura con ascensor => medianamente recomendable
+    precio => caro mal, barato bien, medio depende de varios atributos, reglas con mucho peso
+    tamaño => cuanto más pequeño mejor, con alta dependencia del número de habitaciones
+    número habitaciones => se considera bueno muchas habitaciones siempre que sea medio o grande para compartir, en caso de ser pequeño no es posible vivir ahí
+    Altura => solo se considera en relación con si existe un ascensor
+    Amueblado => muy importante que lo esté porque el estudiante no se puede permitir amueblarlo para uno o 2 años
+    Ascensor => solo se considera un factor eliminativo, si es un piso alto y no tiene ascensor, no aporta valor por si solo
+    Transporte => Cuanto más cerca de una parada de transporte público mejor, pero no tiene tanta importancia como reglas de precio o amueblación
 
     \chapter{Listado de propiedades}
     \label{chap:propiedades}
