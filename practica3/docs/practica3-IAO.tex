@@ -433,6 +433,7 @@ hmargin=3cm
         \subsection{Precio}
         Esta variable representa el precio de alquiler del inmueble en euros por metro cuadrado (€$/m^2$).
         Tiene un rango de 7 a 50, y se han utilizado 3 etiquetas para representar este valor: ``barato'', ``medio'' y ``caro''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta el poder adquisitivo nuestro perfil y el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -441,8 +442,8 @@ hmargin=3cm
                 \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
                 \midrule
                 Barato & Trapezoide & [7 7 15 30]   \\
-                Medio  & Triangular & [15 28.5 40] \\
-                Caro   & Trapezoide & [25 40 50 50]  \\
+                Medio  & Triangular & [15 28.5 40]  \\
+                Caro   & Trapezoide & [25 40 50 50] \\
                 \bottomrule
             \end{tabular}
             \caption{Etiquetas de la variable de entrada ``Precio''}
@@ -471,6 +472,7 @@ hmargin=3cm
         \subsection{Tamaño}
         Esta variable representa el tamaño en metros cuadrados ($m^2$) del inmueble.
         Tiene un rango de 18 a 555, y se han utilizado 3 etiquetas para representar este valor: ``pequeño'', ``medio'' y ``grande''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta tamaño que necesitaría nuestro perfil para vivir solo y el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -509,6 +511,7 @@ hmargin=3cm
         \subsection{Número de habitaciones}
         Esta variable representa el número de habitaciones de cualquier tipo total en la vivienda.
         Tiene un rango de 0 a 5, y se han utilizado 3 etiquetas para representar este valor: ``pocas'', ``medio'' y ``muchas''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta las necesidades de nuestro perfil para vivir solo y el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -547,6 +550,8 @@ hmargin=3cm
         \subsection{Altura}
         Esta variable representa el piso en el que se encuentra el inmueble.
         Tiene un rango de -1 a 22, y se han utilizado 3 etiquetas para representar este valor: ``alto'', ``medio'' y ``bajos''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que ``bajo'' debería representar una cantidad que se puede subir por escaleras diaramente sin necesidad de ascensor,
+        ``medio'' debería representar una cantidad que, aunque se podría subir por escaleras, un ascensor aportaría mucho valor, y ``alto'' debería representar una cantidad que necesita un ascensor.
 
         \begin{table}[h]
             \center
@@ -585,6 +590,7 @@ hmargin=3cm
         \subsection{Amueblado}
         Esta variable representa una variable booleana que indica si el inmueble está amueblado.
         Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
+        Además, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
 
         \begin{table}[h]
             \center
@@ -621,6 +627,7 @@ hmargin=3cm
         \subsection{Ascensor}
         Esta variable representa una variable booleana que se corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
         Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
+        Además, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
 
         \begin{table}[h]
             \center
@@ -657,6 +664,7 @@ hmargin=3cm
         \subsection{Tiempo a transporte público}
         Esta variable representa la distancia medida en minutos de la vivienda a la parada de transporte público más cercana.
         Tiene un rango de 1 a 30, y se han utilizado 3 etiquetas para representar este valor: ``cerca'', ``medio'' y ``lejos''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que nuestro perfil necesita viajar diariamente sin tener vehículo propio, y el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -730,7 +738,7 @@ hmargin=3cm
         \begin{tikzpicture}
             \begin{axis}[
                 width=0.90\linewidth,
-                height=9.5cm,
+                height=9.0cm,
                 title={Definición de la variable ``Recomendación''},
                 xlabel={Variable de salida},
                 ylabel={Grado de pertenencia},
@@ -738,9 +746,9 @@ hmargin=3cm
                 ymin=0, ymax=1.25,
             ]
                 \addplot[color=blue, mark=none] coordinates {(0,1)(0.02083,1)(0.1875,0)(1,0)} node[above right, pos=0, yshift=5] {Nada recomendable};
-                \addplot[color=red, mark=none] coordinates {(0,0)(0.0625,0)(0.2292,1)(0.2708,1)(0.4375,0)(1,0)} node[below, pos=0.4075, yshift=-105] {\small Poco recomendable};
+                \addplot[color=red, mark=none] coordinates {(0,0)(0.0625,0)(0.2292,1)(0.2708,1)(0.4375,0)(1,0)} node[below, pos=0.4075, yshift=-98] {\footnotesize Poco recomendable};
                 \addplot[color=OliveGreen, mark=none] coordinates {(0,0)(0.3125,0)(0.4792,1)(0.5208,1)(0.6875,0)(1,0)} node[above, pos=0.5, yshift=22.5] {Medianamente recomendable};
-                \addplot[color=darkgray, mark=none] coordinates {(0,0)(0.5625,0)(0.7292,1)(0.7708,1)(0.9375,0)(1,0)} node[below, pos=0.5925, yshift=-105] {\small Recomendable};
+                \addplot[color=darkgray, mark=none] coordinates {(0,0)(0.5625,0)(0.7292,1)(0.7708,1)(0.9375,0)(1,0)} node[below, pos=0.5925, yshift=-98] {Recomendable};
                 \addplot[color=Orange, mark=none] coordinates {(0,0)(0.8125,0)(0.9792,1)(1,1)} node[above left, pos=1, yshift=3] {Muy recomendable};
             \end{axis}
         \end{tikzpicture}
