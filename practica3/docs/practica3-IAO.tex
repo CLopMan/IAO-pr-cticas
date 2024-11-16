@@ -765,13 +765,23 @@ hmargin=3cm
     debido a que el primer modelo tendía en exceso a dar resultados intermedios,
     incluso para ejemplos extremos de viviendas.
 
-    - regla 1,2,3,4
-    Las primeras reglas tienen peso máximo y buscan clasificar las viviendas según su precio 
-    y tamaño. Estas reglas beneficiarán aquellas viviendas con un menor precio y tamaño, siendo 
+    \subsection{Reglas para precio y tamaño}
+    Estas son reglas con peso máximo que buscan clasificar las viviendas según su precio y tamaño.
+
+    \begin{itemize}
+        \item \texttt{IF precio IS barato AND tamaño IS pequeño THEN recomendación IS muy recomendable}
+        \item \texttt{IF precio IS barato AND tamaño IS medio THEN recomendación IS recomendable}
+        \item \texttt{IF tamaño IS grande THEN recomendación IS poco recomendable}
+        \item \texttt{IF precio IS caro THEN recomendación IS poco recomendable}
+    \end{itemize}
+
+     Estas reglas beneficiarán aquellas viviendas con un menor precio y tamaño, siendo 
     esta decisión justificada por el poco poder asquisitivo y la búsqueda de un piso para vivir solo
     del perfil del estudiante. Además, se considera que estos dos atributos son los que más peso 
     pueden tener sobre la decisión final de elegir el inmueble, lo cual explica el gran peso de 
     estas reglas.
+
+    \subsection{Reglas relacionadas conel estado de amueblación de la vivienda}
 
     - regla 5,6,7,16
     Estas reglas tienen relación con el estado de amueblación de la vivienda, considerandose que el 
@@ -794,7 +804,7 @@ hmargin=3cm
 
     - regla 11
     Caso eliminativo de un piso muy alto si este no tiene ascensor. La altura empieza a 
-    considerarse "alta" si la vivienda se encuentra a partir del piso sexto, lo que sin ascensor 
+    considerarse ``alta'' si la vivienda se encuentra a partir del piso sexto, lo que sin ascensor 
     conlleva un esfuerzo físico diario que se considera excesivo para cualquier persona promedio. 
     Al ser eliminativa cuenta con peso máximo.
 
