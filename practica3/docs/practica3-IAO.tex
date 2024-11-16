@@ -33,13 +33,14 @@ hmargin=3cm
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % DEFINICIÓN DE COLORES para portada y listados de código
-\usepackage[table]{xcolor}
+\usepackage[table,dvipsnames]{xcolor}
 \definecolor{azulUC3M}{RGB}{0,0,102}
 \definecolor{gray97}{gray}{.97}
 \definecolor{gray75}{gray}{.75}
 \definecolor{gray45}{gray}{.45}
 
 \usepackage{tikz}
+\usepackage{pgfplots}
 % Soporte para GENERAR PDF/A --es importante de cara a su inclusión en e-Archivo porque es el formato óptimo de preservación y a la generación de metadatos, tal y como se describe en http://uc3m.libguides.com/ld.php?content_id=31389625. En la carpeta incluímos el archivo plantilla_tfg_2017.xmpdata en el que puedes incluir los metadatos que se incorporarán al archivo PDF cuando lo compiles. Ese archivo debe llamarse igual que tu archivo .tex. Puedes ver un ejemplo en esta misma carpeta.
 \usepackage[a-1b]{pdfx}
 
@@ -247,7 +248,7 @@ hmargin=3cm
 %----------
 %    PORTADA
 %----------
-\title{Práctica 1}
+\title{Práctica 3}
 \author{Álvaro Guerrero Espinosa (100472294)\\
         César López Mantecón (100472092)\\
         Paula Subías Serrano (100472119)\\
@@ -427,32 +428,324 @@ hmargin=3cm
         asegurado en todos los casos que el mínimo número de etiquetas borrosas del
         atributo sea 3, con excepción de las variables \textit{booleanas}.
 
-        Las variables utilizadas finalmente son las siguientes: 
-        \begin{itemize}
-            \item \textbf{Precio}: El precio de alquiler del inmueble en euros por metro cuadrado.
+        A continuación se describen las variables de entrada utilizadas finalmente, junto con las funciones de pertenencia de sus etiquetas. 
 
-            \item \textbf{Tamaño}: El tamaño en metros cuadrados del inmueble. 
-            
-            \item \textbf{Número de habitaciones}: El número de habitaciones de cualquier tipo total en la vivienda. 
+        \subsection{Precio}
+        Esta variable representa el precio de alquiler del inmueble en euros por metro cuadrado (€$/m^2$).
+        Tiene un rango de 7 a 50, y se han utilizado 3 etiquetas para representar este valor: ``barato'', ``medio'' y ``caro''.
 
-            \item \textbf{Altura}: Se refiere al piso en el que se encuentra el inmueble.
-            
-            \item \textbf{Amueblado}: Variable de entrada booleana que indica si el inmueble está amueblado.
-            
-            \item \textbf{Ascensor}: Variable booleana que corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                Barato & Trapezoide & [7 7 15 30]   \\
+                Medio  & Triangular & [15 28.5 40] \\
+                Caro   & Trapezoide & [25 40 50 50]  \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Precio''}
+        \end{table}
 
-            \item \textbf{Transporte}: La distancia media en minutos de la vivienda a la parada de transporte público más cercana.
-        \end{itemize}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Precio''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=7, xmax=50,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(7,1)(15,1)(30,0)(50,0)} node[above, pos=0.1, yshift=5] {Barato};
+                    \addplot[color=red, mark=none] coordinates {(7,0)(15,0)(28.5,1)(40,0)(50,0)} node[above, pos=0.5, yshift=5] {Medio};
+                    \addplot[color=OliveGreen, mark=none] coordinates {(7,0)(25,0)(40,1)(50,1)} node[above, pos=0.9, yshift=5] {Caro};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Precio''}
+        \end{figure}
+
+        \subsection{Tamaño}
+        Esta variable representa el tamaño en metros cuadrados ($m^2$) del inmueble.
+        Tiene un rango de 18 a 555, y se han utilizado 3 etiquetas para representar este valor: ``pequeño'', ``medio'' y ``grande''.
+
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                Pequeño & Trapezoide & [15 15 20 40]     \\
+                Medio   & Triangular & [20 30 60 120]    \\
+                Grande  & Trapezoide & [100 200 555 555] \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Tamaño''}
+        \end{table}
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Tamaño''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=18, xmax=555,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(18,1)(20,1)(40,0)(555,0)} node[above right, pos=0.0, yshift=2.5] {Pequeño};
+                    \addplot[color=red, mark=none] coordinates {(18,0)(20,0)(30,1)(60,1)(120,0)(555,0)} node[above right, pos=0.115] {Medio};
+                    \addplot[color=OliveGreen, mark=none] coordinates {(18,0)(100,0)(200,1)(555,1)} node[above, pos=0.9, yshift=5] {Grande};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Tamaño''}
+        \end{figure}
+
+        \subsection{Número de habitaciones}
+        Esta variable representa el número de habitaciones de cualquier tipo total en la vivienda.
+        Tiene un rango de 0 a 5, y se han utilizado 3 etiquetas para representar este valor: ``pocas'', ``medio'' y ``muchas''.
+
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                Pocas  & Trapezoide & [0 0 1 3] \\
+                Medio  & Triangular & [2 3 5]   \\
+                Muchas & Trapezoide & [3 4 5 5] \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Número de habitaciones''}
+        \end{table}
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Número de habitaciones''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=0, xmax=5,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(0,1)(1,1)(3,0)(5,0)} node[above, pos=0.1, yshift=5] {Pocas};
+                    \addplot[color=red, mark=none] coordinates {(0,0)(2,0)(3,1)(5,0)} node[above, pos=0.6, yshift=5] {Medio};
+                    \addplot[color=OliveGreen, mark=none] coordinates {(0,0)(3,0)(4,1)(5,1)} node[above, pos=0.9, yshift=5] {Muchas};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Número de habitaciones''}
+        \end{figure}
+
+        \subsection{Altura}
+        Esta variable representa el piso en el que se encuentra el inmueble.
+        Tiene un rango de -1 a 22, y se han utilizado 3 etiquetas para representar este valor: ``alto'', ``medio'' y ``bajos''.
+
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                Alto  & Trapezoide & [7 10 22 22] \\
+                Medio & Triangular & [2 5 10]     \\
+                Bajos & Trapezoide & [-2 0 2 4]   \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Altura''}
+        \end{table}
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Altura''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=-1, xmax=22,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(-2,0)(0,1)(2,1)(4,0)(22,0)} node[above, pos=0.125, yshift=3] {Bajo};
+                    \addplot[color=red, mark=none] coordinates {(-1,0)(2,0)(5,1)(10,0)(22,0)} node[above, pos=0.275, yshift=13] {Medio};
+                    \addplot[color=OliveGreen, mark=none] coordinates {(-1,0)(7,0)(10,1)(22,1)} node[above, pos=0.9, yshift=5] {Alto};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Altura''}
+        \end{figure}
+
+        \subsection{Amueblado}
+        Esta variable representa una variable booleana que indica si el inmueble está amueblado.
+        Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
+
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                SI & Trapezoide & [1 1 1 1] \\
+                NO & Trapezoide & [0 0 0 0] \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Amueblado''}
+        \end{table}
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Amueblado''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=0, xmax=1,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(0,0)(1,0)(1,1)} node[above left, pos=1] {SI};
+                    \addplot[color=red, mark=none] coordinates {(0,1)(0,0)(1,0)} node[above right, pos=0] {NO};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Amueblado''}
+        \end{figure}
+
+        \subsection{Ascensor}
+        Esta variable representa una variable booleana que se corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
+        Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
+
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                SI & Trapezoide & [1 1 1 1] \\
+                NO & Trapezoide & [0 0 0 0] \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Ascensor''}
+        \end{table}
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Ascensor''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=0, xmax=1,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(0,0)(1,0)(1,1)} node[above left, pos=1] {SI};
+                    \addplot[color=red, mark=none] coordinates {(0,1)(0,0)(1,0)} node[above right, pos=0] {NO};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Ascensor''}
+        \end{figure}
+
+        \subsection{Tiempo a transporte público}
+        Esta variable representa la distancia medida en minutos de la vivienda a la parada de transporte público más cercana.
+        Tiene un rango de 1 a 30, y se han utilizado 3 etiquetas para representar este valor: ``cerca'', ``medio'' y ``lejos''.
+
+        \begin{table}[h]
+            \center
+            \begin{tabular}{@{}ccc@{}}
+                \toprule
+                \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+                \midrule
+                Cerca & Triangular & [0 1 25.17]  \\
+                Medio & Triangular & [1 15.5 30]  \\
+                Lejos & Triangular & [5.83 30 50] \\
+                \bottomrule
+            \end{tabular}
+            \caption{Etiquetas de la variable de entrada ``Tiempo a transporte público''}
+        \end{table}
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.90\linewidth,
+                    height=8.5cm,
+                    title={Definición de la variable ``Tiempo a transporte público''},
+                    xlabel={Variable de entrada},
+                    ylabel={Grado de pertenencia},
+                    xmin=1, xmax=30,
+                    ymin=0, ymax=1.19,
+                ]
+                    \addplot[color=blue, mark=none] coordinates {(1,1)(25.17,0)(30,0)} node[above right, pos=0, yshift=5] {Cerca};
+                    \addplot[color=red, mark=none] coordinates {(1,0)(15.5,1)(30,0)} node[above, pos=0.5, yshift=5] {Medio};
+                    \addplot[color=OliveGreen, mark=none] coordinates {(1,0)(5.83,0)(30,1)} node[above left, pos=1, yshift=5] {Lejos};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{Definición de la variable de entrada ``Tiempo a transporte público''}
+        \end{figure}
 
     \section{Variables de salida}
-    En este apartado se va a describir como se ha definido la variable objetivo "Recomendacion". Esta variable contiene cinco etiquetas borrosas: 
-    "Nada recomendable", "Poco recomendable", "Medianamente recomendable", "Recomendable" y "Muy recomendable". Estas represenrtan los niveles de 
-    recomendación del piso y serán las que se usarán en las reglas difusas. Aun así la salida que se le otorgará al usuario será un número entre 
-    0 y uno que indica el grado de recomendación, siendo 1 lo más recomendado y 0 lo menos. Esto se debe a que aunque el sistema funciona con 
-    etiquetas borrosas, el resultado pasa por un proceso de desborrisificacion antes de ser otrogado al usuario. Las 5 funciones de pertenencia 
-    tienen forma trapezoidal ya que se ha considerado que cada una de ellas tiene un rango en el que se asegura que son la etiqueta más 
-    representativa y por lo tanto un grado de pertenencia 1. Tambien tienen una distribución equitativa a lo largo de la variable ya que se ha 
-    decidido que cada una de las etiquetas deben cubrir un rango igual al resto.
+    En este apartado se va a describir como se ha definido la variable objetivo
+    ``Recomendacion''. Esta variable contiene cinco etiquetas borrosas: ``Nada
+    recomendable'', ``Poco recomendable'', ``Medianamente recomendable'',
+    ``Recomendable'' y ``Muy recomendable''. Estas represenrtan los niveles de
+    recomendación del piso y serán las que se usarán en las reglas difusas. Aun
+    así la salida que se le otorgará al usuario será un número entre 0 y 1 que
+    indica el grado de recomendación, siendo 1 lo más recomendado y 0 lo menos.
+    Esto se debe a que aunque el sistema funciona con etiquetas borrosas, el
+    resultado pasa por un proceso de desborrisificacion antes de ser otrogado al
+    usuario. Las 5 funciones de pertenencia tienen forma trapezoidal ya que se
+    ha considerado que cada una de ellas tiene un rango en el que se asegura que
+    son la etiqueta más representativa y por lo tanto un grado de pertenencia 1.
+    Tambien tienen una distribución equitativa a lo largo de la variable ya que
+    se ha decidido que cada una de las etiquetas deben cubrir un rango igual al
+    resto.
+
+    \begin{table}[h]
+        \center
+        \begin{tabular}{@{}ccc@{}}
+            \toprule
+            \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+            \midrule
+            Nada recomendable         & Trapezoide & [0 0 0.02083 0.1875] \\
+            Poco recomendable         & Trapezoide & [0.0625 0.2292 0.2708 0.4375] \\
+            Medianamente recomendable & Trapezoide & [0.3125 0.4792 0.5208 0.6875] \\
+            Recomendable              & Trapezoide & [0.5625 0.7292 0.7708 0.9375] \\
+            Muy recomendable          & Trapezoide & [0.8125 0.9792 1 1]   \\
+            \bottomrule
+        \end{tabular}
+        \caption{Etiquetas de la variable de salida ``Recomendación''}
+    \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.5cm,
+                title={Definición de la variable ``Recomendación''},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.25,
+            ]
+                \addplot[color=blue, mark=none] coordinates {(0,1)(0.02083,1)(0.1875,0)(1,0)} node[above right, pos=0, yshift=5] {Nada recomendable};
+                \addplot[color=red, mark=none] coordinates {(0,0)(0.0625,0)(0.2292,1)(0.2708,1)(0.4375,0)(1,0)} node[below, pos=0.4075, yshift=-105] {\small Poco recomendable};
+                \addplot[color=OliveGreen, mark=none] coordinates {(0,0)(0.3125,0)(0.4792,1)(0.5208,1)(0.6875,0)(1,0)} node[above, pos=0.5, yshift=22.5] {Medianamente recomendable};
+                \addplot[color=darkgray, mark=none] coordinates {(0,0)(0.5625,0)(0.7292,1)(0.7708,1)(0.9375,0)(1,0)} node[below, pos=0.5925, yshift=-105] {\small Recomendable};
+                \addplot[color=Orange, mark=none] coordinates {(0,0)(0.8125,0)(0.9792,1)(1,1)} node[above left, pos=1, yshift=3] {Muy recomendable};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Definición de la variable de salida ``Recomendación''}
+    \end{figure}
 
     \section{Definición de reglas difusas}
 
@@ -512,57 +805,66 @@ hmargin=3cm
 
     \chapter{Listado de propiedades}
     \label{chap:propiedades}
+    En este apartado se describen las propiedades utilizadas para validar el
+    modelo desarrollado. Para cada una, se indican los atributos relevantes para
+    la entrada del modelo, un enlace a su anuncio en
+    \href{https://www.idealista.com}{idealista}, y el nivel de recomendación
+    dado por el modelo
 
-    \begin{table}[H]
+    \begin{table}[h]
         \center
         \begin{tabular}{|c|cccc|}
             \hline
-            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106565852/}{Propiedad 1} & \href{https://www.idealista.com/inmueble/97146418/}{Propiedad 2} & \href{https://www.idealista.com/inmueble/104278344/}{Propiedad 3} & \href{https://www.idealista.com/inmueble/106562120/}{Propiedad 4} \\
+            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106565852/}{Propiedad 1} & \href{https://www.idealista.com/inmueble/103969285/}{Propiedad 2} & \href{https://www.idealista.com/inmueble/104278344/}{Propiedad 3} & \href{https://www.idealista.com/inmueble/106224752/}{Propiedad 4} \\
             \hline
             \hline
-            \textbf{Precio (€$/m^2$)}                  & 13.51 & 13.04 & 12.17 & 19.05 \\
-            \textbf{Tamaño ($m^2$)}                    & 111   & 92    & 76    & 63    \\
-            \textbf{Nº habitaciones}                   & 3     & 2     & 1     & 2     \\
-            \textbf{Altura}                            & 2º    & 1º    & 4º    & 1º    \\
-            \textbf{Amueblada}                         & 1     & 1     & 1     & 1     \\
-            \textbf{Con ascensor}                      & 1     & 1     & 1     & 0     \\
-            \textbf{Tiempo a transporte público (min)} & 5     & 10    & 3     & 8     \\
+            \textbf{Precio (€$/m^2$)}                  & 13.51 & 50    & 12.17 & 16.84 \\
+            \textbf{Tamaño ($m^2$)}                    & 111   & 18    & 76    & 95    \\
+            \textbf{Nº habitaciones}                   & 3     & 1     & 1     & 4     \\
+            \textbf{Altura}                            & 2º    & 3º    & 4º    & 2º    \\
+            \textbf{Amueblada\footnotemark[1]}         & 1     & 1     & 1     & 1     \\
+            \textbf{Con ascensor\footnotemark[1]}      & 1     & 1     & 1     & 1     \\
+            \textbf{Tiempo a transporte público (min)} & 5     & 10    & 3     & 1     \\
+            \textbf{Nivel de recomendación}            & 0.709 & 0.414 & 0.789 & 0.83  \\
             \hline
         \end{tabular}
         \caption{Listado de propiedades evaluadas - 1}
     \end{table}
-    \begin{table}[H]
+    \footnotetext[1]{Para los atributos booleanos, se ha utilizado un valor de 1 para representar el valor ``verdadero'' y un valor de 0 para el valor ``falso''}
+    \begin{table}[h]
         \center
         \begin{tabular}{|c|ccc|}
             \hline
-            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106559777/}{Propiedad 5} & \href{https://www.idealista.com/inmueble/106224752/}{Propiedad 6} & \href{https://www.idealista.com/inmueble/106137531/}{Propiedad 7} \\
+            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106137531/}{Propiedad 5} & \href{https://www.idealista.com/inmueble/106355273/}{Propiedad 6} & \href{https://www.idealista.com/inmueble/106107441/}{Propiedad 7} \\
             \hline
             \hline
-            \textbf{Precio (€$/m^2$)}                  & 21.57 & 16.84 & 15  \\
-            \textbf{Tamaño ($m^2$)}                    & 102   & 95    & 160 \\
-            \textbf{Nº habitaciones}                   & 2     & 4     & 4   \\
-            \textbf{Altura}                            & 1º    & 2º    & 0º  \\
-            \textbf{Amueblada}                         & 1     & 1     & 1   \\
-            \textbf{Con ascensor}                      & 1     & 1     & 1   \\
-            \textbf{Tiempo a transporte público (min)} & 4     & 1     & 4   \\
+            \textbf{Precio (€$/m^2$)}                  & 15    & 14.47 & 10.54 \\
+            \textbf{Tamaño ($m^2$)}                    & 160   & 76    & 140   \\
+            \textbf{Nº habitaciones}                   & 4     & 2     & 4     \\
+            \textbf{Altura}                            & 0º    & 1º    & 1º    \\
+            \textbf{Amueblada\footnotemark[1]}         & 1     & 0     & 1     \\
+            \textbf{Con ascensor\footnotemark[1]}      & 1     & 1     & 1     \\
+            \textbf{Tiempo a transporte público (min)} & 4     & 13    & 8     \\
+            \textbf{Nivel de recomendación}            & 0.528 & 0.503 & 0.565 \\
             \hline
         \end{tabular}
         \caption{Listado de propiedades evaluadas - 2}
     \end{table}
-    \begin{table}[H]
+    \begin{table}[h]
         \center
         \begin{tabular}{|c|ccc|}
             \hline
-            \textbf{Característica} & \href{https://www.idealista.com/inmueble/106330042/}{Propiedad 8} & \href{https://www.idealista.com/inmueble/106355273/}{Propiedad 9} & \href{https://www.idealista.com/inmueble/106107441/}{Propiedad 10} \\
+            \textbf{Característica} & \href{https://www.idealista.com/inmueble/102581910/}{Propiedad 8} & \href{https://www.idealista.com/inmueble/96374938/}{Propiedad 9} & \href{https://www.idealista.com/inmueble/105316199/}{Propiedad 10} \\
             \hline
             \hline
-            \textbf{Precio (€$/m^2$)}                  & 18.65 & 14.47 & 10.54 \\
-            \textbf{Tamaño ($m^2$)}                    & 48    & 76    & 140   \\
-            \textbf{Nº habitaciones}                   & 1     & 2     & 4     \\
-            \textbf{Altura}                            & 4º    & 1º    & 1º    \\
-            \textbf{Amueblada}                         & 1     & 0     & 1     \\
-            \textbf{Con ascensor}                      & 1     & 1     & 1     \\
-            \textbf{Tiempo a transporte público (min)} & 5     & 13    & 8     \\
+            \textbf{Precio (€$/m^2$)}                  & 33.87 & 16.67 & 11.05 \\
+            \textbf{Tamaño ($m^2$)}                    & 62    & 90    & 380   \\
+            \textbf{Nº habitaciones}                   & 1     & 2     & 5     \\
+            \textbf{Altura}                            & 2º    & 8º    & 0º    \\
+            \textbf{Amueblada\footnotemark[1]}         & 1     & 0     & 0     \\
+            \textbf{Con ascensor\footnotemark[1]}      & 1     & 1     & 0     \\
+            \textbf{Tiempo a transporte público (min)} & 2     & 9     & 11    \\
+            \textbf{Nivel de recomendación}            & 0.496 & 0.503 & 0.370 \\
             \hline
         \end{tabular}
         \caption{Listado de propiedades evaluadas - 3}
