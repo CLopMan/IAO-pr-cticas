@@ -340,7 +340,7 @@ hmargin=3cm
         La creación de las reglas del sistema se centrarán en el perfil de un
         estudiante que busque un piso para vivir en solitario durante sus
         estudios. Se ha elegido este perfil por ser del que se tiene más
-        información acerca de sus preferencias y tendencias de compra ya que
+        información acerca de sus preferencias y tendencias de compra, ya que
         forma parte del colectivo de los investigadores.
 
         La vivienda en las grandes ciudades españolas presenta un gran problema
@@ -348,45 +348,68 @@ hmargin=3cm
         estudiantes~\cite{viviendas-precio-inaccesible}. Esto, en combinación
         con la escasa educación financiera de los estudiantes
         españoles~\cite{PISA-2022}, hace de un sistema de recomendación
-        centrado en este perfil un elemento útil para faciltar a los
+        centrado en este perfil un elemento útil para facilitar a los
         estudiantes la evaluación de un activo inmobiliario para su alquiler
-        durante sus años de estudios.
+        durante sus años de estudio.
 
         Adicionalmente, el uso de lógica borrosa presenta claras ventajas dada
         la naturaleza del problema:
         \begin{itemize}
             \item \textbf{Gestión de incertidumbre y ambigüedad}: a través de las funciones de pertenencia para cada etiqueta los sistemas basados en reglas borrosas son capaces de manejar datos ambigüos o incompletos. Esta es una característica fundamental para el sistema que se pretende construir.
 
-            \item \textbf{Tolerancia a rangos y datos imprecisos}: dado que las variables están fuertemente ligadas a la opinión subjetiva de los usuarios, el uso de lógica borrosa permite que el sistema trabaje con valores como ``caro'' o ``lejos'' y rangos de valores que permiten representar la imprecisión inherente a valores subjetivas. 
+            \item \textbf{Tolerancia a rangos y datos imprecisos}: dado que las variables están fuertemente ligadas a la opinión subjetiva de los usuarios, el uso de lógica borrosa permite que el sistema trabaje con valores como ``caro'' o ``lejos'' y rangos de valores que permiten representar la imprecisión inherente a valores subjetivos. 
             \item \textbf{Flexibilidad}: las reglas de un sistema basado en reglas borrosas permiten ofrecer recomendaciones más realistas y ajustadas al usuario que un sistema que solo aplica umbrales rígidos.
 
             \item \textbf{Combinación de múltiples criterios}: un sistema basado en lógica borrosa puede utilizar varios criterios (precio, tamaño, número de habitaciones...) a través del concepto de \textit{afinidad} de forma que las recomendaciones sean más realistas e informadas.
 
         \end{itemize}
 
-        Con todo lo anterior es evidente que un sistema con las características descritas presenta una gran utilidad para el colectivo de estudiantes. Además, el uso de logica borrosa presenta claras ventajas para su desarrollo.
+        Con todo lo anterior es evidente que un modelo con las características descritas presenta una gran utilidad para el colectivo de estudiantes. Además, el uso de logica borrosa presenta claras ventajas para el desarrollo de este sistema.
 
     \chapter{Desarrollo del sistema}
     \label{chap:desarrollo}
-        Para esta práctica se va a utilizar el Fuzzy Logic Toolbox de MATLAB para crear un sistema de Mamdani Type1 FIS. Esta herramienta permite la selección
-        de variables de entrada y salida así como la definición de reglas difusas de manera sencilla y visual.
+        En este capítulo se describe el proceso de creación del sistema, incluyendo la elección de atributos de entrada, sus rangos y funciones de pertenencia, las etiquetas de la 
+        variable de salida, así como la definición de reglas difusas. 
+        
+        Todos los pasos de este proceso han venido guiados por el perfil elegido del estudiante, que tiene un bajo poder adquisitivo y busca un piso relativamente pequeño, cerca de 
+        paradas de transporte público y preferiblemente amueblado. Con estas características se han elegido un total de 7 atributos de entrada así como 16 reglas, que se considera
+        que pueden representar de manera precisa las preferencias de este estudiante.
+        Aún con el perfil ya definido como el principal, se considera un caso secundario en el que el usuario busca un piso de varias habitaciones que pueda compartir, 
+        lo cual resulta en algunas reglas adicionales en el proceso. 
 
-    \section{Variables de entrada y salida}
-        Se han utilizado las variables de entrada propuestas además de nuevas variables que se consideran que pueden ser importantes en la búsqueda de vivienda
-        del perfil seleccionado. Se han usado las siguientes entradas.
-        Precio: 
-        Tamaño:
-        Número de habitaciones:
-        Altura:
-        Amueblado:
-        Ascensor:
-        Transporte:
+        Para el desarrollo se va a utilizar el operador \textit{Fuzzy Logic Toolbox} de MATLAB para crear un sistema de Mamdani Type1 FIS. Esta herramienta permite la selección
+        de variables de entrada y salida así como la definición de reglas difusas de manera sencilla y visual. 
+
+    \section{Variables de entrada}
+        En este paso se ha comenzado con las variables de entrada propuestas, tras lo cual se han añadido nuevas variables que se consideran importantes en la búsqueda de vivienda
+        del perfil seleccionado. En todos los casos el rango de las variables ha sido definido mediante una búsqueda de los valores mínimos y máximos posibles de estas entre 
+        las viviendas en alquiler en la zona, aunque por la naturaleza de algunos de los atributos se ha expandido la función de pertenencia hasta el valor 0. 
+
+        Los conjuntos borrosos y sus funciones de pertenencia de cada atributo han sido definidos según las características de cada uno, teniendo el cuenta el rango así como los valores
+        medios de cada variable. Aún así, se ha asegurado en todos los casos con excepción de aquellos \textit{booleanos} que el mínimo número de etiquetas borrosas del atributo sea 3. 
+
+        Las variables utilizadas finalmente son las siguientes: 
+        \begin{itemize}
+            \item \textbf{Precio}: El precio de alquiler del inmueble en euros por metro cuadrado.
+
+            \item \textbf{Tamaño}: El tamaño en metros cuadrados del inmueble. 
+            
+            \item \textbf{Número de habitaciones}: El número de habitaciones de cualquier tipo total en la vivienda. 
+
+            \item \textbf{Altura}: Se refiere al piso en el que se encuentra el inmueble.
+            
+            \item \textbf{Amueblado}: Variable de entrada booleana que indica si el inmueble está amueblado.
+            
+            \item \textbf{Ascensor}: Variable booleana que corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
+
+            \item \textbf{Transporte}: La distancia media en minutos de la vivienda a la parada de transporte público más cercana.
+        \end{itemize}
+
+    \section{Variables de salida}
+
 
     \section{Definición de reglas difusas}
-    En este apartado se describen las reglas establecidas para el sistema. La definición de estas ha venido guiada por el perfil elegido del estudiante, que se 
-    considera que tiene un bajo poder adquisitivo y busca un piso relativamente pequeño, cerca de paradas de transporte público y preferiblemente amueblado. 
-    Aún con este perfil como el principal se considera un caso secundario en el que el usuario busca un piso de varias habitaciones que pueda compartir, 
-    lo cual resulta en algunas reglas adicionales. 
+    En este apartado se describen las reglas establecidas para el sistema.
 
     muchas habitaciones => se puede compartir piso.
     caro => poco recomendable porque el estudiante es pobre
