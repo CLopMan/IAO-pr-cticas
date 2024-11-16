@@ -7,7 +7,7 @@ ascensor (bool)
 tiempo a transporte público
 
 
-Piso 1: https://www.idealista.com/inmueble/106565852/
+*Piso 1: https://www.idealista.com/inmueble/106565852/
   13.51€/m²
   111m²
   3 habitaciones
@@ -26,7 +26,7 @@ Piso 1: https://www.idealista.com/inmueble/106565852/
   Tiene una cosa muy buena (precio y amueblado) y varias cosas ligeralmente malas que lo echan para atrás (tamaño y transporte público no a pie de puerta)
 
 
-Piso 2: https://www.idealista.com/inmueble/103969285/
+* Piso 2: https://www.idealista.com/inmueble/103969285/
   50€/m²
   18m²
   1 habitaciones
@@ -41,7 +41,7 @@ Piso 2: https://www.idealista.com/inmueble/103969285/
   - regla13: está más o menos lejos de tp
   - regla14: está más o menos medio de tp
 
-Piso 3: https://www.idealista.com/inmueble/104278344/
+* Piso 3: https://www.idealista.com/inmueble/104278344/
   12.17€/m²
   76m²
   1 habitación
@@ -55,6 +55,120 @@ Piso 3: https://www.idealista.com/inmueble/104278344/
   - regla6: amueblado y barato <
   - regla12: cerca de tp <
   - regla14: poco cerca de tp
+
+* Piso 6: https://www.idealista.com/inmueble/106224752/
+  16.84€/m²
+  95m²
+  4 habitaciones
+  2 planta
+  amueblada
+  con ascensor
+  1 min transporte público
+  [16.84 95 4 2 1 1 1]
+  - output 0.83
+  - regla2 <
+  - regla6 <
+  - regla12 <
+
+* Piso 7: https://www.idealista.com/inmueble/106137531/
+  15€/m²
+  160m²
+  4 habitaciones
+  0 planta
+  con ascensor
+  amueblada
+  4 min
+  [15 160 4 0 1 1 4]
+  Output: 0.528
+  regla3 <-- perjudica bastante que es grande
+  regla6 <-- ayuda mucho ser barato y amueblado
+  regla10
+  regla12 <-- ayuda un poco estar cerca, pero ayuda mas la regla6
+  regla14
+
+
+* Piso9: https://www.idealista.com/inmueble/106355273/
+  Precio: 14.47
+  Tamaño: 76
+  Numero de habitaciones: 2
+  Altura: 4
+  Amueblado: 0
+  Ascensor: 1
+  Transporte: 13
+  [14.47 76 2 4 0 1 13]
+  Output: 0.503
+  regla2 <--- suma que es barato y mediano
+  regla7 <--- no es amueblado pero barato, evita que baje la puntuacion
+  regla12
+  regla13
+  regla14
+  regla16 <--- castiga que es mediano sin amueblar
+
+* Piso10: https://www.idealista.com/inmueble/106107441/
+  Precio: 10.54
+  Tamaño: 140
+  Numero de habitaciones: 4
+  Altura: 1
+  Amueblado: 1
+  Ascensor: 1
+  Transporte: 8 min transporte público
+  [10.54 140 4 1 1 1 8]
+  Output: 0.565
+  regla3 <-- castiga que sea grande
+  regla6 <-- es barato y amueblado
+  regla10
+  regla12
+  regla13
+  regla14
+
+* Piso11: https://www.idealista.com/inmueble/102581910/
+  Precio: 33.87
+  Tamaño: 62
+  Numero de habitaciones: 1
+  Altura: 2
+  Amueblado: 1
+  Ascensor: 1
+  Transporte: 2
+  [33.87 62 1 2 1 1 2]
+  Output: 0.496
+  regla4 <-- es caro
+  regla12 <-- muy cerca de transporte
+  regla14 <-- apenas influye
+
+* Piso12: https://www.idealista.com/inmueble/96374938/
+  Precio: 16.67
+  Tamaño: 90
+  Numero de habitaciones: 2
+  Altura: 8
+  Amueblado: 0 <------------
+  Ascensor: 1
+  Transporte: 9
+  [16.67 90 2 8 0 1 9]
+  Output: 0.503
+  regla2 <--------- barato y mediano
+  regla7 <--------- barato pero no amueblado
+  regla12
+  regla13
+  regla14
+  regla16 <--------- castiga porque no es amueblado
+
+* Piso13: https://www.idealista.com/inmueble/105316199/
+  Precio: 11.05
+  Tamaño: 380 <-----------------
+  Numero de habitaciones: 5
+  Altura: 0
+  Amueblado: 0 <----------------
+  Ascensor: 0
+  Transporte: 11
+  [11.05 380 5 0 0 0 11]
+  Output: 0.37
+  regla3 <--------- castiga porque es grande
+  regla7 <--------- barato pero no amueblado
+  regla10
+  regla12
+  regla13
+  regla14
+  regla16 <--------- castiga porque no es amueblado
 
 Piso 4: https://www.idealista.com/inmueble/106562120/
   19.05€/m²
@@ -86,73 +200,6 @@ Piso 5: https://www.idealista.com/inmueble/106559777/
   - regla12 <
   - regla14
 
-Piso 6: https://www.idealista.com/inmueble/106224752/
-  16.84€/m²
-  95m²
-  4 habitaciones
-  2 planta
-  amueblada
-  con ascensor
-  1 min transporte público
-  [16.84 95 4 2 1 1 1]
-  - output 0.83
-  - regla2 <
-  - regla6 <
-  - regla12 <
-
-Piso 7: https://www.idealista.com/inmueble/106137531/
-  15€/m²
-  160m²
-  4 habitaciones
-  0 planta
-  con ascensor
-  amueblada
-  4 min
-
-Link: https://www.idealista.com/inmueble/106330042/
-  Precio: 18.65
-  Tamaño: 48
-  Numero de habitaciones: 1
-  Altura: 0
-  Amueblado: 1
-  Ascensor: 1
-  Transporte: 5
-
-Link: https://www.idealista.com/inmueble/106355273/
-  Precio: 14.47
-  Tamaño: 76
-  Numero de habitaciones: 2
-  Altura: 4
-  Amueblado: 0
-  Ascensor: 1
-  Transporte: 13
-
-Link: https://www.idealista.com/inmueble/106107441/
-  Precio: 10.54
-  Tamaño: 140
-  Numero de habitaciones: 4
-  Altura: 1
-  Amueblado: 1
-  Ascensor: 1
-  Transporte: 8 4 min transporte público
-
-Piso 7: https://www.idealista.com/inmueble/106137531/
-  15€/m²
-  160m²
-  4 habitaciones
-  0 planta
-  con ascensor
-  amueblada
-  4 min
-  [15 160 4 0 1 1 4]
-  Output: 0.528
-  regla3 <-- perjudica bastante que es grande
-  regla6 <-- ayuda mucho ser barato y amueblado
-  regla10
-  regla12 <-- ayuda un poco estar cerca, pero ayuda mas la regla6
-  regla14
-
-
 Piso8: https://www.idealista.com/inmueble/106330042/
   Precio: 18.65
   Tamaño: 48
@@ -168,85 +215,4 @@ Piso8: https://www.idealista.com/inmueble/106330042/
   regla12 <-- esta cerca de transporte
   regla14
 
-Piso9: https://www.idealista.com/inmueble/106355273/
-  Precio: 14.47
-  Tamaño: 76
-  Numero de habitaciones: 2
-  Altura: 4
-  Amueblado: 0
-  Ascensor: 1
-  Transporte: 13
-  [14.47 76 2 4 0 1 13]
-  Output: 0.503
-  regla2 <--- suma que es barato y mediano
-  regla7 <--- no es amueblado pero barato, evita que baje la puntuacion
-  regla12
-  regla13
-  regla14
-  regla16 <--- castiga que es mediano sin amueblar
 
-Piso10: https://www.idealista.com/inmueble/106107441/
-  Precio: 10.54
-  Tamaño: 140
-  Numero de habitaciones: 4
-  Altura: 1
-  Amueblado: 1
-  Ascensor: 1
-  Transporte: 8 min transporte público
-  [10.54 140 4 1 1 1 8]
-  Output: 0.565
-  regla3 <-- castiga que sea grande
-  regla6 <-- es barato y amueblado
-  regla10
-  regla12
-  regla13
-  regla14
-
-Piso11: https://www.idealista.com/inmueble/102581910/
-  Precio: 33.87
-  Tamaño: 62
-  Numero de habitaciones: 1
-  Altura: 2
-  Amueblado: 1
-  Ascensor: 1
-  Transporte: 2
-  [33.87 62 1 2 1 1 2]
-  Output: 0.496
-  regla4 <-- es caro
-  regla12 <-- muy cerca de transporte
-  regla14 <-- apenas influye
-
-Piso12: https://www.idealista.com/inmueble/96374938/
-  Precio: 16.67
-  Tamaño: 90
-  Numero de habitaciones: 2
-  Altura: 8
-  Amueblado: 0 <------------
-  Ascensor: 1
-  Transporte: 9
-  [16.67 90 2 8 0 1 9]
-  Output: 0.503
-  regla2 <--------- barato y mediano
-  regla7 <--------- barato pero no amueblado
-  regla12
-  regla13
-  regla14
-  regla16 <--------- castiga porque no es amueblado
-
-Piso13: https://www.idealista.com/inmueble/105316199/
-  Precio: 11.05
-  Tamaño: 380 <-----------------
-  Numero de habitaciones: 5
-  Altura: 0
-  Amueblado: 0 <----------------
-  Ascensor: 0
-  Transporte: 11
-  [11.05 380 5 0 0 0 11]
-  Output: 0.37
-  regla3 <--------- castiga porque es grande
-  regla7 <--------- barato pero no amueblado
-  regla10
-  regla12
-  regla13
-  regla14
-  regla16 <--------- castiga porque no es amueblado
