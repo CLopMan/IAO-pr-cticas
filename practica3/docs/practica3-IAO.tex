@@ -454,7 +454,14 @@ hmargin=3cm
         \end{itemize}
 
     \section{Variables de salida}
-
+    En este apartado se va a describir como se ha definido la variable objetivo "Recomendacion". Esta variable contiene cinco etiquetas borrosas: 
+    "Nada recomendable", "Poco recomendable", "Medianamente recomendable", "Recomendable" y "Muy recomendable". Estas represenrtan los niveles de 
+    recomendación del piso y serán las que se usarán en las reglas difusas. Aun así la salida que se le otorgará al usuario será un número entre 
+    0 y uno que indica el grado de recomendación, siendo 1 lo más recomendado y 0 lo menos. Esto se debe a que aunque el sistema funciona con 
+    etiquetas borrosas, el resultado pasa por un proceso de desborrisificacion antes de ser otrogado al usuario. Las 5 funciones de pertenencia 
+    tienen forma trapezoidal ya que se ha considerado que cada una de ellas tiene un rango en el que se asegura que son la etiqueta más 
+    representativa y por lo tanto un grado de pertenencia 1. Tambien tienen una distribución equitativa a lo largo de la variable ya que se ha 
+    decidido que cada una de las etiquetas deben cubrir un rango igual al resto.
 
     \section{Definición de reglas difusas}
     En este apartado se describen las reglas establecidas para el sistema, que han sido definidas a partir del perfil seleccionado. Cabe recalcar que aunque se comenzó con 17 reglas,
