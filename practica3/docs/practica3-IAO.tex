@@ -415,20 +415,11 @@ hmargin=3cm
         Las variables de entrada seleccionadas para el sistema son una
         combinación de las variables propuestas en el enunciado y otras nuevas
         que permiten representar elementos importantes en las preferencias del
-        perfil seleccionado. Para definir sus rangos, se ha realizado una
+        perfil seleccionado. Para definir sus rangos se ha realizado una
         búsqueda a través de \href{https://www.idealista.com/}{Idealista.com}
         con el fin de determinar los valores máximos y mínimos que alcanzan. En
         algunos casos ha sido necesario tomar un rango más amplio para que la
         función de pertenencia de los conjuntos cubriese el caso del valor 0.
-
-%        En este paso se ha comenzado con las variables de entrada propuestas,
-%        tras lo cual se han añadido nuevas variables que se consideran
-%        importantes en la búsqueda de vivienda del perfil seleccionado. En
-%        todos los casos el rango de las variables ha sido definido mediante una
-%        búsqueda de los valores mínimos y máximos posibles de estas entre las
-%        viviendas en alquiler en la zona, aunque por la naturaleza de algunos
-%        de los atributos se ha expandido la función de pertenencia hasta el
-%        valor 0.
 
         Los conjuntos borrosos y sus funciones de pertenencia han sido
         definidos según las características de cada uno, teniendo el cuenta el
@@ -457,9 +448,14 @@ hmargin=3cm
 
 
     \section{Definición de reglas difusas}
-    En este apartado se describen las reglas establecidas para el sistema, que han sido definidas a partir del perfil seleccionado. Cabe recalcar que aunque se comenzó con 17 reglas,
-    estas han sido modificadas y reducidas a 16 tras varias ejecuciones para poder conseguir un modelo preciso. Estos cambios sobretodo incluyen modificaciones de las etiquetas de salida,
-    al existir reglas que modificaban el resultado final suavizandolo en ejemplos extremos de viviendas. 
+
+    En este apartado se describen las reglas establecidas para el sistema, que
+    han sido definidas a partir del perfil seleccionado. Cabe recalcar que
+    aunque se comenzó con 17 reglas, estas han sido modificadas y reducidas a
+    16 tras varias ejecuciones para poder conseguir un modelo preciso. Estos
+    cambios sobretodo incluyen modificaciones de las etiquetas de salida,
+    debido a que el primer modelo tenída en exceso a dar resultados intermdios,
+    incluso para ejemplos extremos de viviendas.
 
     precio => caro mal, barato bien, medio depende de varios atributos, reglas con mucho peso
     tamaño => cuanto más pequeño mejor, con alta dependencia del número de habitaciones
