@@ -332,6 +332,7 @@ hmargin=3cm
 
     \chapter{Introducción y objetivo}
     \label{chap:intro}
+
         En este documento se recoge el desarrollo de la prácctica 3 de la
         asignatura \textit{Inteligencia Artificial en las Organizaciones}. El
         objetivo de este proyecto es crear un sistema de puntuación de inmuebles 
@@ -387,6 +388,7 @@ hmargin=3cm
 
     \chapter{Desarrollo del sistema}
     \label{chap:desarrollo}
+
         En este capítulo se describe el proceso de creación del sistema,
         incluyendo la elección de atributos de entrada, sus rangos y funciones
         de pertenencia, las etiquetas de la variable de salida y la
@@ -409,12 +411,30 @@ hmargin=3cm
         reglas difusas de manera sencilla y visual.
 
     \section{Variables de entrada}
-        En este paso se ha comenzado con las variables de entrada propuestas, tras lo cual se han añadido nuevas variables que se consideran importantes en la búsqueda de vivienda
-        del perfil seleccionado. En todos los casos el rango de las variables ha sido definido mediante una búsqueda de los valores mínimos y máximos posibles de estas entre 
-        las viviendas en alquiler en la zona, aunque por la naturaleza de algunos de los atributos se ha expandido la función de pertenencia hasta el valor 0. 
 
-        Los conjuntos borrosos y sus funciones de pertenencia de cada atributo han sido definidos según las características de cada uno, teniendo el cuenta el rango así como los valores
-        medios de cada variable. Aún así, se ha asegurado en todos los casos con excepción de aquellos \textit{booleanos} que el mínimo número de etiquetas borrosas del atributo sea 3. 
+        Las variables de entrada seleccionadas para el sistema son una
+        combinación de las variables propuestas en el enunciado y otras nuevas
+        que permiten representar elementos importantes en las preferencias del
+        perfil seleccionado. Para definir sus rangos, se ha realizado una
+        búsqueda a través de \href{https://www.idealista.com/}{Idealista.com}
+        con el fin de determinar los valores máximos y mínimos que alcanzan. En
+        algunos casos ha sido necesario tomar un rango más amplio para que la
+        función de pertenencia de los conjuntos cubriese el caso del valor 0.
+
+%        En este paso se ha comenzado con las variables de entrada propuestas,
+%        tras lo cual se han añadido nuevas variables que se consideran
+%        importantes en la búsqueda de vivienda del perfil seleccionado. En
+%        todos los casos el rango de las variables ha sido definido mediante una
+%        búsqueda de los valores mínimos y máximos posibles de estas entre las
+%        viviendas en alquiler en la zona, aunque por la naturaleza de algunos
+%        de los atributos se ha expandido la función de pertenencia hasta el
+%        valor 0.
+
+        Los conjuntos borrosos y sus funciones de pertenencia han sido
+        definidos según las características de cada uno, teniendo el cuenta el
+        rango así como los valores medios de cada variable. Aún así, se ha
+        asegurado en todos los casos que el mínimo número de etiquetas borrosas del
+        atributo sea 3, con excepción de las variables \textit{booleanas}.
 
         Las variables utilizadas finalmente son las siguientes: 
         \begin{itemize}
