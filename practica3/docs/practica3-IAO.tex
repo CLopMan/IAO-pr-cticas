@@ -335,7 +335,8 @@ hmargin=3cm
         En este documento se recoge el desarrollo de la prácctica 3 de la
         asignatura \textit{Inteligencia Artificial en las Organizaciones}. El
         objetivo de este proyecto es crear un sistema de puntuación de inmuebles 
-        basado en el perfil de un estudiante. Para ello se empleará un sistema de lógica borrosa.
+        basado en el perfil de un estudiante. Para ello se empleará un sistema
+        de lógica borrosa.
 
         La creación de las reglas del sistema se centrarán en el perfil de un
         estudiante que busque un piso para vivir en solitario durante sus
@@ -354,31 +355,58 @@ hmargin=3cm
 
         Adicionalmente, el uso de lógica borrosa presenta claras ventajas dada
         la naturaleza del problema:
-        \begin{itemize}
-            \item \textbf{Gestión de incertidumbre y ambigüedad}: a través de las funciones de pertenencia para cada etiqueta los sistemas basados en reglas borrosas son capaces de manejar datos ambigüos o incompletos. Esta es una característica fundamental para el sistema que se pretende construir.
+        \begin{itemize} \item \textbf{Gestión de incertidumbre y ambigüedad}: a
+        través de las funciones de pertenencia para cada etiqueta los sistemas
+        basados en reglas borrosas son capaces de manejar datos ambigüos o
+        incompletos. Esta es una característica fundamental para el sistema que
+        se pretende construir.
 
-            \item \textbf{Tolerancia a rangos y datos imprecisos}: dado que las variables están fuertemente ligadas a la opinión subjetiva de los usuarios, el uso de lógica borrosa permite que el sistema trabaje con valores como ``caro'' o ``lejos'' y rangos de valores que permiten representar la imprecisión inherente a valores subjetivos. 
-            \item \textbf{Flexibilidad}: las reglas de un sistema basado en reglas borrosas permiten ofrecer recomendaciones más realistas y ajustadas al usuario que un sistema que solo aplica umbrales rígidos.
+            \item \textbf{Tolerancia a rangos y datos imprecisos}: dado que las
+            variables están fuertemente ligadas a la opinión subjetiva de los
+            usuarios, el uso de lógica borrosa permite que el sistema trabaje
+            con valores como ``caro'' o ``lejos'' y rangos de valores que
+            permiten representar la imprecisión inherente a valores subjetivos.
 
-            \item \textbf{Combinación de múltiples criterios}: un sistema basado en lógica borrosa puede utilizar varios criterios (precio, tamaño, número de habitaciones...) a través del concepto de \textit{afinidad} de forma que las recomendaciones sean más realistas e informadas.
+            \item \textbf{Flexibilidad}: las reglas de un sistema basado en
+            reglas borrosas permiten ofrecer recomendaciones más realistas y
+            ajustadas al usuario que un sistema que solo aplica umbrales
+            rígidos.
+
+            \item \textbf{Combinación de múltiples criterios}: un sistema
+            basado en lógica borrosa puede utilizar varios criterios (precio,
+            tamaño, número de habitaciones...) a través del concepto de
+            \textit{afinidad} de forma que las recomendaciones sean más
+            realistas e informadas.
 
         \end{itemize}
 
-        Con todo lo anterior es evidente que un modelo con las características descritas presenta una gran utilidad para el colectivo de estudiantes. Además, el uso de logica borrosa presenta claras ventajas para el desarrollo de este sistema.
+        Con todo lo anterior es evidente que un modelo con las características
+        descritas presenta una gran utilidad para el colectivo de estudiantes.
+        Además, el uso de logica borrosa presenta claras ventajas para el
+        desarrollo de este sistema.
 
     \chapter{Desarrollo del sistema}
     \label{chap:desarrollo}
-        En este capítulo se describe el proceso de creación del sistema, incluyendo la elección de atributos de entrada, sus rangos y funciones de pertenencia, las etiquetas de la 
-        variable de salida, así como la definición de reglas difusas. 
+        En este capítulo se describe el proceso de creación del sistema,
+        incluyendo la elección de atributos de entrada, sus rangos y funciones
+        de pertenencia, las etiquetas de la variable de salida y la
+        definición de reglas difusas. 
         
-        Todos los pasos de este proceso han venido guiados por el perfil elegido del estudiante, que tiene un bajo poder adquisitivo y busca un piso relativamente pequeño, cerca de 
-        paradas de transporte público y preferiblemente amueblado. Con estas características se han elegido un total de 7 atributos de entrada así como 16 reglas, que se considera
-        que pueden representar de manera precisa las preferencias de este estudiante.
-        Aún con el perfil ya definido como el principal, se considera un caso secundario en el que el usuario busca un piso de varias habitaciones que pueda compartir, 
-        lo cual resulta en algunas reglas adicionales en el proceso. 
-
-        Para el desarrollo se va a utilizar el operador \textit{Fuzzy Logic Toolbox} de MATLAB para crear un sistema de Mamdani Type1 FIS. Esta herramienta permite la selección
-        de variables de entrada y salida así como la definición de reglas difusas de manera sencilla y visual. 
+        Todos los pasos de este proceso han venido guiados por el perfil
+        elegido del estudiante, caracterizado por un bajo poder adquisitivo y
+        la búsqueda de un piso relativamente pequeño, cerca de paradas de
+        transporte público y preferiblemente amueblado en el que poder vivir en
+        solitario hasta la finalización de sus estudios. Con estas
+        características se han elegido un total de 7 atributos de entrada así
+        como 16 reglas, que pueden representar de manera precisa las
+        preferencias de este estudiante.  Aunque se tratará como caso principal
+        un estudiante que busque un piso en solitario, también se contempla un
+        segundo caso en el que prefiera compartir piso. Esto se traduce en
+        algunas reglas adicionales dentro del sistema.  Para el desarrollo se
+        va a utilizar el operador \textit{Fuzzy Logic Toolbox} de MATLAB para
+        crear un sistema de Mamdani Type1 FIS. Esta herramienta permite la
+        selección de variables de entrada y salida así como la definición de
+        reglas difusas de manera sencilla y visual.
 
     \section{Variables de entrada}
         En este paso se ha comenzado con las variables de entrada propuestas, tras lo cual se han añadido nuevas variables que se consideran importantes en la búsqueda de vivienda
