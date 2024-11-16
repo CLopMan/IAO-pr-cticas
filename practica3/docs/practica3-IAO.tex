@@ -465,7 +465,7 @@ hmargin=3cm
                     \addplot[color=OliveGreen, mark=none] coordinates {(7,0)(25,0)(40,1)(50,1)} node[above, pos=0.9, yshift=5] {Caro};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Precio''}
+            \caption{Definición de la variable de entrada ``Precio''}
         \end{figure}
 
         \subsection{Tamaño}
@@ -503,7 +503,7 @@ hmargin=3cm
                     \addplot[color=OliveGreen, mark=none] coordinates {(18,0)(100,0)(200,1)(555,1)} node[above, pos=0.9, yshift=5] {Grande};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Tamaño''}
+            \caption{Definición de la variable de entrada ``Tamaño''}
         \end{figure}
 
         \subsection{Número de habitaciones}
@@ -541,7 +541,7 @@ hmargin=3cm
                     \addplot[color=OliveGreen, mark=none] coordinates {(0,0)(3,0)(4,1)(5,1)} node[above, pos=0.9, yshift=5] {Muchas};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Número de habitaciones''}
+            \caption{Definición de la variable de entrada ``Número de habitaciones''}
         \end{figure}
 
         \subsection{Altura}
@@ -579,7 +579,7 @@ hmargin=3cm
                     \addplot[color=OliveGreen, mark=none] coordinates {(-1,0)(7,0)(10,1)(22,1)} node[above, pos=0.9, yshift=5] {Alto};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Altura''}
+            \caption{Definición de la variable de entrada ``Altura''}
         \end{figure}
 
         \subsection{Amueblado}
@@ -615,7 +615,7 @@ hmargin=3cm
                     \addplot[color=red, mark=none] coordinates {(0,1)(0,0)(1,0)} node[above right, pos=0] {NO};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Amueblado''}
+            \caption{Definición de la variable de entrada ``Amueblado''}
         \end{figure}
 
         \subsection{Ascensor}
@@ -651,7 +651,7 @@ hmargin=3cm
                     \addplot[color=red, mark=none] coordinates {(0,1)(0,0)(1,0)} node[above right, pos=0] {NO};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Ascensor''}
+            \caption{Definición de la variable de entrada ``Ascensor''}
         \end{figure}
 
         \subsection{Tiempo a transporte público}
@@ -689,18 +689,63 @@ hmargin=3cm
                     \addplot[color=OliveGreen, mark=none] coordinates {(1,0)(5.83,0)(30,1)} node[above left, pos=1, yshift=5] {Lejos};
                 \end{axis}
             \end{tikzpicture}
-            \caption{Definición de la variable ``Tiempo a transporte público''}
+            \caption{Definición de la variable de entrada ``Tiempo a transporte público''}
         \end{figure}
 
     \section{Variables de salida}
-    En este apartado se va a describir como se ha definido la variable objetivo "Recomendacion". Esta variable contiene cinco etiquetas borrosas: 
-    "Nada recomendable", "Poco recomendable", "Medianamente recomendable", "Recomendable" y "Muy recomendable". Estas represenrtan los niveles de 
-    recomendación del piso y serán las que se usarán en las reglas difusas. Aun así la salida que se le otorgará al usuario será un número entre 
-    0 y uno que indica el grado de recomendación, siendo 1 lo más recomendado y 0 lo menos. Esto se debe a que aunque el sistema funciona con 
-    etiquetas borrosas, el resultado pasa por un proceso de desborrisificacion antes de ser otrogado al usuario. Las 5 funciones de pertenencia 
-    tienen forma trapezoidal ya que se ha considerado que cada una de ellas tiene un rango en el que se asegura que son la etiqueta más 
-    representativa y por lo tanto un grado de pertenencia 1. Tambien tienen una distribución equitativa a lo largo de la variable ya que se ha 
-    decidido que cada una de las etiquetas deben cubrir un rango igual al resto.
+    En este apartado se va a describir como se ha definido la variable objetivo
+    ``Recomendacion''. Esta variable contiene cinco etiquetas borrosas: ``Nada
+    recomendable'', ``Poco recomendable'', ``Medianamente recomendable'',
+    ``Recomendable'' y ``Muy recomendable''. Estas represenrtan los niveles de
+    recomendación del piso y serán las que se usarán en las reglas difusas. Aun
+    así la salida que se le otorgará al usuario será un número entre 0 y 1 que
+    indica el grado de recomendación, siendo 1 lo más recomendado y 0 lo menos.
+    Esto se debe a que aunque el sistema funciona con etiquetas borrosas, el
+    resultado pasa por un proceso de desborrisificacion antes de ser otrogado al
+    usuario. Las 5 funciones de pertenencia tienen forma trapezoidal ya que se
+    ha considerado que cada una de ellas tiene un rango en el que se asegura que
+    son la etiqueta más representativa y por lo tanto un grado de pertenencia 1.
+    Tambien tienen una distribución equitativa a lo largo de la variable ya que
+    se ha decidido que cada una de las etiquetas deben cubrir un rango igual al
+    resto.
+
+    \begin{table}[h]
+        \center
+        \begin{tabular}{@{}ccc@{}}
+            \toprule
+            \textbf{Etiqueta} & \textbf{Tipo de función} & \textbf{Parámetros} \\
+            \midrule
+            Nada recomendable         & Trapezoide & [0 0 0.02083 0.1875] \\
+            Poco recomendable         & Trapezoide & [0.0625 0.2292 0.2708 0.4375] \\
+            Medianamente recomendable & Trapezoide & [0.3125 0.4792 0.5208 0.6875] \\
+            Recomendable              & Trapezoide & [0.5625 0.7292 0.7708 0.9375] \\
+            Muy recomendable          & Trapezoide & [0.8125 0.9792 1 1]   \\
+            \bottomrule
+        \end{tabular}
+        \caption{Etiquetas de la variable de salida ``Recomendación''}
+    \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.5cm,
+                title={Definición de la variable ``Recomendación''},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.25,
+            ]
+                \addplot[color=blue, mark=none] coordinates {(0,1)(0.02083,1)(0.1875,0)(1,0)} node[above right, pos=0, yshift=5] {Nada recomendable};
+                \addplot[color=red, mark=none] coordinates {(0,0)(0.0625,0)(0.2292,1)(0.2708,1)(0.4375,0)(1,0)} node[below, pos=0.4075, yshift=-105] {\small Poco recomendable};
+                \addplot[color=OliveGreen, mark=none] coordinates {(0,0)(0.3125,0)(0.4792,1)(0.5208,1)(0.6875,0)(1,0)} node[above, pos=0.5, yshift=22.5] {Medianamente recomendable};
+                \addplot[color=darkgray, mark=none] coordinates {(0,0)(0.5625,0)(0.7292,1)(0.7708,1)(0.9375,0)(1,0)} node[below, pos=0.5925, yshift=-105] {\small Recomendable};
+                \addplot[color=Orange, mark=none] coordinates {(0,0)(0.8125,0)(0.9792,1)(1,1)} node[above left, pos=1, yshift=3] {Muy recomendable};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Definición de la variable de salida ``Recomendación''}
+    \end{figure}
 
     \section{Definición de reglas difusas}
 
