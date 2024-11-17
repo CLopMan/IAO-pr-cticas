@@ -769,57 +769,89 @@ hmargin=3cm
     Estas son reglas con peso máximo que buscan clasificar las viviendas según su precio y tamaño.
 
     \begin{itemize}
-        \item \texttt{IF precio IS barato AND tamaño IS pequeño THEN recomendación IS muy recomendable}
-        \item \texttt{IF precio IS barato AND tamaño IS medio THEN recomendación IS recomendable}
-        \item \texttt{IF tamaño IS grande THEN recomendación IS poco recomendable}
-        \item \texttt{IF precio IS caro THEN recomendación IS poco recomendable}
+        \item \texttt{IF Precio IS barato AND Tamaño IS pequeño THEN Recomendación IS Muy recomendable}
+        \item \texttt{IF Precio IS barato AND Tamaño IS medio THEN Recomendación IS Recomendable}
+        \item \texttt{IF Tamaño IS grande THEN Recomendación IS Poco recomendado}
+        \item \texttt{IF Precio IS caro THEN Recomendación IS Poco recomendado}
     \end{itemize}
 
-     Estas reglas beneficiarán aquellas viviendas con un menor precio y tamaño, siendo 
+    Beneficiarán aquellas viviendas con un menor precio y tamaño, siendo 
     esta decisión justificada por el poco poder asquisitivo y la búsqueda de un piso para vivir solo
     del perfil del estudiante. Además, se considera que estos dos atributos son los que más peso 
     pueden tener sobre la decisión final de elegir el inmueble, lo cual explica el gran peso de 
     estas reglas.
 
-    \subsection{Reglas relacionadas conel estado de amueblación de la vivienda}
+    \subsection{Reglas relacionadas con el estado de amueblación de la vivienda}
+    Estas son reglas con peso máximo que buscan eliminar viviendas no amuebladas a no 
+    ser que estas cuenten con muy buen precio. Se considera que el estudiante 
+    promedio no puede permitirse amueblar para uno o dos años de alquiler.
 
-    - regla 5,6,7,16
-    Estas reglas tienen relación con el estado de amueblación de la vivienda, considerandose que el 
-    estudiante promedio no puede permitirse amueblar la vivienda para uno o dos años. 
-    Esta caracteristica tiene relación directa con el precio final de vivir en el lugar elegido, 
+    \begin{itemize}
+        \item \texttt{IF Precio IS caro AND Amueblado IS NO THEN Recomendación IS No recomendado}
+        \item \texttt{IF Precio IS barato AND Amueblado IS SI THEN Recomendación IS Muy recomendable}
+        \item \texttt{IF Precio IS barato AND Amueblado IS NO THEN Recomendación IS Medianamente recomendable}
+        \item \texttt{IF Tamaño IS NOT pequeño AND Amueblado IS NO THEN Recomendación IS No recomendado}
+    \end{itemize}
+
+    La amueblación tiene relación directa con el precio final de vivir en el lugar elegido, 
     además del coste de tiempo extra que conlleva. Por lo tanto, estas reglas contemplan casos en 
     los que la vivienda no esté amueblada en relación con su precio así como su tamaño. Cabe recalcar
-    que la regla 16 se añadió posteriormente para cubrir esta última relación, considerandose que el 
-    tamaño aumenta de manera exponencial el coste de necesitar amueblar la vivienda. Así, la mayoría 
-    de estas reglas cuentan con el peso máximo, con la excepción de los pisos baratos no amueblados, ya que un
-    estudiante podría plantearse una vivienda no amueblada si el precio adicional que esto conlleva 
-    se ve balanceado por el bajo precio del alquiler.
+    que la última regla se añadió posteriormente para cubrir esta última relación, considerandose que el 
+    tamaño aumenta de manera exponencial el coste de necesitar amueblar la vivienda. La única excepción
+    son los pisos baratos no amueblados, ya que un estudiante podría plantearse una vivienda no amueblada 
+    si el precio adicional que esto conlleva se ve balanceado por el bajo precio del alquiler. Esta regla, 
+    al ser una excepción, cuenta con un peso ligeramente menor al resto. 
 
-    - regla 8,9,10
+    \subsection{Reglas para el caso de compartir piso}
     Estas reglas buscan reflejar la opción de compartir piso, pero con un peso mucho menor ya que esto 
-    es el perfil secundario considerado. La regla 8 en particular cuenta con recomendación negativa, 
-    razonando que si una vivienda es pequeña y tiene muchas habitaciones estas serán prácticamente 
-    inhabitables. Así, solo se considera de manera positiva aquellos inmuebles de tamaño grande o mediano
-    con un número mayor de habitaciones.
+    es el perfil secundario considerado. 
 
-    - regla 11
-    Caso eliminativo de un piso muy alto si este no tiene ascensor. La altura empieza a 
-    considerarse ``alta'' si la vivienda se encuentra a partir del piso sexto, lo que sin ascensor 
-    conlleva un esfuerzo físico diario que se considera excesivo para cualquier persona promedio. 
-    Al ser eliminativa cuenta con peso máximo.
+    \begin{itemize}
+        \item \texttt{IF Tamaño IS pequeño AND n habitaciones IS muchas THEN Recomendación IS Poco recomendado}
+        \item \texttt{IF Tamaño IS medio AND n habitaciones IS medio THEN Recomendación IS Recomendable}
+        \item \texttt{IF Tamaño IS grande AND n habitaciones IS muchas THEN Recomendación IS Medianamente recomendable}
+    \end{itemize}
 
-    - regla 12,13,14
-    Son reglas en relación con el transporte público. Aunque tienen un peso algo menor al de otras
+    La primera regla en particular cuenta con recomendación negativa, razonando que si una vivienda es pequeña 
+    y tiene muchas habitaciones estas serán prácticamente inhabitables. Así, solo se considera de manera 
+    positiva aquellos inmuebles de tamaño grande o mediano con un número mayor de habitaciones.
+
+    \subsection{Regla sobre la altura y la presencia de ascensor en el complejo}
+    Caso eliminativo con peso máximo de un piso muy alto si este no tiene ascensor. 
+
+    \begin{itemize}
+        \item \texttt{IF Altura IS alto AND Ascensor IS NO THEN Recomendación IS No recomendado}
+    \end{itemize}
+
+    La altura empieza a considerarse ``alta'' si la vivienda se encuentra a partir del piso sexto, 
+    lo que sin ascensor conlleva un esfuerzo físico diario que se considera excesivo para cualquier 
+    persona promedio.
+
+    \subsection{Reglas relacionadas con la distancia al transporte público desde la vivienda}
+    Son reglas en relación con el transporte público.
+
+    \begin{itemize}
+        \item \texttt{IF Cercanía tp IS cerca THEN Recomendación IS Muy recomendable}
+        \item \texttt{IF Cercanía tp IS lejos THEN Recomendación IS Poco recomendado}
+        \item \texttt{IF Cercanía tp IS medio THEN Recomendación IS Medianamente recomendable}
+    \end{itemize}
+    
+    Aunque tienen un peso algo menor al de otras
     reglas, se considera que aquellos inmuebles cercanos a transporte público deberían ser mucho 
     más recomendados que los que se encuentran excesivamente lejos. Esta regla viene justificada
     por la importancia del transporte público para el día a día de un estudiante, que suele no contar 
     con un medio de transporte propio.
 
-    - Regla 15
+    \subsection{Regla para identificar el caso de un estudio}
     Se trata de una regla que combina tres atributos distintos y permite que un piso de precio más 
-    alto en muy buenas condiciones de posicionamiento y tamaño pueda ser más recomendado. Esta regla busca 
-    identificar los pisos que son estudios, siendo estos una muy buena opción para estudiantes aún con 
-    un precio por metro cuadrado más alto de lo habitual. 
+    alto en muy buenas condiciones de posicionamiento y tamaño pueda ser más recomendado.
+
+    \begin{itemize}
+        \item \texttt{IF Precio IS medio AND Tamaño IS pequeño AND Cercanía tp IS cerca THEN Recomendación IS Recomendable}
+    \end{itemize}
+
+    Esta regla busca identificar los pisos que son estudios, siendo estos una muy buena opción 
+    para estudiantes aún con un precio por metro cuadrado más alto de lo habitual. 
 
     \chapter{Listado de propiedades}
     \label{chap:propiedades}
