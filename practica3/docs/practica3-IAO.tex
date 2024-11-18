@@ -405,7 +405,9 @@ hmargin=3cm
         preferencias de este estudiante. Aunque se tratará como caso principal
         un estudiante que busque un piso en solitario, también se contempla un
         segundo caso en el que prefiera compartir piso. Esto se traduce en
-        algunas reglas adicionales dentro del sistema. Para el desarrollo se va
+        algunas reglas adicionales dentro del sistema. 
+        
+        Para el desarrollo se va
         a utilizar el operador \textit{Fuzzy Logic Toolbox}~\cite{fuzzy-docs}
         de MATLAB para crear un sistema de Mamdani Type1 FIS. Esta herramienta
         permite la selección de variables de entrada y salida así como la
@@ -433,7 +435,8 @@ hmargin=3cm
         \subsection{Precio}
         Esta variable representa el precio de alquiler del inmueble en euros por metro cuadrado (€$/m^2$).
         Tiene un rango de 7 a 50, y se han utilizado 3 etiquetas para representar este valor: ``barato'', ``medio'' y ``caro''.
-        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta el poder adquisitivo nuestro perfil y el rango de valores encontrado durante el estudio inicial de los datos.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta el poder adquisitivo del perfil
+         y el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -469,10 +472,17 @@ hmargin=3cm
             \caption{Definición de la variable de entrada ``Precio''}
         \end{figure}
 
+        Se utilizan funciones trapezoidales para el primer y último conjunto ya que se considera que hasta y a partir de 
+        cierto precio se debería clasificar todo como barato o caro, respectivamente. Esto permite seguridad en 
+        estas secciones de una \textit{fuzzificación} correcta. La etiqueta medio, sin embargo, se considera que no tiene
+        un rango de valores en los que debería ser fija, por lo que se utiliza una función triangular para permitir que 
+        siempre se considere en cierta medida. 
+
         \subsection{Tamaño}
         Esta variable representa el tamaño en metros cuadrados ($m^2$) del inmueble.
-        Tiene un rango de 18 a 555, y se han utilizado 3 etiquetas para representar este valor: ``pequeño'', ``medio'' y ``grande''.
-        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta tamaño que necesitaría nuestro perfil para vivir solo y el rango de valores encontrado durante el estudio inicial de los datos.
+        Tiene un rango de 18 a 555 metros, y se han utilizado 3 etiquetas para representar este valor: ``pequeño'', ``medio'' y ``grande''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta tamaño que necesitaría el perfil para vivir solo,
+         así como el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -508,10 +518,14 @@ hmargin=3cm
             \caption{Definición de la variable de entrada ``Tamaño''}
         \end{figure}
 
+        El tipo de función de pertenencia sigue la misma lógica que en la variable anterior. 
+
         \subsection{Número de habitaciones}
         Esta variable representa el número de habitaciones de cualquier tipo total en la vivienda.
-        Tiene un rango de 0 a 5, y se han utilizado 3 etiquetas para representar este valor: ``pocas'', ``medio'' y ``muchas''.
-        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta las necesidades de nuestro perfil para vivir solo y el rango de valores encontrado durante el estudio inicial de los datos.
+        Tiene un rango de 0 a 5 dividido en 3 etiquetas: ``pocas'', ``medio'' y ``muchas''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta las necesidades del perfil para vivir solo
+         y el rango de valores encontrado durante el estudio inicial de los datos. El tipo de funciones sigue la misma lógica
+         que en los atributos anteriores.
 
         \begin{table}[h]
             \center
@@ -588,7 +602,7 @@ hmargin=3cm
         \end{figure}
 
         \subsection{Amueblado}
-        Esta variable representa una variable booleana que indica si el inmueble está amueblado.
+        Esta variable representa un valor \textit{booleano} que indica si el inmueble está amueblado.
         Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
         Además, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
 
@@ -625,9 +639,9 @@ hmargin=3cm
         \end{figure}
 
         \subsection{Ascensor}
-        Esta variable representa una variable booleana que se corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
+        Esta variable representa un valor \textit{booleano} que se corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
         Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
-        Además, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
+        Una vez más, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para las etiquetas.
 
         \begin{table}[h]
             \center
@@ -664,7 +678,8 @@ hmargin=3cm
         \subsection{Tiempo a transporte público}
         Esta variable representa la distancia medida en minutos de la vivienda a la parada de transporte público más cercana.
         Tiene un rango de 1 a 30, y se han utilizado 3 etiquetas para representar este valor: ``cerca'', ``medio'' y ``lejos''.
-        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que nuestro perfil necesita viajar diariamente sin tener vehículo propio, y el rango de valores encontrado durante el estudio inicial de los datos.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que el perfil necesita viajar 
+        diariamente sin tener vehículo propio, así como el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
             \center
@@ -700,20 +715,24 @@ hmargin=3cm
             \caption{Definición de la variable de entrada ``Tiempo a transporte público''}
         \end{figure}
 
+        En este caso se han utilizado funciones triangulares para todos los conjuntos, ya que se considera que la distancia
+         depende completamente de la definición de cada persona. Así, se busca en todo momento permitir probabilidad de 
+        pertenencia a varias funciones. 
+
     \section{Variable de salida}
     En este apartado se va a describir como se ha definido la variable objetivo
     ``Recomendacion''. Esta variable contiene cinco etiquetas borrosas: ``Nada
     recomendable'', ``Poco recomendable'', ``Medianamente recomendable'',
-    ``Recomendable'' y ``Muy recomendable''. Estas represenrtan los niveles de
+    ``Recomendable'' y ``Muy recomendable''. Estas representan los niveles de
     recomendación del piso y serán las que se usarán en las reglas difusas. Aun
     así la salida que se le otorgará al usuario será un número entre 0 y 1 que
     indica el grado de recomendación, siendo 1 lo más recomendado y 0 lo menos.
     Esto se debe a que aunque el sistema funciona con etiquetas borrosas, el
-    resultado pasa por un proceso de desborrisificacion antes de ser otrogado al
+    resultado pasa por un proceso de desborrisificacion antes de ser otorgado al
     usuario. Las 5 funciones de pertenencia tienen forma trapezoidal ya que se
-    ha considerado que cada una de ellas tiene un rango en el que se asegura que
-    son la etiqueta más representativa y por lo tanto un grado de pertenencia 1.
-    Tambien tienen una distribución equitativa a lo largo de la variable ya que
+    considera que cada una de ellas tiene un rango en el que se asegura que
+    son la etiqueta más representativa, y por lo tanto cuentan con un grado de pertenencia 1.
+    Tienen una distribución equitativa a lo largo de la variable ya que
     se ha decidido que cada una de las etiquetas deben cubrir un rango igual al
     resto.
 
@@ -856,10 +875,10 @@ hmargin=3cm
     \chapter{Listado de propiedades}
     \label{chap:propiedades}
     En este apartado se describen las propiedades utilizadas para validar el
-    modelo desarrollado. Para cada una, se indican los atributos relevantes para
+    modelo desarrollado. Para cada una se indican los atributos relevantes para
     la entrada del modelo, un enlace a su anuncio en
     \href{https://www.idealista.com}{idealista}, y el nivel de recomendación
-    dado por el modelo
+    dado por el modelo.
 
     \begin{table}[h]
         \center
@@ -880,7 +899,7 @@ hmargin=3cm
         \end{tabular}
         \caption{Listado de propiedades evaluadas - 1}
     \end{table}
-    \footnotetext[1]{Para los atributos booleanos, se ha utilizado un valor de 1 para representar el valor ``verdadero'' y un valor de 0 para el valor ``falso''}
+    \footnotetext[1]{Para los atributos booleanos se ha utilizado un valor de 1 para representar el valor ``verdadero'' y un valor de 0 para el valor ``falso''}
     \begin{table}[h]
         \center
         \begin{tabular}{|c|ccc|}
@@ -959,7 +978,7 @@ hmargin=3cm
 
     \section{Propiedad 1}
     
-    Esta propiedad ha obtenido un puntaje de recomendación de $0.709$. Las reglas activadas para esta propiedad han sido las siguientes: 
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.709$. Las reglas activadas han sido las siguientes: 
     \begin{itemize}
         \item Regla 2
         \item Regla 3
@@ -967,11 +986,11 @@ hmargin=3cm
         \item Regla 12
         \item Regla 14
     \end{itemize}
-    Su alta puntuación se debe principalmente la influencia de la regla 6,
+    Su alta puntuación se debe principalmente a la influencia de la regla 6,
     aunque también contribuyen positivamente las reglas 12 y 14 (cercanía al
     transporte público). El centroide se desplaza ligeramente a la izquierda
     debido a la influencia de las reglas 2 y 3. Se deduce entonces que la
-    recomendación no es superrior debido al tamaño del piso.
+    recomendación no es superior debido al tamaño del piso.
 
     A continuación se adjunta el resultado de la ejecución:
     \begin{figure}[H]
@@ -995,7 +1014,7 @@ hmargin=3cm
 
     \section{Propiedad 2}
     
-    Esta propiedad ha obtenido un puntaje de recomendación de $0.414$. Las reglas activadas para esta propiedad han sido las siguientes: 
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.414$. Las reglas activadas han sido las siguientes: 
     \begin{itemize}
         \item Regla 4
         \item Regla 12
@@ -1007,8 +1026,8 @@ hmargin=3cm
     las reglas 12, 13 y 14, relacionadas con la cercanía al transporte público.
     Estas reglas desplazan ligeramente el centroide a la derecha, logrando una
     puntuación algo mayor. Sin embargo, estas últimas reglas cuentan con un
-    peso menor que la primera, lo que hace del resultado una consecuencia
-    principalmente de la regla 4.
+    peso menor que la primera, lo que hace del resultado
+    principalmente una consecuencia de la regla 4.
 
     A continuación se adjunta el resultado de la ejecución:
     \begin{figure}[H]
@@ -1073,10 +1092,10 @@ hmargin=3cm
     \end{itemize}
     
     Este es el inmueble con puntuación más alta. Esto se debe a que activa
-    exclusivamente reglas cuyo consucuente es \texttt{Recomendado=Muy
+    exclusivamente reglas cuyo consecuente es \texttt{Recomendado=Muy
     Recomendable} o \texttt{Recomendable}. Si se observan detenidamente sus
     características se aprecia que se trata de una vivienda relativamente
-    pequeña, barata y amueblada; características fundamentales que se buscan
+    pequeña, barata y amueblada; características fundamentales que son buscadas
     por los estudiantes.
 
     A continuación se adjunta el resultado de la ejecución:
@@ -1109,9 +1128,9 @@ hmargin=3cm
         \item Regla 14
     \end{itemize}
 
-    Este inmueble tiene una puntuación intermedia debido a que activa reglas de
+    Este inmueble tiene una puntuación intermedia ya que activa reglas de
     gran peso tanto positivas (reglas 6 y 12) como negativas (reglas 3 y 14).
-    Se aprecia que el tamaño perjudica en gran medida al inmueble mientras que
+    Se aprecia que el tamaño perjudica en gran medida al inmueble, mientras que
     su cercanía al transporte público, su precio y el hecho de que sea
     amueblado lo beneficia.
 
@@ -1137,7 +1156,7 @@ hmargin=3cm
      
     \section{Propiedad 6}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.503$. Las
-    reglas activadas para esta propiedad han sido las siguientes: 
+    reglas activadas han sido las siguientes: 
     \begin{itemize}
         \item Regla 2
         \item Regla 7
@@ -1148,8 +1167,8 @@ hmargin=3cm
     \end{itemize}
 
     Al igual que la propiedad anterior, se obtiene una puntuación intermedia.
-    Esto se debe principalmente al estado de amueblación de la vivienda, que
-    castiga severamente el no estar amueblado (regla 16). Adicionalmente, su
+    Esto se debe principalmente al estado de amueblación de la vivienda, que la
+    castiga severamente al no estar amueblada (regla 16). Adicionalmente, su
     precio, cercanía al transporte público y su tamaño compensan positivamente
     la puntuación.
 
@@ -1175,7 +1194,7 @@ hmargin=3cm
 
     \section{Propiedad 7}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.565$. Las
-    reglas activadas para esta propiedad han sido las siguiente:
+    reglas activadas han sido las siguiente:
     \begin{itemize}
         \item Regla 3
         \item Regla 6
