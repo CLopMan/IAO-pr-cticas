@@ -700,7 +700,7 @@ hmargin=3cm
             \caption{Definición de la variable de entrada ``Tiempo a transporte público''}
         \end{figure}
 
-    \section{Variables de salida}
+    \section{Variable de salida}
     En este apartado se va a describir como se ha definido la variable objetivo
     ``Recomendacion''. Esta variable contiene cinco etiquetas borrosas: ``Nada
     recomendable'', ``Poco recomendable'', ``Medianamente recomendable'',
@@ -900,7 +900,7 @@ hmargin=3cm
         \end{tabular}
         \caption{Listado de propiedades evaluadas - 2}
     \end{table}
-    \begin{table}[h]
+    \begin{table}[H]
         \center
         \begin{tabular}{|c|ccc|}
             \hline
@@ -922,6 +922,200 @@ hmargin=3cm
 
     \chapter{Análisis de resultados}
     \label{chap:resultados}
+
+    En este capítulo se describirán los resultados obtenidos durante la
+    ejecución del sistema para las 10 propiedades especificadas en el capítulo
+    anterior. Adicionalmente, se analizarán dichos resultados con el fin de
+    determinar la efectividad del sistema.
+
+    Para facilitar la legibilidad del documento se resumen todas las reglas en la siguiente tabla:
+
+    \begin{table}[H]
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \textbf{regla} & \textbf{Condición} & \textbf{Recomendación}\\
+        \midrule
+        1  & \texttt{Precio=barato}$\land$\texttt{Tamaño=Pequeño}            & \texttt{Muy recomendable}\\
+        2  & \texttt{Precio=barato}$\land$\texttt{Tamaño=Medio}              & \texttt{Recomendable}\\
+        3  & \texttt{Tamaño=grande}                                        & \texttt{Poco recomendable}\\
+        4  & \texttt{Precio=caro}                                          & \texttt{No Recomendado}\\
+        5  & \texttt{Precio=caro}$\land$\texttt{Amueblado=NO}                & \texttt{No Recomendado}\\
+        6  & \texttt{Precio=barato} $\land$ \texttt{Amueblado=SI}              & \texttt{Muy recomendable}\\
+        7  & \texttt{Precio=barato} $\land$ \texttt{Amueblado=NO}              & \texttt{Med. recomendable}\\
+        8  & \texttt{Tamaño=pequeño} $\land$ \texttt{n\_habitaciones=muchas}   & \texttt{Poco recomendable}\\
+        9  & \texttt{Tamaño=medio} $\land$ \texttt{n\_habitaciones=medio}      & \texttt{Recomendable}\\
+        10 & \texttt{Tamaño=grande} $\land$ \texttt{n\_habitaciones=muchas}    & \texttt{Med. Recomendable}\\
+        11 & \texttt{Altura=alto} $\land$ \texttt{ascensor=NO}                 & \texttt{Recomendable}\\
+        12 & \texttt{Cercanía\_tp=cerca}                                   & \texttt{Muy recomendable}\\
+        13 & \texttt{Cercanía\_tp=lejos}                                   & \texttt{No recomendado}\\
+        14 & \texttt{Cercanía\_tp=medio}                                   & \texttt{Med. recomendable}\\
+        15 & \texttt{Precio=medio} $\land$ \texttt{Tamaño=pequeño} $\land$ \texttt{Cercanía\_tp=cerca}      & \texttt{Recomendable}\\
+        16 & \texttt{Tamaño!=pequeño} $\land$ \texttt{Amueblado=NO}           & \texttt{No Recomendado}\\
+
+        \bottomrule
+    \end{tabular}
+    \caption{Resumen de reglas numeradas}
+    \end{table}
+
+    \section{Propiedad 1}
+    
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.709$. Las reglas activadas para esta propiedad han sido las siguientes: 
+    \begin{itemize}
+        \item Regla 2
+        \item Regla 3
+        \item Regla 6
+        \item Regla 12
+        \item Regla 14
+    \end{itemize}
+    Su alta puntuación se debe principalmente la influencia de la regla 6,
+    aunque también contribuyen positivamente las reglas 12 y 14 (cercanía al
+    transporte público). El centroide se desplaza ligeramente a la izquierda
+    debido a la influencia de las reglas 2 y 3. Se deduce entonces que la
+    recomendación no es superrior debido al tamaño del piso.
+
+    \section{Propiedad 2}
+    
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.414$. Las reglas activadas para esta propiedad han sido las siguientes: 
+    \begin{itemize}
+        \item Regla 4
+        \item Regla 12
+        \item Regla 13
+        \item Regla 14
+    \end{itemize}
+    Su baja puntuación se debe principalmente a la influencia de la regla 4,
+    que penaliza el alto precio de la vivienda. Adicionalmente, se han activado
+    las reglas 12, 13 y 14, relacionadas con la cercanía al transporte público.
+    Estas reglas desplazan ligeramente el centroide a la derecha, logrando una
+    puntuación algo mayor. Sin embargo, estas últimas reglas cuentan con un
+    peso menor que la primera, lo que hace del resultado una consecuencia
+    principalmente de la regla 4.
+
+    \section{Propiedad 3}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.789$. Las reglas activadas para esta propiedad han sido las siguientes: 
+    \begin{itemize}
+        \item Regla 2
+        \item Regla 6
+        \item Regla 12
+        \item Regla 14
+    \end{itemize}
+
+    Su puntuación es considerablemente alta, debida principalmente a las reglas
+    6 y 12. Comparándola con la primera propiedad, es destacable que este
+    inmueble no activa la regla 4. Esto hace que su puntuación sea mayor al
+    tratarse de un piso de tamaño medio.
+
+    \section{Propiedad 4}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.830$. Las reglas activadas para esta propiedad han sido las siguientes: 
+    \begin{itemize}
+        \item Regla 2
+        \item Regla 6
+        \item Regla 12
+    \end{itemize}
+    
+    Este es el inmueble con puntuación más alta. Esto se debe a que activa
+    exclusivamente reglas cuyo consucuente es \texttt{Recomendado=Muy
+    Recomendable} o \texttt{Recomendable}. Si se observan detenidamente sus
+    características se aprecia que se trata de una vivienda relativamente
+    pequeña, barata y amueblada; características fundamentales que se buscan
+    por los estudiantes.
+
+    \section{Propiedad 5}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.528$. Las reglas activadas para esta propiedad han sido las siguientes:
+    \begin{itemize}
+        \item Regla 3
+        \item Regla 6
+        \item Regla 10
+        \item Regla 12
+        \item Regla 14
+    \end{itemize}
+
+    Este inmueble tiene una puntuación intermedia debido a que activa reglas de
+    gran peso tanto positivas (reglas 6 y 12) como negativas (reglas 3 y 14).
+    Se aprecia que el tamaño perjudica en gran medida al inmueble mientras que
+    su cercanía al transporte público, su precio y el hecho de que sea
+    amueblado lo beneficia.
+     
+    \section{Propiedad 6}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.503$. Las
+    reglas activadas para esta propiedad han sido las siguientes: 
+    \begin{itemize}
+        \item Regla 2
+        \item Regla 7
+        \item Regla 12
+        \item Regla 13
+        \item Regla 14
+        \item Regla 16
+    \end{itemize}
+
+    Al igual que la propiedad anterior, se obtiene una puntuación intermedia.
+    Esto se debe principalmente al estado de amueblación de la vivienda, que
+    castiga severamente el no estar amueblado (regla 16). Adicionalmente, su
+    precio, cercanía al transporte público y su tamaño compensan positivamente
+    la puntuación.
+
+    \section{Propiedad 7}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.565$. Las
+    reglas activadas para esta propiedad han sido las siguiente:
+    \begin{itemize}
+        \item Regla 3
+        \item Regla 6
+        \item Regla 10
+        \item Regla 12
+        \item Regla 13
+        \item Regla 14
+    \end{itemize}
+
+    Este inmueble ha recibido una puntuación intermedia. Su tamaño es castigado
+    por la regla 3 mientras que su estado de amueblación y precio suben su
+    puntuación. Adicionalmente la cercanía al transporte público concentra el
+    centroide en la parte más central.
+
+    \section{Propiedad 8}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.496$. Las
+    reglas activadas para esta propiedad han sido las siguiente:
+    \begin{itemize}
+        \item Regla 4
+        \item Regla 12
+        \item Regla 14
+    \end{itemize}
+
+    Se trata de un inmueble con una puntuación media-baja. La regla 4 influye
+    negativamente sobre la puntuación debido al alto precio de la vivienda.
+    Esta influencia es ligeramente compensada por la cercanía al transporte
+    público (regla 12). La regla 14 apenas tiene influencia sobre el resultado.
+
+    \section{Propiedad 9}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.503$. Las
+    reglas activadas para esta propiedad han sido las siguiente:
+    \begin{itemize}
+        \item Regla 
+        \item Regla 12
+        \item Regla 14
+    \end{itemize}
+    
+    De nuevo, se tata de un inmueble con una puntuación intermedia debida
+    principalmente al estado de amueblación de la vivienda. Su tamaño, precio y
+    cercanía al transporte público influyen positivamente en la valoración de
+    la vivienda. No obstante, su estado no amueblado castiga la puntuación.
+
+    \section{Propiedad 10}
+    Esta propiedad ha obtenido un puntaje de recomendación de $0.370$. Las
+    reglas activadas para esta propiedad han sido las siguiente:
+    \begin{itemize}
+        \item Regla 3
+        \item Regla 7
+        \item Regla 10
+        \item Regla 12
+        \item Regla 13
+        \item Regla 14
+        \item Regla 16
+    \end{itemize}
+
+    Se trata del inmueble con la puntuación más baja. Esto se debe a su gran
+    tamaño, su estado de amueblación y su distancia algo superior al transporte
+    público que el resto de pisos. El resultado se ha visto influenciado
+    principalmente por las reglas 3, 7 y 16.
+
 
     \chapter{Conclusiones y mejoras}
     \label{chap:conclusion}
