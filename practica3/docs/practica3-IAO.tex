@@ -973,6 +973,26 @@ hmargin=3cm
     debido a la influencia de las reglas 2 y 3. Se deduce entonces que la
     recomendación no es superrior debido al tamaño del piso.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 1},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/1.dat};
+                \addplot[color=red, mark=none] coordinates {(0.709,0)(0.709,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 1}
+    \end{figure}
+
     \section{Propiedad 2}
     
     Esta propiedad ha obtenido un puntaje de recomendación de $0.414$. Las reglas activadas para esta propiedad han sido las siguientes: 
@@ -990,6 +1010,26 @@ hmargin=3cm
     peso menor que la primera, lo que hace del resultado una consecuencia
     principalmente de la regla 4.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 2},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/2.dat};
+                \addplot[color=red, mark=none] coordinates {(0.414,0)(0.414,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 2}
+    \end{figure}
+
     \section{Propiedad 3}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.789$. Las reglas activadas para esta propiedad han sido las siguientes: 
     \begin{itemize}
@@ -1003,6 +1043,26 @@ hmargin=3cm
     6 y 12. Comparándola con la primera propiedad, es destacable que este
     inmueble no activa la regla 4. Esto hace que su puntuación sea mayor al
     tratarse de un piso de tamaño medio.
+
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 3},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/3.dat};
+                \addplot[color=red, mark=none] coordinates {(0.789,0)(0.789,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 3}
+    \end{figure}
 
     \section{Propiedad 4}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.830$. Las reglas activadas para esta propiedad han sido las siguientes: 
@@ -1019,6 +1079,26 @@ hmargin=3cm
     pequeña, barata y amueblada; características fundamentales que se buscan
     por los estudiantes.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 4},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/4.dat};
+                \addplot[color=red, mark=none] coordinates {(0.83,0)(0.83,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 4}
+    \end{figure}
+
     \section{Propiedad 5}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.528$. Las reglas activadas para esta propiedad han sido las siguientes:
     \begin{itemize}
@@ -1034,6 +1114,26 @@ hmargin=3cm
     Se aprecia que el tamaño perjudica en gran medida al inmueble mientras que
     su cercanía al transporte público, su precio y el hecho de que sea
     amueblado lo beneficia.
+
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 5},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/5.dat};
+                \addplot[color=red, mark=none] coordinates {(0.528,0)(0.528,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 5}
+    \end{figure}
      
     \section{Propiedad 6}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.503$. Las
@@ -1053,6 +1153,26 @@ hmargin=3cm
     precio, cercanía al transporte público y su tamaño compensan positivamente
     la puntuación.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 6},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/6.dat};
+                \addplot[color=red, mark=none] coordinates {(0.503,0)(0.503,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 6}
+    \end{figure}
+
     \section{Propiedad 7}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.565$. Las
     reglas activadas para esta propiedad han sido las siguiente:
@@ -1070,6 +1190,26 @@ hmargin=3cm
     puntuación. Adicionalmente la cercanía al transporte público concentra el
     centroide en la parte más central.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 7},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/7.dat};
+                \addplot[color=red, mark=none] coordinates {(0.565,0)(0.565,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 7}
+    \end{figure}
+
     \section{Propiedad 8}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.496$. Las
     reglas activadas para esta propiedad han sido las siguiente:
@@ -1084,6 +1224,26 @@ hmargin=3cm
     Esta influencia es ligeramente compensada por la cercanía al transporte
     público (regla 12). La regla 14 apenas tiene influencia sobre el resultado.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 8},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/8.dat};
+                \addplot[color=red, mark=none] coordinates {(0.496,0)(0.496,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 8}
+    \end{figure}
+
     \section{Propiedad 9}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.503$. Las
     reglas activadas para esta propiedad han sido las siguiente:
@@ -1097,6 +1257,26 @@ hmargin=3cm
     principalmente al estado de amueblación de la vivienda. Su tamaño, precio y
     cercanía al transporte público influyen positivamente en la valoración de
     la vivienda. No obstante, su estado no amueblado castiga la puntuación.
+
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 9},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/9.dat};
+                \addplot[color=red, mark=none] coordinates {(0.503,0)(0.503,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 9}
+    \end{figure}
 
     \section{Propiedad 10}
     Esta propiedad ha obtenido un puntaje de recomendación de $0.370$. Las
@@ -1116,6 +1296,25 @@ hmargin=3cm
     público que el resto de pisos. El resultado se ha visto influenciado
     principalmente por las reglas 3, 7 y 16.
 
+    A continuación se adjunta el resultado de la ejecución:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=0.90\linewidth,
+                height=9.0cm,
+                title={Salida del modelo para la propiedad 10},
+                xlabel={Variable de salida},
+                ylabel={Grado de pertenencia},
+                xmin=0, xmax=1,
+                ymin=0, ymax=1.19,
+            ]
+                \addplot[color=blue, mark=none] file {data/10.dat};
+                \addplot[color=red, mark=none] coordinates {(0.37,0)(0.37,1.2)} node[right, yshift=-20] {Salida};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Salida del modelo para la propiedad 10}
+    \end{figure}
 
     \chapter{Conclusiones y mejoras}
     \label{chap:conclusion}
