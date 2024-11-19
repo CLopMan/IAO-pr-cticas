@@ -1338,6 +1338,30 @@ hmargin=3cm
     \chapter{Conclusiones y mejoras}
     \label{chap:conclusion}
 
+    El modelo obtenido presenta un comportamiento que coincide con los
+    resultados esperados. Se observa durante las ejecuciones que castiga
+    adecuadamente el tamaño, alto precio e inmuebles no amueblados.
+    Adicionalmente, la puntuación baja a medida que los inmuebles se alejan más
+    del transporte público. Las viviendas que cumplen las tres condiciones más
+    buscadas por el perfil de estudiante (precio barato, tamaño pequeño y
+    cercanía al transporte público) cuentan con la puntuación más alta; siendo
+    el mayor ejemplo de esto la propiedad 3. Adicionalmente se aprecian una
+    gran cantidad de viviendas que caen en puntuaciones intermedias,
+    generalmente debido a la combinación de características muy positivas y muy
+    negativas.
+
+    Con todo lo anterior, destaca el problema de las puntuaciones intermedias
+    cuyo centroide no es representativo. El sistema puede dar una idea
+    equivocada sobre pisos en este rango de puntuación, pareciendo más
+    recomendables de lo que realmente son. Para solucionarlo se sugiere
+    penalizar en mayor medida las opciones negativas a través de un mayor peso
+    en las reglas cuyo consecuente sea \texttt{No recomendado} o \texttt{Poco
+    recomendable}. De esta forma, el sistema daría una mayor importancia a las
+    características negativas, resultando en una recomendación más
+    conservadora. En consecuencia, las puntuaciones resultantes serán más
+    extremas, facilitando la interpretación de resultados por parte de un
+    usuario no informado.
+
     %----------
     %    BIBLIOGRAFÍA
     %----------
