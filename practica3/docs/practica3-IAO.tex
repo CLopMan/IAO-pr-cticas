@@ -329,7 +329,7 @@ hmargin=3cm
 %    TRABAJO
 %----------
 \clearpage
-\pagenumbering{arabic} % numeración con múmeros arábigos para el resto de la publicación
+\pagenumbering{arabic} % numeración con números arábigos para el resto de la publicación
 
     \chapter{Introducción y objetivo}
     \label{chap:intro}
@@ -425,16 +425,16 @@ hmargin=3cm
         función de pertenencia de los conjuntos cubriese el caso del valor 0.
 
         Los conjuntos borrosos y sus funciones de pertenencia han sido
-        definidos según las características de cada uno, teniendo el cuenta el
+        definidos según las características de cada uno, teniendo en cuenta el
         rango así como los valores medios de cada variable. Aún así, se ha
-        asegurado en todos los casos que el mínimo número de etiquetas borrosas del
+        asegurado de que en todos los casos el mínimo número de etiquetas borrosas del
         atributo sea 3, con excepción de las variables \textit{booleanas}.
 
         A continuación se describen las variables de entrada utilizadas finalmente, junto con las funciones de pertenencia de sus etiquetas. 
 
         \subsection{Precio}
         Esta variable representa el precio de alquiler del inmueble en euros por metro cuadrado (€$/m^2$).
-        Tiene un rango de 7 a 50, y se han utilizado 3 etiquetas para representar este valor: ``barato'', ``medio'' y ``caro''.
+        Tiene un rango de 7 a 50 y se han utilizado 3 etiquetas para representar este valor: ``barato'', ``medio'' y ``caro''.
         La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta el poder adquisitivo del perfil
          y el rango de valores encontrado durante el estudio inicial de los datos.
 
@@ -480,8 +480,8 @@ hmargin=3cm
 
         \subsection{Tamaño}
         Esta variable representa el tamaño en metros cuadrados ($m^2$) del inmueble.
-        Tiene un rango de 18 a 555 metros, y se han utilizado 3 etiquetas para representar este valor: ``pequeño'', ``medio'' y ``grande''.
-        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta tamaño que necesitaría el perfil para vivir solo,
+        Tiene un rango de 18 a 555 metros y se han utilizado 3 etiquetas para representar este valor: ``pequeño'', ``medio'' y ``grande''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta el tamaño que necesitaría el perfil para vivir solo,
          así como el rango de valores encontrado durante el estudio inicial de los datos.
 
         \begin{table}[h]
@@ -521,7 +521,7 @@ hmargin=3cm
         El tipo de función de pertenencia sigue la misma lógica que en la variable anterior. 
 
         \subsection{Número de habitaciones}
-        Esta variable representa el número de habitaciones de cualquier tipo total en la vivienda.
+        Esta variable representa el número total de habitaciones de cualquier tipo en la vivienda.
         Tiene un rango de 0 a 5 dividido en 3 etiquetas: ``pocas'', ``medio'' y ``muchas''.
         La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta las necesidades del perfil para vivir solo
          y el rango de valores encontrado durante el estudio inicial de los datos. El tipo de funciones sigue la misma lógica
@@ -563,9 +563,9 @@ hmargin=3cm
 
         \subsection{Altura}
         Esta variable representa el piso en el que se encuentra el inmueble.
-        Tiene un rango de -1 a 22, y se han utilizado 3 etiquetas para representar este valor: ``alto'', ``medio'' y ``bajos''.
-        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que ``bajo'' debería representar una cantidad que se puede subir por escaleras diaramente sin necesidad de ascensor,
-        ``medio'' debería representar una cantidad que, aunque se podría subir por escaleras, un ascensor aportaría mucho valor, y ``alto'' debería representar una cantidad que necesita un ascensor.
+        Tiene un rango de -1 a 22, y se han utilizado 3 etiquetas para representar este valor: ``alto'', ``medio'' y ``bajo''.
+        La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que ``bajo'' representa una cantidad que se puede subir por escaleras diariamente sin necesidad de ascensor,
+        ``medio'' representa una cantidad que, aunque se podría subir por escaleras, un ascensor aportaría mucho valor, y ``alto'' representa una cantidad que necesita un ascensor.
 
         \begin{table}[h]
             \center
@@ -603,8 +603,8 @@ hmargin=3cm
 
         \subsection{Amueblado}
         Esta variable representa un valor \textit{booleano} que indica si el inmueble está amueblado.
-        Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
-        Además, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
+        Tiene un rango de 0 a 1 y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
+        Además, como no es un concepto impreciso se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
 
         \begin{table}[h]
             \center
@@ -640,8 +640,8 @@ hmargin=3cm
 
         \subsection{Ascensor}
         Esta variable representa un valor \textit{booleano} que se corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
-        Tiene un rango de 0 a 1, y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
-        Una vez más, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para las etiquetas.
+        Tiene un rango de 0 a 1 y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
+        Una vez más, como no es un concepto impreciso se ha decidido utilizar funciones de pertenencia \textit{singleton} para las etiquetas.
 
         \begin{table}[h]
             \center
@@ -677,7 +677,7 @@ hmargin=3cm
 
         \subsection{Tiempo a transporte público}
         Esta variable representa la distancia medida en minutos de la vivienda a la parada de transporte público más cercana.
-        Tiene un rango de 1 a 30, y se han utilizado 3 etiquetas para representar este valor: ``cerca'', ``medio'' y ``lejos''.
+        Tiene un rango de 1 a 30 y se han utilizado 3 etiquetas para representar este valor: ``cerca'', ``medio'' y ``lejos''.
         La definición de sus funciones de pertenencia se ha realizado teniendo en cuenta que el perfil necesita viajar 
         diariamente sin tener vehículo propio, así como el rango de valores encontrado durante el estudio inicial de los datos.
 
@@ -731,7 +731,7 @@ hmargin=3cm
     resultado pasa por un proceso de desborrisificacion antes de ser otorgado al
     usuario. Las 5 funciones de pertenencia tienen forma trapezoidal ya que se
     considera que cada una de ellas tiene un rango en el que se asegura que
-    son la etiqueta más representativa, y por lo tanto cuentan con un grado de pertenencia 1.
+    son la etiqueta más representativa y por lo tanto cuentan con un grado de pertenencia 1.
     Tienen una distribución equitativa a lo largo de la variable ya que
     se ha decidido que cada una de las etiquetas deben cubrir un rango igual al
     resto.
@@ -780,7 +780,7 @@ hmargin=3cm
     han sido definidas a partir del perfil seleccionado. Cabe recalcar que
     aunque se comenzó con 17 reglas, estas han sido modificadas y reducidas a
     16 tras varias ejecuciones para poder conseguir un modelo preciso. Estos
-    cambios sobretodo incluyen modificaciones de las etiquetas de salida,
+    cambios sobretodo incluyen modificaciones de las etiquetas de salida
     debido a que el primer modelo tendía en exceso a dar resultados intermedios,
     incluso para ejemplos extremos de viviendas.
 
@@ -794,7 +794,7 @@ hmargin=3cm
         \item \texttt{IF Precio IS caro THEN Recomendación IS Poco recomendado}
     \end{itemize}
 
-    Beneficiarán aquellas viviendas con un menor precio y tamaño, siendo 
+    Beneficiarán a aquellas viviendas con un menor precio y tamaño, siendo 
     esta decisión justificada por el poco poder asquisitivo y la búsqueda de un piso para vivir solo
     del perfil del estudiante. Además, se considera que estos dos atributos son los que más peso 
     pueden tener sobre la decisión final de elegir el inmueble, lo cual explica el gran peso de 
@@ -832,7 +832,7 @@ hmargin=3cm
     \end{itemize}
 
     La primera regla en particular cuenta con recomendación negativa, razonando que si una vivienda es pequeña 
-    y tiene muchas habitaciones estas serán prácticamente inhabitables. Así, solo se considera de manera 
+    y tiene muchas habitaciones estas serán prácticamente inhabitables. Así, solo se consideran de manera 
     positiva aquellos inmuebles de tamaño grande o mediano con un número mayor de habitaciones.
 
     \subsection{Regla sobre la altura y la presencia de ascensor en el complejo}
@@ -856,7 +856,7 @@ hmargin=3cm
     \end{itemize}
     
     Aunque tienen un peso algo menor al de otras
-    reglas, se considera que aquellos inmuebles cercanos a transporte público deberían ser mucho 
+    reglas, se considera que aquellos inmuebles cercanos al transporte público deberían ser mucho 
     más recomendados que los que se encuentran excesivamente lejos. Esta regla viene justificada
     por la importancia del transporte público para el día a día de un estudiante, que suele no contar 
     con un medio de transporte propio.
@@ -1021,7 +1021,7 @@ hmargin=3cm
         \item Regla 13
         \item Regla 14
     \end{itemize}
-    Su baja puntuación se debe principalmente a la influencia de la regla 4,
+    Su baja puntuación se debe principalmente a la influencia de la regla 4
     que penaliza el alto precio de la vivienda. Adicionalmente, se han activado
     las reglas 12, 13 y 14, relacionadas con la cercanía al transporte público.
     Estas reglas desplazan ligeramente el centroide a la derecha, logrando una
@@ -1058,7 +1058,7 @@ hmargin=3cm
         \item Regla 14
     \end{itemize}
 
-    Su puntuación es considerablemente alta, debida principalmente a las reglas
+    Su puntuación es considerablemente alta debido principalmente a las reglas
     6 y 12. Comparándola con la primera propiedad, es destacable que este
     inmueble no activa la regla 4. Esto hace que su puntuación sea mayor al
     tratarse de un piso de tamaño medio.
@@ -1166,7 +1166,7 @@ hmargin=3cm
         \item Regla 16
     \end{itemize}
 
-    Al igual que la propiedad anterior, se obtiene una puntuación intermedia.
+    Al igual que en la propiedad anterior, se obtiene una puntuación intermedia.
     Esto se debe principalmente al estado de amueblación de la vivienda, que la
     castiga severamente al no estar amueblada (regla 16). Adicionalmente, su
     precio, cercanía al transporte público y su tamaño compensan positivamente
@@ -1272,7 +1272,7 @@ hmargin=3cm
         \item Regla 14
     \end{itemize}
     
-    De nuevo, se tata de un inmueble con una puntuación intermedia debida
+    De nuevo, se tata de un inmueble con una puntuación intermedia debido
     principalmente al estado de amueblación de la vivienda. Su tamaño, precio y
     cercanía al transporte público influyen positivamente en la valoración de
     la vivienda. No obstante, su estado no amueblado castiga la puntuación.
