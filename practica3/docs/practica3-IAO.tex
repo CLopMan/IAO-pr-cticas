@@ -604,7 +604,7 @@ hmargin=3cm
         \subsection{Amueblado}
         Esta variable representa un valor \textit{booleano} que indica si el inmueble está amueblado.
         Tiene un rango de 0 a 1 y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
-        Además, como no es un concepto impreciso se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
+        Además, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para estas etiquetas.
 
         \begin{table}[h]
             \center
@@ -641,7 +641,7 @@ hmargin=3cm
         \subsection{Ascensor}
         Esta variable representa un valor \textit{booleano} que se corresponde con la presencia de un ascensor en el complejo al que pertenece la vivienda. 
         Tiene un rango de 0 a 1 y, ya que es una variable booleana, se han utilizado 2 etiquetas para representar este valor: ``SI'' y ``NO''.
-        Una vez más, como no es un concepto impreciso se ha decidido utilizar funciones de pertenencia \textit{singleton} para las etiquetas.
+        Una vez más, como no es un concepto impreciso, se ha decidido utilizar funciones de pertenencia \textit{singleton} para las etiquetas.
 
         \begin{table}[h]
             \center
@@ -788,8 +788,8 @@ hmargin=3cm
     Estas son reglas con peso máximo que buscan clasificar las viviendas según su precio y tamaño.
 
     \begin{itemize}
-        \item \texttt{IF Precio IS barato AND Tamaño IS pequeño THEN Recomendación IS Muy recomendable}
-        \item \texttt{IF Precio IS barato AND Tamaño IS medio THEN Recomendación IS Recomendable}
+        \item \texttt{IF Precio IS barato AND Tamaño IS pequeño THEN Recomendación IS\\Muy recomendable}
+        \item \texttt{IF Precio IS barato AND Tamaño IS medio THEN Recomendación IS\\Recomendable}
         \item \texttt{IF Tamaño IS grande THEN Recomendación IS Poco recomendado}
         \item \texttt{IF Precio IS caro THEN Recomendación IS Poco recomendado}
     \end{itemize}
@@ -806,10 +806,10 @@ hmargin=3cm
     promedio no puede permitirse amueblar para uno o dos años de alquiler.
 
     \begin{itemize}
-        \item \texttt{IF Precio IS caro AND Amueblado IS NO THEN Recomendación IS No recomendado}
-        \item \texttt{IF Precio IS barato AND Amueblado IS SI THEN Recomendación IS Muy recomendable}
-        \item \texttt{IF Precio IS barato AND Amueblado IS NO THEN Recomendación IS Medianamente recomendable}
-        \item \texttt{IF Tamaño IS NOT pequeño AND Amueblado IS NO THEN Recomendación IS No recomendado}
+        \item \texttt{IF Precio IS caro AND Amueblado IS NO THEN Recomendación IS No\\recomendado}
+        \item \texttt{IF Precio IS barato AND Amueblado IS SI THEN Recomendación IS\\Muy recomendable}
+        \item \texttt{IF Precio IS barato AND Amueblado IS NO THEN Recomendación IS\\Medianamente recomendable}
+        \item \texttt{IF Tamaño IS NOT pequeño AND Amueblado IS NO THEN Recomendación\\IS No recomendado}
     \end{itemize}
 
     La amueblación tiene relación directa con el precio final de vivir en el lugar elegido, 
@@ -826,9 +826,9 @@ hmargin=3cm
     es el perfil secundario considerado. 
 
     \begin{itemize}
-        \item \texttt{IF Tamaño IS pequeño AND n habitaciones IS muchas THEN Recomendación IS Poco recomendado}
-        \item \texttt{IF Tamaño IS medio AND n habitaciones IS medio THEN Recomendación IS Recomendable}
-        \item \texttt{IF Tamaño IS grande AND n habitaciones IS muchas THEN Recomendación IS Medianamente recomendable}
+        \item \texttt{IF Tamaño IS pequeño AND n\_habitaciones IS muchas THEN\\Recomendación IS Poco recomendado}
+        \item \texttt{IF Tamaño IS medio AND n\_habitaciones IS medio THEN\\Recomendación IS Recomendable}
+        \item \texttt{IF Tamaño IS grande AND n\_habitaciones IS muchas THEN\\Recomendación IS Medianamente recomendable}
     \end{itemize}
 
     La primera regla en particular cuenta con recomendación negativa, razonando que si una vivienda es pequeña 
@@ -839,7 +839,7 @@ hmargin=3cm
     Caso eliminativo con peso máximo de un piso muy alto si este no tiene ascensor. 
 
     \begin{itemize}
-        \item \texttt{IF Altura IS alto AND Ascensor IS NO THEN Recomendación IS No recomendado}
+        \item \texttt{IF Altura IS alto AND Ascensor IS NO THEN Recomendación IS No\\recomendado}
     \end{itemize}
 
     La altura empieza a considerarse ``alta'' si la vivienda se encuentra a partir del piso sexto, 
@@ -850,9 +850,9 @@ hmargin=3cm
     Son reglas en relación con el transporte público.
 
     \begin{itemize}
-        \item \texttt{IF Cercanía tp IS cerca THEN Recomendación IS Muy recomendable}
-        \item \texttt{IF Cercanía tp IS lejos THEN Recomendación IS Poco recomendado}
-        \item \texttt{IF Cercanía tp IS medio THEN Recomendación IS Medianamente recomendable}
+        \item \texttt{IF Cercanía\_tp IS cerca THEN Recomendación IS Muy recomendable}
+        \item \texttt{IF Cercanía\_tp IS lejos THEN Recomendación IS Poco recomendado}
+        \item \texttt{IF Cercanía\_tp IS medio THEN Recomendación IS Medianamente\\recomendable}
     \end{itemize}
     
     Aunque tienen un peso algo menor al de otras
@@ -866,7 +866,7 @@ hmargin=3cm
     alto en muy buenas condiciones de posicionamiento y tamaño pueda ser más recomendado.
 
     \begin{itemize}
-        \item \texttt{IF Precio IS medio AND Tamaño IS pequeño AND Cercanía tp IS cerca THEN Recomendación IS Recomendable}
+        \item \texttt{IF Precio IS medio AND Tamaño IS pequeño AND Cercanía\_tp IS cerca THEN Recomendación IS Recomendable}
     \end{itemize}
 
     Esta regla busca identificar los pisos que son estudios, siendo estos una muy buena opción 
@@ -877,7 +877,7 @@ hmargin=3cm
     En este apartado se describen las propiedades utilizadas para validar el
     modelo desarrollado. Para cada una se indican los atributos relevantes para
     la entrada del modelo, un enlace a su anuncio en
-    \href{https://www.idealista.com}{idealista}, y el nivel de recomendación
+    \href{https://www.idealista.com}{Idealista}, y el nivel de recomendación
     dado por el modelo.
 
     \begin{table}[h]
