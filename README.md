@@ -18,6 +18,10 @@ approaches for classifying flight reviews:
 
 In addition, the data was also analyzed using *topic modelling*.
 
+## Practica3
+
+Develop a MATLAB-based fuzzy logic system to evaluate properties with a focus on student-centered criteria.
+
 # Authors
 - [CLopMan](https://github.com/CLopMan)
 - [ALVAROPING1](https://github.com/ALVAROPING1)
